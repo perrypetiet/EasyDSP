@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "gpio.h": "c"
+    },
+    "cmake.configureOnOpen": true,
+    "C_Cpp.default.compilerPath": ""
+}
