@@ -1,0 +1,109 @@
+<mxfile host="65bd71144e">
+    <diagram id="sZX61pPik9CgZUGlImG2" name="Page-1">
+        <mxGraphModel dx="765" dy="546" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="5" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#fc6330;endArrow=none;endFill=0;strokeColor=#666666;" parent="1" source="2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="100" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="25" style="edgeStyle=none;html=1;strokeColor=#666666;fontFamily=Tahoma;endArrow=classic;endFill=1;entryX=-0.002;entryY=0.114;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="2" target="19" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="300" y="190" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#ffffff&quot;&gt;&lt;b&gt;Equalizer&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="160" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#fc6330&quot;&gt;&lt;b&gt;Input 1&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="180" width="60" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#fc6330;endArrow=none;endFill=0;strokeColor=#666666;" parent="1" source="16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="100" y="470" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" style="edgeStyle=none;html=1;strokeColor=#666666;fontFamily=Tahoma;endArrow=classic;endFill=1;entryX=-0.004;entryY=0.886;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="16" target="19" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="310" y="470" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#ffffff&quot;&gt;&lt;b&gt;Eualizer&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="430" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#fc6330&quot;&gt;&lt;b&gt;Input 2&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="450" width="60" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#666666;fontFamily=Tahoma;endArrow=classic;endFill=1;exitX=1;exitY=0.114;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="19" target="26" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#666666;fontFamily=Tahoma;endArrow=classic;endFill=1;exitX=0.993;exitY=0.371;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="19" target="27" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#666666;fontFamily=Tahoma;endArrow=classic;endFill=1;" parent="1" target="28" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="400" y="380" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#666666;fontFamily=Tahoma;endArrow=classic;endFill=1;exitX=0.992;exitY=0.886;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="19" target="29" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="410" y="470" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="19" value="&lt;b&gt;&lt;font color=&quot;#ffffff&quot; face=&quot;Tahoma&quot;&gt;Mux&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="160" width="80" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="&lt;font color=&quot;#ffffff&quot; face=&quot;Tahoma&quot;&gt;&lt;b&gt;Equalizer&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="160" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="&lt;font color=&quot;#ffffff&quot; face=&quot;Tahoma&quot;&gt;&lt;b&gt;Equalizer&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="250" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#ffffff&quot;&gt;&lt;b&gt;Equalizer&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="340" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="&lt;font color=&quot;#ffffff&quot; face=&quot;Tahoma&quot;&gt;&lt;b&gt;Equalizer&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="430" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#fc6330;endArrow=none;endFill=0;strokeColor=#666666;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="560" y="199.71" as="targetPoint"/>
+                        <mxPoint x="620" y="199.71" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="35" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#fc6330;endArrow=none;endFill=0;strokeColor=#666666;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="560" y="289.71000000000004" as="targetPoint"/>
+                        <mxPoint x="620" y="289.71000000000004" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="36" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#fc6330;endArrow=none;endFill=0;strokeColor=#666666;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="560" y="379.86" as="targetPoint"/>
+                        <mxPoint x="620" y="379.86" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#fc6330;endArrow=none;endFill=0;strokeColor=#666666;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="560" y="469.86" as="targetPoint"/>
+                        <mxPoint x="620" y="469.86" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#fc6330&quot;&gt;&lt;b&gt;Output 1&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="180" width="60" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#fc6330&quot;&gt;&lt;b&gt;Output 2&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="270" width="60" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#fc6330&quot;&gt;&lt;b&gt;Output 3&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="360" width="60" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="&lt;font face=&quot;Tahoma&quot; color=&quot;#fc6330&quot;&gt;&lt;b&gt;Output 4&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="450" width="60" height="18" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
