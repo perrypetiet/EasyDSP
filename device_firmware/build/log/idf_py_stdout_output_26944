@@ -1,4 +1,4 @@
--- Existing sdkconfig 'C:/Users/perry/Documents/GitHub/EasyDSP/device_firmware/sdkconfig' renamed to 'C:/Users/perry/Documents/GitHub/EasyDSP/device_firmware/sdkconfig.old'.
+-- IDF_TARGET is not set, guessed 'esp32s3' from sdkconfig 'C:/Users/perry/Documents/GitHub/EasyDSP/device_firmware/sdkconfig'
 -- Found Git: C:/Espressif/tools/idf-git/2.39.2/cmd/git.exe (found version "2.39.2.windows.1") 
 -- ccache will be used for faster recompilation
 -- The C compiler identification is GNU 12.2.0
@@ -28,7 +28,7 @@
 -- Found Python3: C:/Espressif/python_env/idf5.1_py3.11_env/Scripts/python.exe (found version "3.11.2") found components: Interpreter 
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
--- App "easydsp_firmware" version: 76478a1
+-- App "easydsp_firmware" version: 0e1485f-dirty
 -- Adding linker script C:/Users/perry/Documents/GitHub/EasyDSP/device_firmware/build/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script C:/esp/esp-idf/components/esp_system/ld/esp32s3/sections.ld.in
 -- Adding linker script C:/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ld

@@ -1,7 +1,10 @@
 {
     "files.associations": {
-        "gpio.h": "c"
+        "gpio.h": "c",
+        "stdio.h": "c"
     },
     "cmake.configureOnOpen": true,
-    "C_Cpp.default.compilerPath": ""
+    "C_Cpp.default.compilerPath": "",
+    "cmake.sourceDirectory": "C:/Users/perry/Documents/GitHub/EasyDSP/device_firmware/main",
+    "C_Cpp.intelliSenseEngineFallback": "enabled"
 }

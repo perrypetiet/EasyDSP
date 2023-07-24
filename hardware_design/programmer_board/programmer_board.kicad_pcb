@@ -182,6 +182,11 @@
       (net 13 "Net-(J1-SHIELD-PadS1)") (pinfunction "SHIELD") (pintype "passive") (tstamp ab1d2a15-01bb-40b6-a23e-73e7b145bd1d))
     (pad "S2" smd rect (at 3.8 3.875 90) (size 1.2 1.8) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 13 "Net-(J1-SHIELD-PadS1)") (pinfunction "SHIELD") (pintype "passive") (tstamp 25611b3b-8a7a-4b59-a76c-fce51fc98d66))
+    (model "C:/Users/perry/Documents/Footprints/SM06B-SRSS-TB_LF__SN_/SM06B-SRSS-TB_LF__SN_.step"
+      (offset (xyz 0 -2 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "SS8050-G:TRANS_SS8050-G" (layer "F.Cu")
@@ -237,6 +242,11 @@
       (net 20 "RTS") (pintype "passive") (tstamp a581d4fc-58ef-42bd-982b-f7c08e30089b))
     (pad "3" smd rect (at 1.01 0) (size 0.8 0.6) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 8 "RST") (pintype "passive") (tstamp 21c53917-9d24-4400-8081-6d648850f7fe))
+    (model "C:/Users/perry/Documents/Footprints/SS8050-G/SS8050-G.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "TL6330AF200Q:SW_TL6330AF200Q" (layer "F.Cu")
@@ -291,6 +301,11 @@
       (net 8 "RST") (pintype "passive") (tstamp af87c29b-e01d-4270-a773-963ae3fc30a9))
     (pad "4" smd rect (at 2.05 -0.8 180) (size 0.9 1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 8 "RST") (pintype "passive") (tstamp 0b317ce6-a6b8-47a6-810c-ab7783f089f6))
+    (model "C:/Users/perry/Documents/Footprints/TL6330AF200Q/TL6330AF200Q.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
@@ -584,6 +599,11 @@
       (net 27 "unconnected-(U3-RS232-Pad15)") (pinfunction "RS232") (pintype "input") (tstamp 6385f7cb-2367-4b6c-baca-0f6b04ce4bc7))
     (pad "16" smd roundrect (at 2.75 -4.445 270) (size 1.31 0.62) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.08)
       (net 1 "+3.3V") (pinfunction "VCC") (pintype "power_in") (tstamp 6a31f55a-89c6-4dea-88f9-f2f7e6aa07c0))
+    (model "C:/Users/perry/Documents/Footprints/CH340G/CH340G.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
@@ -714,6 +734,11 @@
     (pad "4" smd roundrect (at 1.185 0.95 270) (size 0.6 1.35) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.1) (tstamp 95af1331-27ce-4e69-94a9-b2fc9330db64))
     (pad "5" smd roundrect (at 1.185 -0.95 270) (size 0.6 1.35) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.1)
       (net 1 "+3.3V") (pinfunction "VOUT") (pintype "power_in") (tstamp b8296ea5-31a3-4bd4-a248-563dcee81b84))
+    (model "C:/Users/perry/Documents/Footprints/AP2112K-3.3TRG1/AP2112K-3.3TRG1.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 -90))
+    )
   )
 
   (footprint "TPD2S017DBVR:SOT95P280X145-6N" (layer "F.Cu")
@@ -783,6 +808,11 @@
       (net 3 "VBUS") (pinfunction "VCC") (pintype "power_in") (tstamp 23b3c381-885b-426b-9363-b712ed0df814))
     (pad "6" smd roundrect (at 1.255 -0.95) (size 1.21 0.58) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.07)
       (net 28 "/USB_P") (pinfunction "CH2_OUT") (pintype "output") (tstamp c1876522-7a61-4fe5-933a-d57229a8478f))
+    (model "C:/Users/perry/Documents/Footprints/TPD2S017DBVR/TPD2S017DBVR.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
@@ -891,6 +921,11 @@
       (net 7 "BOOT") (pintype "passive") (tstamp a842ec91-9347-4eb0-a11b-41decd57ac81))
     (pad "4" smd rect (at 2.05 -0.8 180) (size 0.9 1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 7 "BOOT") (pintype "passive") (tstamp 3f8b13bc-d23d-4920-a5bf-998f283e7c04))
+    (model "C:/Users/perry/Documents/Footprints/TL6330AF200Q/TL6330AF200Q.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
@@ -1216,6 +1251,11 @@
       (net 22 "DTR") (pintype "passive") (tstamp fb5a5f16-63ab-47dd-8ecd-2b5f4c629298))
     (pad "3" smd rect (at 1.01 0) (size 0.8 0.6) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 7 "BOOT") (pintype "passive") (tstamp 2b3d86c2-2832-489e-ae58-11d089fa65c4))
+    (model "C:/Users/perry/Documents/Footprints/SS8050-G/SS8050-G.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
@@ -1450,15 +1490,15 @@
     (property "Sheetname" "")
     (path "/6a96f6ba-f23e-4948-a828-eaf10ff7f3f9")
     (attr smd)
-    (fp_text reference "J2" (at 3.0635 -7.112 -180) (layer "F.SilkS") hide
+    (fp_text reference "J2" (at 3.0635 -7.112) (layer "F.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp d337c62f-d1af-4288-8065-9dd5f9106265)
     )
-    (fp_text value "USB4800-03-A_REVA" (at 7.975 -7.635 -90) (layer "F.Fab")
+    (fp_text value "USB4800-03-A_REVA" (at 7.975 -7.635 90) (layer "F.Fab")
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 99781485-8b2a-4a57-8737-25951a37adad)
     )
-    (fp_text user "PCB EDGE" (at 5.5 1.9 -90) (layer "F.Fab")
+    (fp_text user "PCB EDGE" (at 5.5 1.9 90) (layer "F.Fab")
         (effects (font (size 0.64 0.64) (thickness 0.15)))
       (tstamp 327ac34a-6321-47ec-9966-baf0b8f1341b)
     )
@@ -1536,6 +1576,11 @@
       (net 14 "Net-(J2-SHIELD-PadS1)") (pinfunction "SHIELD") (pintype "passive") (tstamp bafbb677-6db9-41ce-b98f-6194c0c20278))
     (pad "S4" thru_hole oval (at 4.61 -4.5 270) (size 1 2) (drill oval 0.6 1.6) (layers "*.Cu" "*.Mask")
       (net 14 "Net-(J2-SHIELD-PadS1)") (pinfunction "SHIELD") (pintype "passive") (tstamp 86f4dda8-2496-4e51-b14d-788b15c5eab4))
+    (model "C:/Users/perry/Documents/Footprints/USB4800-03-A_REVA/USB4800-03-A_REVA.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Inductor_SMD:L_0805_2012Metric" (layer "F.Cu")
@@ -1712,8 +1757,29 @@
       (net 4 "Net-(U3-XO)") (pintype "passive") (tstamp 0791d6b9-50f3-4aec-bbcf-62ce90336901))
     (pad "2" smd rect (at 2.75 0 270) (size 3.5 1.2) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 5 "Net-(U3-XI)") (pintype "passive") (tstamp 650fbda5-3d7b-4a53-a66c-3c5082699d9e))
+    (model "C:/Users/perry/Documents/Footprints/ECS-122.8-20-3X-EN-TR/ECS-122.8-20-3X-EN-TR.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
+  (gr_line (start 83.448026 85.852) (end 83.439 101.854)
+    (stroke (width 0.1) (type default)) (layer "Edge.Cuts") (tstamp 272c543d-f192-43bc-bd16-90114e0753f9))
+  (gr_line (start 130.927974 101.854) (end 130.927974 85.852)
+    (stroke (width 0.1) (type default)) (layer "Edge.Cuts") (tstamp 42b98559-0239-49b1-8c92-08a583dbd57e))
+  (gr_arc (start 130.927974 101.854) (mid 130.556 102.752026) (end 129.657974 103.124)
+    (stroke (width 0.1) (type default)) (layer "Edge.Cuts") (tstamp 63f34d39-f6d0-425a-9c36-ddbafe9dad65))
+  (gr_arc (start 83.448026 85.852) (mid 83.82 84.953974) (end 84.718026 84.582)
+    (stroke (width 0.1) (type default)) (layer "Edge.Cuts") (tstamp 63f87414-73c5-4156-957b-0c2656d41a56))
+  (gr_arc (start 84.709 103.124) (mid 83.810974 102.752026) (end 83.439 101.854)
+    (stroke (width 0.1) (type default)) (layer "Edge.Cuts") (tstamp 973d6798-9f80-4ac0-9f18-5ec98e4e2a3f))
+  (gr_arc (start 129.657974 84.582) (mid 130.556 84.953974) (end 130.927974 85.852)
+    (stroke (width 0.1) (type default)) (layer "Edge.Cuts") (tstamp b46c67a1-0530-4aea-a2b3-89ab65a611f3))
+  (gr_line (start 84.709 103.124) (end 129.657974 103.124)
+    (stroke (width 0.1) (type default)) (layer "Edge.Cuts") (tstamp f1a8b23c-b732-4301-bb8f-999755f3ce96))
+  (gr_line (start 84.718026 84.582) (end 129.657974 84.582)
+    (stroke (width 0.1) (type default)) (layer "Edge.Cuts") (tstamp f6075eb0-5e74-4f19-90a9-55be4a0350e4))
   (gr_text "RST" (at 130.0755 101.816 90) (layer "F.SilkS") (tstamp b4c470dd-9f31-4a56-8daa-fb866ac582ab)
     (effects (font (size 1 1) (thickness 0.25) bold) (justify left bottom))
   )
