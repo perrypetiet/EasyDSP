@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\perry\Documents\GitHub\EasyDSP\device_firmware\sigma_studio_project\export\easydsp_IC_2_PARAM.h
  *
- * Created:        Monday, July 24, 2023 7:13:49 PM
+ * Created:        Wednesday, August 9, 2023 1:42:56 PM
  * Description:    easydsp:IC 2 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,

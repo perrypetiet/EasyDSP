@@ -1,94 +1,94 @@
 <mxfile host="65bd71144e">
     <diagram id="QK_L4t2Bo_GrBR_NQVSf" name="Page-1">
-        <mxGraphModel dx="924" dy="660" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1109" dy="523" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;I2C&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" vertex="1" parent="1">
+                <mxCell id="2" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;I2C&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
                     <mxGeometry x="240" y="520" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;I2C&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" vertex="1" parent="1">
+                <mxCell id="4" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;I2C&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
                     <mxGeometry x="360" y="520" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" edge="1" parent="1" source="5" target="2">
+                <mxCell id="6" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" parent="1" source="5" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;EEPROM&lt;br&gt;controller&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" vertex="1" parent="1">
+                <mxCell id="5" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;EEPROM&lt;br&gt;controller&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
                     <mxGeometry x="240" y="400" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" edge="1" parent="1">
+                <mxCell id="7" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="400" y="520" as="targetPoint"/>
                         <mxPoint x="400" y="480" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="9" value="&lt;b&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Command controller&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Tahoma;fillColor=#FC6330;strokeColor=none;" vertex="1" parent="1">
+                <mxCell id="9" value="&lt;b&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Device settings controller&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Tahoma;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
                     <mxGeometry x="230" y="274" width="220" height="86" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;ADAU1701&lt;br&gt;DSP controller&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" vertex="1" parent="1">
+                <mxCell id="10" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;ADAU1701&lt;br&gt;DSP controller&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
                     <mxGeometry x="360" y="400" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" edge="1" parent="1">
+                <mxCell id="12" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="279.76" y="360" as="sourcePoint"/>
                         <mxPoint x="279.76" y="400" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="13" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;SigmaStudio&lt;br&gt;project export&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" vertex="1" parent="1">
+                <mxCell id="13" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;SigmaStudio&lt;br&gt;project export&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=none;" parent="1" vertex="1">
                     <mxGeometry x="485" y="400" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" edge="1" parent="1" source="10">
+                <mxCell id="14" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" parent="1" source="10" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="480" y="440" as="targetPoint"/>
                         <mxPoint x="450" y="440" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="15" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" edge="1" parent="1">
+                <mxCell id="15" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Tahoma;strokeColor=#666666;startArrow=classic;startFill=1;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="399.76" y="360" as="sourcePoint"/>
                         <mxPoint x="399.76" y="400" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="16" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;USB interface&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                <mxCell id="16" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;USB interface&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=#FFFFFF;" parent="1" vertex="1">
                     <mxGeometry x="240" y="253" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="17" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;BLE interface&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                <mxCell id="17" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;b&gt;BLE interface&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6330;strokeColor=#FFFFFF;" parent="1" vertex="1">
                     <mxGeometry x="360" y="253" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="" style="endArrow=none;html=1;strokeColor=#666666;fontFamily=Tahoma;" edge="1" parent="1">
+                <mxCell id="18" value="" style="endArrow=none;html=1;strokeColor=#666666;fontFamily=Tahoma;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="280" y="640" as="sourcePoint"/>
                         <mxPoint x="280" y="600" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="19" value="&lt;font color=&quot;#666666&quot;&gt;EEPROM&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Tahoma;" vertex="1" parent="1">
+                <mxCell id="19" value="&lt;font color=&quot;#666666&quot;&gt;EEPROM&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Tahoma;" parent="1" vertex="1">
                     <mxGeometry x="250" y="630" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="" style="endArrow=none;html=1;strokeColor=#666666;fontFamily=Tahoma;" edge="1" parent="1">
+                <mxCell id="20" value="" style="endArrow=none;html=1;strokeColor=#666666;fontFamily=Tahoma;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="400" y="640" as="sourcePoint"/>
                         <mxPoint x="400" y="600" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="21" value="&lt;font color=&quot;#666666&quot;&gt;ADAU1701&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Tahoma;" vertex="1" parent="1">
+                <mxCell id="21" value="&lt;font color=&quot;#666666&quot;&gt;ADAU1701&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Tahoma;" parent="1" vertex="1">
                     <mxGeometry x="370" y="630" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="" style="endArrow=none;html=1;strokeColor=#666666;fontFamily=Tahoma;" edge="1" parent="1">
+                <mxCell id="22" value="" style="endArrow=none;html=1;strokeColor=#666666;fontFamily=Tahoma;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="279.83" y="253" as="sourcePoint"/>
                         <mxPoint x="279.83" y="213" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="23" value="" style="endArrow=none;html=1;strokeColor=#666666;fontFamily=Tahoma;" edge="1" parent="1">
+                <mxCell id="23" value="" style="endArrow=none;html=1;strokeColor=#666666;fontFamily=Tahoma;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="400" y="253" as="sourcePoint"/>
                         <mxPoint x="400" y="213" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="25" value="&lt;font color=&quot;#666666&quot;&gt;USB&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Tahoma;" vertex="1" parent="1">
+                <mxCell id="25" value="&lt;font color=&quot;#666666&quot;&gt;USB&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Tahoma;" parent="1" vertex="1">
                     <mxGeometry x="250" y="190" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="26" value="&lt;font color=&quot;#666666&quot;&gt;BLE&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Tahoma;" vertex="1" parent="1">
+                <mxCell id="26" value="&lt;font color=&quot;#666666&quot;&gt;BLE&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Tahoma;" parent="1" vertex="1">
                     <mxGeometry x="370" y="190" width="60" height="30" as="geometry"/>
                 </mxCell>
             </root>

@@ -58,7 +58,7 @@
                 <Link pin="I_C130_A0_P4_in" dir="in" link="Link7" />
                 <Link pin="O_C130_A0_P1_out" dir="out" link="Link5" />
             </Algorithm>
-            <Algorithm name="ICSigma100Out1" friendlyname="170x\140x output " cell="Output1 " location="{X=903, Y=264} " Growth="0 " GrowthB="0">
+            <Algorithm name="ICSigma100Out1" friendlyname="170x\140x output " cell="Output1 " location="{X=948, Y=263} " Growth="0 " GrowthB="0">
                 <Link pin="I_C23_A0_P1_in" dir="in" link="Link2" />
             </Algorithm>
             <Algorithm name="ICSigma100Out2" friendlyname="170x\140x output " cell="Output2 " location="{X=952, Y=346} " Growth="0 " GrowthB="0">

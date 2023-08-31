@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\perry\Documents\GitHub\EasyDSP\device_firmware\sigma_studio_project\export\easydsp_IC_1_PARAM.h
  *
- * Created:        Monday, July 24, 2023 7:13:49 PM
+ * Created:        Wednesday, August 9, 2023 1:42:56 PM
  * Description:    easydsp:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -240,32 +240,32 @@
 #define MOD_OUTPUT1_SELECT_COUNT                       1
 #define MOD_OUTPUT1_SELECT_DEVICE                      "IC1"
 #define MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR             51
-#define MOD_OUTPUT1_SELECT_MONOSWSLEW_FIXPT            0x00000000
-#define MOD_OUTPUT1_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
+#define MOD_OUTPUT1_SELECT_MONOSWSLEW_FIXPT            0x00000001
+#define MOD_OUTPUT1_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(1)
 #define MOD_OUTPUT1_SELECT_MONOSWSLEW_TYPE             SIGMASTUDIOTYPE_INTEGER
 
 /* Module output2_select - Mono Switch Nx1*/
 #define MOD_OUTPUT2_SELECT_COUNT                       1
 #define MOD_OUTPUT2_SELECT_DEVICE                      "IC1"
 #define MOD_OUTPUT2_SELECT_MONOSWSLEW_ADDR             52
-#define MOD_OUTPUT2_SELECT_MONOSWSLEW_FIXPT            0x00000000
-#define MOD_OUTPUT2_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
+#define MOD_OUTPUT2_SELECT_MONOSWSLEW_FIXPT            0x00000001
+#define MOD_OUTPUT2_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(1)
 #define MOD_OUTPUT2_SELECT_MONOSWSLEW_TYPE             SIGMASTUDIOTYPE_INTEGER
 
 /* Module output3_select - Mono Switch Nx1*/
 #define MOD_OUTPUT3_SELECT_COUNT                       1
 #define MOD_OUTPUT3_SELECT_DEVICE                      "IC1"
 #define MOD_OUTPUT3_SELECT_MONOSWSLEW_ADDR             53
-#define MOD_OUTPUT3_SELECT_MONOSWSLEW_FIXPT            0x00000000
-#define MOD_OUTPUT3_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
+#define MOD_OUTPUT3_SELECT_MONOSWSLEW_FIXPT            0x00000001
+#define MOD_OUTPUT3_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(1)
 #define MOD_OUTPUT3_SELECT_MONOSWSLEW_TYPE             SIGMASTUDIOTYPE_INTEGER
 
 /* Module output4_select - Mono Switch Nx1*/
 #define MOD_OUTPUT4_SELECT_COUNT                       1
 #define MOD_OUTPUT4_SELECT_DEVICE                      "IC1"
 #define MOD_OUTPUT4_SELECT_MONOSWSLEW_ADDR             54
-#define MOD_OUTPUT4_SELECT_MONOSWSLEW_FIXPT            0x00000000
-#define MOD_OUTPUT4_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
+#define MOD_OUTPUT4_SELECT_MONOSWSLEW_FIXPT            0x00000001
+#define MOD_OUTPUT4_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(1)
 #define MOD_OUTPUT4_SELECT_MONOSWSLEW_TYPE             SIGMASTUDIOTYPE_INTEGER
 
 #endif
