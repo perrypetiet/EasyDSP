@@ -4,22 +4,29 @@
 #include "driver/gpio.h"
 #include "driver/i2c.h"
 
-void eight_second_task(void* arg)
+void task_one(void* arg)
 {
-    printf("Eight second task finished!");
+    for(;;)
+    {
+        printf("task one running\n");
+        vTaskDelay(5000 / portTICK_PERIOD_MS);
+    }
     vTaskDelete(NULL);
 }
 
-void ten_second_task(void* arg)
+void task_two(void* arg)
 {
-    vTaskDelay(pdMS_TO_TICKS(1000));
-    printf("Ten second task finished!");
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    for(;;)
+    {
+        printf("task two running\n");
+        vTaskDelay(5000 / portTICK_PERIOD_MS);
+    }
     vTaskDelete(NULL);
 }
 
 void app_main(void)
 {
-    xTaskCreate(eight_second_task, "eight second task", 4096, NULL, tskIDLE_PRIORITY, NULL);
+    xTaskCreatePinnedToCore(task_one, "task_one", 4096, NULL, tskIDLE_PRIORITY, NULL, 0);
+    xTaskCreatePinnedToCore(task_two, "task_two", 4096, NULL, tskIDLE_PRIORITY, NULL, 1);
 }
 
