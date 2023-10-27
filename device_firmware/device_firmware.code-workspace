@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.shell.windows": "cmd.exe",
+		"terminal.integrated.shellArgs.windows": ["/k", "C/esp/esp-idf/export.bat"],
+		"files.associations": {
+			"device_settings.h": "c",
+			"task.h": "c",
+			"i2c.h": "c",
+			"gpio.h": "c",
+			"freertos.h": "c",
+			"stdio.h": "c",
+			"_mingw_print_push.h": "c"
+		}
+	}
+}
