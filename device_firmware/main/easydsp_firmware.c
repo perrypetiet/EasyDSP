@@ -12,29 +12,51 @@ static const char *TAG = "Main";
 
 void task_one(void* arg)
 {
-    // SCL, SDA, and I2C interface number (0 or 1), and EEPROM address
-    init_eeprom(14, 15, 1, 0x50);
+    printf("RAM left %d\n", (int)esp_get_free_heap_size());
 
-    uint8_t dataStore[3] = {0,0,0};
+    init_device_settings();
+    device_settings_t * settings = get_device_settings_address();
+ 
+    device_settings_load_nv();
 
-    uint16_t data_address = 0b0000000000000000;
+    //settings->input2.eq5.filter_type = FILTER_TYPE_LOWSHELF;
+    //device_settings_store_nv(); 
+    //device_settings_load_nv();
 
-    //eeprom_write_random_byte(data_address, 69);
+    printf("Output 3 eq1 freq: %f\n", settings->output3.eq1.freq);
+    printf("Input 1 eq1 q: %f\n", settings->input1.eq1.q);
+    printf("Input 2 eq5 type: %d\n", settings->input2.eq5.filter_type);
 
-    //vTaskDelay(1000 / portTICK_PERIOD_MS);
 
-    eeprom_sequential_read(data_address, dataStore, sizeof(dataStore));
+  
+    
 
-    // Display data in storage array
+    
+    // //SCL, SDA, and I2C interface number (0 or 1), and EEPROM address
+    // init_eeprom(14, 15, 1, 0x50);
 
-    for(int i = 0; i < sizeof(dataStore); i++)
-    {
-        printf("Data: %d\n", dataStore[i]);
-    }
+    // uint8_t write_data[5] = {1,2,3,4,5};
+    // uint8_t dataStore[5] = {0,0,0,0,0};
+
+    // uint16_t data_address = 0b0000000000000000;
+
+    // if(eeprom_write_page(data_address, write_data, sizeof(write_data)))
+    // {
+    //     ESP_LOGI(TAG, "write success");
+    // }
+    
+    // eeprom_sequential_read(data_address, dataStore, sizeof(dataStore));
+
+    // // Display data in storage array
+
+    // for(int i = 0; i < sizeof(dataStore); i++)
+    // {
+    //     printf("Data: %d\n", dataStore[i]);
+    // }
 
     for(;;)
     {
-        //printf("task one running\n");
+        printf("RAM left %d\n", (int)esp_get_free_heap_size());
         vTaskDelay(10000 / portTICK_PERIOD_MS);
     }
     vTaskDelete(NULL);

@@ -44,6 +44,41 @@ esp_err_t i2c_master_init(uint8_t i2c_scl_gpio,
                               0);
 }
 
+
+uint8_t ack_poll(void)
+{
+    long start = xTaskGetTickCount();
+
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, 
+                          (eeprom->eeprom_address << 1) | WRITE_BIT, 
+                          ACK_CHECK_EN);
+    i2c_master_stop(cmd); 
+
+    while(1)
+    {
+        esp_err_t ret = i2c_master_cmd_begin(eeprom->i2c_port_num, 
+                                             cmd, 
+                                             I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
+        if(ret == ESP_OK)
+        {
+            return ACK_POLL_SUCCESS;
+        }
+        if((xTaskGetTickCount() - start) > (ACK_POLL_TIMEOUT / portTICK_PERIOD_MS))
+        {
+            return ACK_POLL_FAILED;
+        }
+    }
+    return ACK_POLL_FAILED;
+}
+
+// TODO: Change this function with acknowledge polling.
+void write_cycle_task_hold(void)
+{
+    vTaskDelay(EEPROM_WRITE_CYCLE_MS / portTICK_PERIOD_MS);
+}
+
 /******************************* GLOBAL FUNCTIONS ************************/
 
 uint8_t init_eeprom(uint8_t i2c_scl_gpio, 
@@ -67,8 +102,12 @@ uint8_t init_eeprom(uint8_t i2c_scl_gpio,
 
         if(err_code == ESP_OK)
         {
-            ESP_LOGI(TAG, "EEPROM init succes!");
-            return EEPROM_INIT_SUCCESS;
+            // Let's poll the i2c line to see if we get a response.
+            if(ack_poll())
+            {
+                ESP_LOGI(TAG, "EEPROM init succes!");
+                return EEPROM_INIT_SUCCESS;
+            }
         }
     }
     free(eeprom);
@@ -77,11 +116,25 @@ uint8_t init_eeprom(uint8_t i2c_scl_gpio,
     return EEPROM_INIT_FAILED;
 }
 
+uint8_t deinit_eeprom()
+{
+    if(eeprom != NULL)
+    {
+        i2c_driver_delete(eeprom->i2c_port_num);
+        free(eeprom);
+        eeprom = NULL;
+        return EEPROM_DEINIT_SUCCESS;
+    }
+    return EEPROM_DEINIT_FAILED;
+}
+
 uint8_t eeprom_read_random_byte(uint16_t data_address, 
                                 uint8_t  *rx_data)
 {
     if(eeprom != NULL)
     {
+        ack_poll();
+
         uint8_t address_low  = data_address;
         uint8_t address_high = data_address >> 8;
 
@@ -111,7 +164,7 @@ uint8_t eeprom_read_random_byte(uint16_t data_address,
             return EEPROM_READ_SUCCESS;
         }
     }
-    ESP_LOGW(TAG, "EEPROM read failed. Is the device in write cycle?");
+    ESP_LOGW(TAG, "EEPROM read failed.");
     return EEPROM_READ_FAILED;
 }
 
@@ -119,6 +172,8 @@ uint8_t eeprom_current_address_read(uint8_t  *rx_data)
 {
     if(eeprom != NULL)
     {
+        ack_poll();
+
         i2c_cmd_handle_t cmd = i2c_cmd_link_create();
         i2c_master_start(cmd);
         // Control byte ->
@@ -138,7 +193,7 @@ uint8_t eeprom_current_address_read(uint8_t  *rx_data)
             return EEPROM_READ_SUCCESS;
         }
     }
-    ESP_LOGW(TAG, "EEPROM read failed. Is the device in write cycle?");
+    ESP_LOGW(TAG, "EEPROM read failed.");
     return EEPROM_READ_FAILED;
 }
 
@@ -148,6 +203,7 @@ uint8_t eeprom_sequential_read(uint16_t data_address,
 {
     if(eeprom != NULL)
     {
+        ack_poll();
         if(len > 1)
         {
             uint8_t address_low  = data_address;
@@ -187,7 +243,7 @@ uint8_t eeprom_sequential_read(uint16_t data_address,
             } 
         }
     }
-    ESP_LOGW(TAG, "EEPROM read failed. Is the device in write cycle?");
+    ESP_LOGW(TAG, "EEPROM read failed.");
     return EEPROM_READ_FAILED;
 }
 
@@ -196,6 +252,8 @@ uint8_t eeprom_write_random_byte(uint16_t data_address,
 {
     if(eeprom != NULL)
     {
+        ack_poll();
+
         uint8_t address_low  = data_address;
         uint8_t address_high = data_address >> 8;
 
@@ -216,10 +274,54 @@ uint8_t eeprom_write_random_byte(uint16_t data_address,
                                              I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
 
         if(ret == ESP_OK)
-        {
+        {   
             return EEPROM_WRITE_SUCCESS;
         } 
 
+    }
+    return EEPROM_WRITE_FAILED;
+}
+
+uint8_t eeprom_write_page(uint16_t page_address, 
+                          uint8_t  *tx_data, 
+                          uint8_t  len)
+{
+    if(eeprom != NULL)
+    {
+        ack_poll();
+        if((len <= EEPROM_PAGE_SIZE) && (len > 1)) 
+        {
+            //Check if given address is a page start address.
+            if((page_address % EEPROM_PAGE_SIZE)  == 0)
+            {
+                uint8_t address_low  = page_address;
+                uint8_t address_high = page_address >> 8;
+
+                i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+
+                i2c_master_start(cmd);
+                // Control byte ->
+                i2c_master_write_byte(cmd, 
+                                      (eeprom->eeprom_address << 1) | WRITE_BIT, 
+                                      ACK_CHECK_EN);
+                i2c_master_write_byte(cmd, address_high, ACK_CHECK_EN);
+                i2c_master_write_byte(cmd, address_low,  ACK_CHECK_EN);
+                for(int i = 0; i < len; i++)
+                {
+                    i2c_master_write_byte(cmd, tx_data[i], ACK_CHECK_EN);
+                }
+                i2c_master_stop(cmd);
+
+                esp_err_t ret = i2c_master_cmd_begin(eeprom->i2c_port_num, 
+                                             cmd, 
+                                             I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
+
+                if(ret == ESP_OK)
+                {   
+                    return EEPROM_WRITE_SUCCESS;
+                }        
+            }
+        }
     }
     return EEPROM_WRITE_FAILED;
 }

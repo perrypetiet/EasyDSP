@@ -17,6 +17,8 @@
 #include "esp_log.h"
 #include "driver/i2c.h"
 #include "sdkconfig.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 /******************************* DEFINES *********************************/
 
@@ -33,13 +35,21 @@
 #define WRITE_BIT                   0      /* I2C master write value     */
 #define READ_BIT                    1      /* I2C master read value      */
 
+#define EEPROM_WRITE_CYCLE_MS       10
+#define EEPROM_PAGE_SIZE            64
 #define EEPROM_WRITE_SUCCESS        1
 #define EEPROM_WRITE_FAILED         0
 #define EEPROM_READ_SUCCESS         1
 #define EEPROM_READ_FAILED          0 
 
+#define ACK_POLL_TIMEOUT            1000
+#define ACK_POLL_SUCCESS            1
+#define ACK_POLL_FAILED             0
+
 #define EEPROM_INIT_SUCCESS         1
 #define EEPROM_INIT_FAILED          0
+#define EEPROM_DEINIT_SUCCESS       1
+#define EEPROM_DEINIT_FAILED        0
 
 /******************************* TYPEDEFS ********************************/
 
@@ -59,12 +69,18 @@ esp_err_t i2c_master_init(uint8_t i2c_scl_gpio,
                           uint8_t i2c_port_num,
                           bool    internal_pullup);
 
+uint8_t ack_poll(void);
+
+void write_cycle_task_hold(void);
+
 /******************************* GLOBAL FUNCTIONS ************************/
 
 uint8_t init_eeprom(uint8_t i2c_scl_gpio,
                     uint8_t i2c_sda_gpio,
                     uint8_t i2c_port_num,
                     uint8_t eeprom_address);
+
+uint8_t deinit_eeprom();
 
 uint8_t eeprom_read_random_byte(uint16_t data_address, 
                                 uint8_t  *rx_data);
@@ -75,8 +91,11 @@ uint8_t eeprom_sequential_read(uint16_t data_address,
                                uint8_t *rx_data,
                                uint16_t len);
 
-uint8_t eeprom_write_random_byte(uint16_t data_address,
-                                 uint8_t  tx_data);
+uint8_t eeprom_write_random_byte(uint16_t data_address, uint8_t tx_data);
+
+uint8_t eeprom_write_page(uint16_t page_address, 
+                          uint8_t  *tx_data, 
+                          uint8_t  len);
 
 /******************************* THE END *********************************/
 

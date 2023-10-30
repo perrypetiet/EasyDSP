@@ -23,52 +23,84 @@
             </Algorithm>
             <Algorithm name="EQ1940Single1" friendlyname="1 Channel - Double Precision " cell="input1_eq " location="{X=234, Y=176.8889} " Growth="5 " GrowthB="0">
                 <Link pin="I_C45_A0_P1_in" dir="in" link="Link0" />
-                <Link pin="O_C45_A0_P2_out" dir="out" link="Link6" />
+                <Link pin="O_C45_A0_P2_out" dir="out" link="Link14" />
             </Algorithm>
             <Algorithm name="EQ1940Single2" friendlyname="1 Channel - Double Precision " cell="input2_eq " location="{X=235, Y=391} " Growth="5 " GrowthB="0">
                 <Link pin="I_C42_A0_P1_in" dir="in" link="Link1" />
-                <Link pin="O_C42_A0_P2_out" dir="out" link="Link7" />
+                <Link pin="O_C42_A0_P2_out" dir="out" link="Link15" />
             </Algorithm>
             <Algorithm name="SingleCtrlMixer19401" friendlyname="Signal MixerC " cell="Mg1 " location="{X=541, Y=343.8394} " Growth="2 " GrowthB="0">
-                <Link pin="I_C62_A0_P2_in" dir="in" link="Link6" />
-                <Link pin="I_C62_A0_P3_in" dir="in" link="Link7" />
-                <Link pin="O_C62_A0_P1_out" dir="out" link="Link8" />
+                <Link pin="I_C62_A0_P2_in" dir="in" link="Link14" />
+                <Link pin="I_C62_A0_P3_in" dir="in" link="Link15" />
+                <Link pin="O_C62_A0_P1_out" dir="out" link="Link16" />
             </Algorithm>
             <Algorithm name="monoMuxSwSlew1" friendlyname="Mono SW Slew " cell="output1_select " location="{X=735, Y=242} " Growth="3 " GrowthB="0">
-                <Link pin="I_C83_A0_P2_in" dir="in" link="Link6" />
-                <Link pin="I_C83_A0_P3_in" dir="in" link="Link8" />
-                <Link pin="I_C83_A0_P4_in" dir="in" link="Link7" />
+                <Link pin="I_C83_A0_P2_in" dir="in" link="Link14" />
+                <Link pin="I_C83_A0_P3_in" dir="in" link="Link16" />
+                <Link pin="I_C83_A0_P4_in" dir="in" link="Link15" />
                 <Link pin="O_C83_A0_P1_out" dir="out" link="Link2" />
             </Algorithm>
             <Algorithm name="monoMuxSwSlew2" friendlyname="Mono SW Slew " cell="output2_select " location="{X=736, Y=325.6909} " Growth="3 " GrowthB="0">
-                <Link pin="I_C120_A0_P2_in" dir="in" link="Link6" />
-                <Link pin="I_C120_A0_P3_in" dir="in" link="Link8" />
-                <Link pin="I_C120_A0_P4_in" dir="in" link="Link7" />
+                <Link pin="I_C120_A0_P2_in" dir="in" link="Link14" />
+                <Link pin="I_C120_A0_P3_in" dir="in" link="Link16" />
+                <Link pin="I_C120_A0_P4_in" dir="in" link="Link15" />
                 <Link pin="O_C120_A0_P1_out" dir="out" link="Link3" />
             </Algorithm>
             <Algorithm name="monoMuxSwSlew3" friendlyname="Mono SW Slew " cell="output3_select " location="{X=737, Y=410.0829} " Growth="3 " GrowthB="0">
-                <Link pin="I_C125_A0_P2_in" dir="in" link="Link6" />
-                <Link pin="I_C125_A0_P3_in" dir="in" link="Link8" />
-                <Link pin="I_C125_A0_P4_in" dir="in" link="Link7" />
+                <Link pin="I_C125_A0_P2_in" dir="in" link="Link14" />
+                <Link pin="I_C125_A0_P3_in" dir="in" link="Link16" />
+                <Link pin="I_C125_A0_P4_in" dir="in" link="Link15" />
                 <Link pin="O_C125_A0_P1_out" dir="out" link="Link4" />
             </Algorithm>
             <Algorithm name="monoMuxSwSlew4" friendlyname="Mono SW Slew " cell="output4_select " location="{X=738, Y=497.367} " Growth="3 " GrowthB="0">
-                <Link pin="I_C130_A0_P2_in" dir="in" link="Link6" />
-                <Link pin="I_C130_A0_P3_in" dir="in" link="Link8" />
-                <Link pin="I_C130_A0_P4_in" dir="in" link="Link7" />
+                <Link pin="I_C130_A0_P2_in" dir="in" link="Link14" />
+                <Link pin="I_C130_A0_P3_in" dir="in" link="Link16" />
+                <Link pin="I_C130_A0_P4_in" dir="in" link="Link15" />
                 <Link pin="O_C130_A0_P1_out" dir="out" link="Link5" />
             </Algorithm>
-            <Algorithm name="ICSigma100Out1" friendlyname="170x\140x output " cell="Output1 " location="{X=948, Y=263} " Growth="0 " GrowthB="0">
-                <Link pin="I_C23_A0_P1_in" dir="in" link="Link2" />
+            <Algorithm name="EQ1940Single4" friendlyname="1 Channel - Double Precision " cell="output1_eq " location="{X=836, Y=41.7037} " Growth="5 " GrowthB="0">
+                <Link pin="I_C68_A0_P1_in" dir="in" link="Link2" />
+                <Link pin="O_C68_A0_P2_out" dir="out" link="Link6" />
             </Algorithm>
-            <Algorithm name="ICSigma100Out2" friendlyname="170x\140x output " cell="Output2 " location="{X=952, Y=346} " Growth="0 " GrowthB="0">
-                <Link pin="I_C25_A0_P1_in" dir="in" link="Link3" />
+            <Algorithm name="EQ1940Single3" friendlyname="1 Channel - Double Precision " cell="output2_eq " location="{X=837, Y=227.4202} " Growth="5 " GrowthB="0">
+                <Link pin="I_C61_A0_P1_in" dir="in" link="Link3" />
+                <Link pin="O_C61_A0_P2_out" dir="out" link="Link7" />
             </Algorithm>
-            <Algorithm name="ICSigma100Out3" friendlyname="170x\140x output " cell="Output3 " location="{X=953, Y=452} " Growth="0 " GrowthB="0">
-                <Link pin="I_C47_A0_P1_in" dir="in" link="Link4" />
+            <Algorithm name="EQ1940Single6" friendlyname="1 Channel - Double Precision " cell="output3_eq " location="{X=837, Y=412.0741} " Growth="5 " GrowthB="0">
+                <Link pin="I_C80_A0_P1_in" dir="in" link="Link4" />
+                <Link pin="O_C80_A0_P2_out" dir="out" link="Link8" />
             </Algorithm>
-            <Algorithm name="ICSigma100Out4" friendlyname="170x\140x output " cell="Output4 " location="{X=953, Y=533} " Growth="0 " GrowthB="0">
-                <Link pin="I_C21_A0_P1_in" dir="in" link="Link5" />
+            <Algorithm name="EQ1940Single5" friendlyname="1 Channel - Double Precision " cell="output4_eq " location="{X=835, Y=598.9129} " Growth="5 " GrowthB="0">
+                <Link pin="I_C75_A0_P1_in" dir="in" link="Link5" />
+                <Link pin="O_C75_A0_P2_out" dir="out" link="Link9" />
+            </Algorithm>
+            <Algorithm name="SWGain1940DBAlg1" friendlyname="Gain (RC Slew) " cell="output1_gain " location="{X=1133, Y=36.45636} " Growth="1 " GrowthB="0">
+                <Link pin="I_C17_A0_P1_in" dir="in" link="Link6" />
+                <Link pin="O_C17_A0_P2_out" dir="out" link="Link10" />
+            </Algorithm>
+            <Algorithm name="SWGain1940DBAlg4" friendlyname="Gain (RC Slew) " cell="output2_gain " location="{X=1213, Y=222.1438} " Growth="1 " GrowthB="0">
+                <Link pin="I_C34_A0_P1_in" dir="in" link="Link7" />
+                <Link pin="O_C34_A0_P2_out" dir="out" link="Link11" />
+            </Algorithm>
+            <Algorithm name="SWGain1940DBAlg2" friendlyname="Gain (RC Slew) " cell="output3_gain " location="{X=1137, Y=405.6759} " Growth="1 " GrowthB="0">
+                <Link pin="I_C28_A0_P1_in" dir="in" link="Link8" />
+                <Link pin="O_C28_A0_P2_out" dir="out" link="Link12" />
+            </Algorithm>
+            <Algorithm name="SWGain1940DBAlg3" friendlyname="Gain (RC Slew) " cell="output4_gain " location="{X=1214, Y=593.6755} " Growth="1 " GrowthB="0">
+                <Link pin="I_C31_A0_P1_in" dir="in" link="Link9" />
+                <Link pin="O_C31_A0_P2_out" dir="out" link="Link13" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out1" friendlyname="170x\140x output " cell="Output1 " location="{X=1332, Y=113.5062} " Growth="0 " GrowthB="0">
+                <Link pin="I_C23_A0_P1_in" dir="in" link="Link10" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out2" friendlyname="170x\140x output " cell="Output2 " location="{X=1338, Y=299.5926} " Growth="0 " GrowthB="0">
+                <Link pin="I_C25_A0_P1_in" dir="in" link="Link11" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out3" friendlyname="170x\140x output " cell="Output3 " location="{X=1338, Y=482.5185} " Growth="0 " GrowthB="0">
+                <Link pin="I_C47_A0_P1_in" dir="in" link="Link12" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out4" friendlyname="170x\140x output " cell="Output4 " location="{X=1339, Y=669.9383} " Growth="0 " GrowthB="0">
+                <Link pin="I_C21_A0_P1_in" dir="in" link="Link13" />
             </Algorithm>
         </Schematic>
     </IC>
