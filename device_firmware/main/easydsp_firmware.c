@@ -23,9 +23,9 @@ void task_one(void* arg)
     //device_settings_store_nv(); 
     //device_settings_load_nv();
 
-    printf("Output 3 eq1 freq: %f\n", settings->output3.eq1.freq);
-    printf("Input 1 eq1 q: %f\n", settings->input1.eq1.q);
-    printf("Input 2 eq5 type: %d\n", settings->input2.eq5.filter_type);
+    // printf("Output 3 eq1 freq: %f\n", settings->output3.eq1.freq);
+    // printf("Input 1 eq1 q: %f\n", settings->input1.eq1.q);
+    // printf("Input 2 eq5 type: %d\n", settings->input2.eq5.filter_type);
 
 
   
