@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>C:\Users\perry\Documents\GitHub\EasyDSP\hardware_design\programmer_board\programmer_board.kicad_sch</source>
+    <date>31-10-2023 10:27:24</date>
+    <tool>Eeschema 7.0.2</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>ESP board programmer</title>
+        <company/>
+        <rev/>
+        <date/>
+        <source>programmer_board.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ee0b9225-2b00-48bf-9f23-2175690becaa</tstamps>
+    </comp>
+    <comp ref="C2">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b5fbd704-2bf5-4d90-af57-b67b1033efe3</tstamps>
+    </comp>
+    <comp ref="C3">
+      <value>22pF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>59637756-bde4-41bf-9f9f-18440bc52ccb</tstamps>
+    </comp>
+    <comp ref="C4">
+      <value>22pF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8890b22f-8f3b-4ba5-84cc-1373f01e0211</tstamps>
+    </comp>
+    <comp ref="C5">
+      <value>10nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a0607071-b58f-4406-9f4d-fc71f55f00ee</tstamps>
+    </comp>
+    <comp ref="C6">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7bcc3a15-9bdd-473b-87f4-9c457eb4cfed</tstamps>
+    </comp>
+    <comp ref="C7">
+      <value>4.7uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e9b2c853-e74f-40a3-8f7e-c31aa6a76a1f</tstamps>
+    </comp>
+    <comp ref="C8">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f2e2e8c9-d5bc-44a3-8036-a0d7f01da0c4</tstamps>
+    </comp>
+    <comp ref="C9">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>648f57f9-9484-4011-b814-2e07a8889db0</tstamps>
+    </comp>
+    <comp ref="D1">
+      <value>LED</value>
+      <footprint>Diode_SMD:D_0603_1608Metric</footprint>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Light emitting diode"/>
+      <property name="ki_keywords" value="LED diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1ecd5f1e-166c-4abb-95dc-d04488ce565d</tstamps>
+    </comp>
+    <comp ref="FB1">
+      <value>f_bead</value>
+      <footprint>Inductor_SMD:L_0805_2012Metric</footprint>
+      <libsource lib="Device" part="L" description="Inductor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Inductor"/>
+      <property name="ki_keywords" value="inductor choke coil reactor magnetic"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>49211487-3361-451a-b68a-63edb0edc0f6</tstamps>
+    </comp>
+    <comp ref="J1">
+      <value>SM06B-SRSS-TB(LF)(SN)</value>
+      <footprint>JST_SM06B-SRSS-TB(LF)(SN)</footprint>
+      <fields>
+        <field name="MANUFACTURER">JST</field>
+        <field name="STANDARD">Manufacturer Recommendation</field>
+      </fields>
+      <libsource lib="SM06B-SRSS-TB_LF__SN_" part="SM06B-SRSS-TB(LF)(SN)" description=""/>
+      <property name="STANDARD" value="Manufacturer Recommendation"/>
+      <property name="MANUFACTURER" value="JST"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f59065cc-2e13-45bb-a744-b3a160203105</tstamps>
+    </comp>
+    <comp ref="J2">
+      <value>USB4800-03-A_REVA</value>
+      <footprint>GCT_USB4800-03-A_REVA</footprint>
+      <fields>
+        <field name="MANUFACTURER">GCT</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">5.38 mm</field>
+        <field name="PARTREV">A</field>
+        <field name="SNAPEDA_PN">USB4800-03-A</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="USB4800-03-A_REVA" part="USB4800-03-A_REVA" description=""/>
+      <property name="PARTREV" value="A"/>
+      <property name="STANDARD" value="Manufacturer Recommendations"/>
+      <property name="SNAPEDA_PN" value="USB4800-03-A"/>
+      <property name="MAXIMUM_PACKAGE_HEIGHT" value="5.38 mm"/>
+      <property name="MANUFACTURER" value="GCT"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6a96f6ba-f23e-4948-a828-eaf10ff7f3f9</tstamps>
+    </comp>
+    <comp ref="Q1">
+      <value>SS8050-G</value>
+      <footprint>TRANS_SS8050-G</footprint>
+      <fields>
+        <field name="MANUFACTURER">Comchip</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">1.05 mm</field>
+        <field name="PARTREV">A</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="SS8050-G" part="SS8050-G" description=""/>
+      <property name="PARTREV" value="A"/>
+      <property name="STANDARD" value="Manufacturer Recommendations"/>
+      <property name="MAXIMUM_PACKAGE_HEIGHT" value="1.05 mm"/>
+      <property name="MANUFACTURER" value="Comchip"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1b287684-9e0c-4585-b866-6de97812eb66</tstamps>
+    </comp>
+    <comp ref="Q2">
+      <value>SS8050-G</value>
+      <footprint>TRANS_SS8050-G</footprint>
+      <fields>
+        <field name="MANUFACTURER">Comchip</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">1.05 mm</field>
+        <field name="PARTREV">A</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="SS8050-G" part="SS8050-G" description=""/>
+      <property name="PARTREV" value="A"/>
+      <property name="STANDARD" value="Manufacturer Recommendations"/>
+      <property name="MAXIMUM_PACKAGE_HEIGHT" value="1.05 mm"/>
+      <property name="MANUFACTURER" value="Comchip"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e24bd9f5-ba93-41a6-b746-31dba0a3c209</tstamps>
+    </comp>
+    <comp ref="R1">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>fe801337-10d3-4ea1-ba74-651e9312a702</tstamps>
+    </comp>
+    <comp ref="R2">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>fd192773-dafd-4ff6-94d4-f6e27b012dd0</tstamps>
+    </comp>
+    <comp ref="R3">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3c099bc0-a19e-4b11-b557-a0ce05853518</tstamps>
+    </comp>
+    <comp ref="R4">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>73f34b6d-f50c-4e64-b2af-11e2be809457</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ae14a1d2-b4b4-4656-bee3-b7ad647f5a46</tstamps>
+    </comp>
+    <comp ref="R6">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1e98bc43-dfbc-4f94-9af2-a4eb24756b9f</tstamps>
+    </comp>
+    <comp ref="S1">
+      <value>TL6330AF200Q</value>
+      <footprint>SW_TL6330AF200Q</footprint>
+      <fields>
+        <field name="MANUFACTURER">E-Switch</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">1.9 mm</field>
+        <field name="PARTREV">D</field>
+        <field name="SNAPEDA_PN">TL6330AF200Q</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="TL6330AF200Q" part="TL6330AF200Q" description=""/>
+      <property name="PARTREV" value="D"/>
+      <property name="SNAPEDA_PN" value="TL6330AF200Q"/>
+      <property name="STANDARD" value="Manufacturer Recommendations"/>
+      <property name="MAXIMUM_PACKAGE_HEIGHT" value="1.9 mm"/>
+      <property name="MANUFACTURER" value="E-Switch"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d64b1c6c-0793-4779-9852-0b4b18b85099</tstamps>
+    </comp>
+    <comp ref="S2">
+      <value>TL6330AF200Q</value>
+      <footprint>SW_TL6330AF200Q</footprint>
+      <fields>
+        <field name="MANUFACTURER">E-Switch</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">1.9 mm</field>
+        <field name="PARTREV">D</field>
+        <field name="SNAPEDA_PN">TL6330AF200Q</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="TL6330AF200Q" part="TL6330AF200Q" description=""/>
+      <property name="PARTREV" value="D"/>
+      <property name="SNAPEDA_PN" value="TL6330AF200Q"/>
+      <property name="STANDARD" value="Manufacturer Recommendations"/>
+      <property name="MAXIMUM_PACKAGE_HEIGHT" value="1.9 mm"/>
+      <property name="MANUFACTURER" value="E-Switch"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ce828556-32d1-4b95-8dae-4c1c2f3da04e</tstamps>
+    </comp>
+    <comp ref="U1">
+      <value>AP2112K-3.3TRG1</value>
+      <footprint>SOT95P285X140-5N</footprint>
+      <fields>
+        <field name="MANUFACTURER">Diodes Inc.</field>
+        <field name="PARTREV">2-2</field>
+      </fields>
+      <libsource lib="AP2112K-3.3TRG1" part="AP2112K-3.3TRG1" description=""/>
+      <property name="PARTREV" value="2-2"/>
+      <property name="MANUFACTURER" value="Diodes Inc."/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>abecc148-1eb8-4cc0-bc41-9eaf406a21be</tstamps>
+    </comp>
+    <comp ref="U2">
+      <value>TPD2S017DBVR</value>
+      <footprint>SOT95P280X145-6N</footprint>
+      <libsource lib="TPD2S017DBVR" part="TPD2S017DBVR" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>362dde1f-959c-41d5-b643-dc399c76c965</tstamps>
+    </comp>
+    <comp ref="U3">
+      <value>CH340G</value>
+      <footprint>SOIC127P600X180-16N</footprint>
+      <fields>
+        <field name="MANUFACTURER">WCH</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">1.8 mm</field>
+        <field name="PARTREV">2G</field>
+        <field name="STANDARD">IPC 7351B</field>
+      </fields>
+      <libsource lib="CH340G" part="CH340G" description=""/>
+      <property name="PARTREV" value="2G"/>
+      <property name="MANUFACTURER" value="WCH"/>
+      <property name="MAXIMUM_PACKAGE_HEIGHT" value="1.8 mm"/>
+      <property name="STANDARD" value="IPC 7351B"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>fe017096-efb8-4034-8db0-2337d3dc2e4f</tstamps>
+    </comp>
+    <comp ref="Y1">
+      <value>ECS-120-20-3X-EN-TR</value>
+      <footprint>XTAL_ECS-120-20-3X-EN-TR</footprint>
+      <fields>
+        <field name="MANUFACTURER">ECS INC.</field>
+        <field name="PARTREV">2017</field>
+        <field name="STANDARD">Manufacturer recommendations</field>
+      </fields>
+      <libsource lib="ECS-120-20-3X-EN-TR" part="ECS-120-20-3X-EN-TR" description=""/>
+      <property name="PARTREV" value="2017"/>
+      <property name="MANUFACTURER" value="ECS INC."/>
+      <property name="STANDARD" value="Manufacturer recommendations"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="programmer_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>13bec3a5-763c-4d10-9ab9-8f086ca5eb97</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="AP2112K-3.3TRG1" part="AP2112K-3.3TRG1">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">AP2112K-3.3TRG1</field>
+        <field name="Footprint">SOT95P285X140-5N</field>
+        <field name="PARTREV">2-2</field>
+        <field name="MANUFACTURER">Diodes Inc.</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VIN" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="EN" type="input"/>
+        <pin num="5" name="VOUT" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="CH340G" part="CH340G">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">CH340G</field>
+        <field name="Footprint">SOIC127P600X180-16N</field>
+        <field name="PARTREV">2G</field>
+        <field name="MANUFACTURER">WCH</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">1.8 mm</field>
+        <field name="STANDARD">IPC 7351B</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="power_in"/>
+        <pin num="2" name="TXD" type="output"/>
+        <pin num="3" name="RXD" type="input"/>
+        <pin num="4" name="V3" type="power_in"/>
+        <pin num="5" name="UD+" type="bidirectional"/>
+        <pin num="6" name="UD-" type="bidirectional"/>
+        <pin num="7" name="XI" type="input"/>
+        <pin num="8" name="XO" type="output"/>
+        <pin num="9" name="~{CTS}" type="input"/>
+        <pin num="10" name="~{DSR}" type="input"/>
+        <pin num="11" name="~{RI}" type="input"/>
+        <pin num="12" name="~{DCD}" type="input"/>
+        <pin num="13" name="~{DTR}" type="output"/>
+        <pin num="14" name="~{RTS}" type="output"/>
+        <pin num="15" name="RS232" type="input"/>
+        <pin num="16" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C_Small">
+      <description>Unpolarized capacitor, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Small</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="L">
+      <description>Inductor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="LED">
+      <description>Light emitting diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="ECS-120-20-3X-EN-TR" part="ECS-120-20-3X-EN-TR">
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">ECS-120-20-3X-EN-TR</field>
+        <field name="Footprint">XTAL_ECS-120-20-3X-EN-TR</field>
+        <field name="PARTREV">2017</field>
+        <field name="MANUFACTURER">ECS INC.</field>
+        <field name="STANDARD">Manufacturer recommendations</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="SM06B-SRSS-TB_LF__SN_" part="SM06B-SRSS-TB(LF)(SN)">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">SM06B-SRSS-TB(LF)(SN)</field>
+        <field name="Footprint">JST_SM06B-SRSS-TB(LF)(SN)</field>
+        <field name="STANDARD">Manufacturer Recommendation</field>
+        <field name="MANUFACTURER">JST</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+        <pin num="5" name="5" type="passive"/>
+        <pin num="6" name="6" type="passive"/>
+        <pin num="S1" name="SHIELD" type="passive"/>
+        <pin num="S2" name="SHIELD" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="SS8050-G" part="SS8050-G">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">SS8050-G</field>
+        <field name="Footprint">TRANS_SS8050-G</field>
+        <field name="PARTREV">A</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">1.05 mm</field>
+        <field name="MANUFACTURER">Comchip</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+        <pin num="3" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="TL6330AF200Q" part="TL6330AF200Q">
+      <fields>
+        <field name="Reference">S</field>
+        <field name="Value">TL6330AF200Q</field>
+        <field name="Footprint">SW_TL6330AF200Q</field>
+        <field name="PARTREV">D</field>
+        <field name="SNAPEDA_PN">TL6330AF200Q</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">1.9 mm</field>
+        <field name="MANUFACTURER">E-Switch</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+        <pin num="3" name="" type="passive"/>
+        <pin num="4" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="TPD2S017DBVR" part="TPD2S017DBVR">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TPD2S017DBVR</field>
+        <field name="Footprint">SOT95P280X145-6N</field>
+      </fields>
+      <pins>
+        <pin num="1" name="CH1_OUT" type="output"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="CH1_IN" type="input"/>
+        <pin num="4" name="CH2_IN" type="input"/>
+        <pin num="5" name="VCC" type="power_in"/>
+        <pin num="6" name="CH2_OUT" type="output"/>
+      </pins>
+    </libpart>
+    <libpart lib="USB4800-03-A_REVA" part="USB4800-03-A_REVA">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">USB4800-03-A_REVA</field>
+        <field name="Footprint">GCT_USB4800-03-A_REVA</field>
+        <field name="PARTREV">A</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+        <field name="SNAPEDA_PN">USB4800-03-A</field>
+        <field name="MAXIMUM_PACKAGE_HEIGHT">5.38 mm</field>
+        <field name="MANUFACTURER">GCT</field>
+      </fields>
+      <pins>
+        <pin num="A1_B12" name="GND" type="power_in"/>
+        <pin num="A4_B9" name="VBUS" type="power_in"/>
+        <pin num="A5" name="CC1" type="bidirectional"/>
+        <pin num="A6" name="DP1" type="bidirectional"/>
+        <pin num="A7" name="DN1" type="bidirectional"/>
+        <pin num="A8" name="SBU1" type="bidirectional"/>
+        <pin num="B1_A12" name="GND" type="power_in"/>
+        <pin num="B4_A9" name="VBUS" type="power_in"/>
+        <pin num="B5" name="CC2" type="bidirectional"/>
+        <pin num="B6" name="DP2" type="bidirectional"/>
+        <pin num="B7" name="DN2" type="bidirectional"/>
+        <pin num="B8" name="SBU2" type="bidirectional"/>
+        <pin num="S1" name="SHIELD" type="passive"/>
+        <pin num="S2" name="SHIELD" type="passive"/>
+        <pin num="S3" name="SHIELD" type="passive"/>
+        <pin num="S4" name="SHIELD" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="AP2112K-3.3TRG1">
+      <uri>C:/Users/perry/Documents/Footprints/AP2112K-3.3TRG1/AP2112K-3.3TRG1.kicad_sym</uri>
+    </library>
+    <library logical="CH340G">
+      <uri>C:/Users/perry/Documents/Footprints/CH340G/CH340G.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>D:\kicad\7.0\share\kicad\symbols\/Device.kicad_sym</uri>
+    </library>
+    <library logical="ECS-120-20-3X-EN-TR">
+      <uri>C:/Users/perry/Documents/Footprints/ECS-120-20-3X-EN-TR/ECS-120-20-3X-EN-TR.kicad_sym</uri>
+    </library>
+    <library logical="SM06B-SRSS-TB_LF__SN_">
+      <uri>C:/Users/perry/Documents/Footprints/SM06B-SRSS-TB_LF__SN_/SM06B-SRSS-TB_LF__SN_.kicad_sym</uri>
+    </library>
+    <library logical="SS8050-G">
+      <uri>C:/Users/perry/Documents/Footprints/SS8050-G/SS8050-G.kicad_sym</uri>
+    </library>
+    <library logical="TL6330AF200Q">
+      <uri>C:/Users/perry/Documents/Footprints/TL6330AF200Q/TL6330AF200Q.kicad_sym</uri>
+    </library>
+    <library logical="TPD2S017DBVR">
+      <uri>C:/Users/perry/Documents/Footprints/TPD2S017DBVR/TPD2S017DBVR.kicad_sym</uri>
+    </library>
+    <library logical="USB4800-03-A_REVA">
+      <uri>C:/Users/perry/Documents/Footprints/USB4800-03-A_REVA/USB4800-03-A_REVA.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="+3.3V">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="U1" pin="5" pinfunction="VOUT" pintype="power_in"/>
+      <node ref="U3" pin="16" pinfunction="VCC" pintype="power_in"/>
+      <node ref="U3" pin="4" pinfunction="V3" pintype="power_in"/>
+    </net>
+    <net code="2" name="/USB_N">
+      <node ref="J2" pin="A7" pinfunction="DN1" pintype="bidirectional"/>
+      <node ref="J2" pin="B7" pinfunction="DN2" pintype="bidirectional"/>
+      <node ref="U2" pin="1" pinfunction="CH1_OUT" pintype="output"/>
+      <node ref="U2" pin="3" pinfunction="CH1_IN" pintype="input"/>
+      <node ref="U3" pin="6" pinfunction="UD-" pintype="bidirectional"/>
+    </net>
+    <net code="3" name="/USB_P">
+      <node ref="J2" pin="A6" pinfunction="DP1" pintype="bidirectional"/>
+      <node ref="J2" pin="B6" pinfunction="DP2" pintype="bidirectional"/>
+      <node ref="U2" pin="4" pinfunction="CH2_IN" pintype="input"/>
+      <node ref="U2" pin="6" pinfunction="CH2_OUT" pintype="output"/>
+      <node ref="U3" pin="5" pinfunction="UD+" pintype="bidirectional"/>
+    </net>
+    <net code="4" name="BOOT">
+      <node ref="C8" pin="1" pintype="passive"/>
+      <node ref="J1" pin="5" pinfunction="5" pintype="passive"/>
+      <node ref="Q2" pin="3" pintype="passive"/>
+      <node ref="S1" pin="3" pintype="passive"/>
+      <node ref="S1" pin="4" pintype="passive"/>
+    </net>
+    <net code="5" name="DTR">
+      <node ref="Q2" pin="2" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="U3" pin="13" pinfunction="~{DTR}" pintype="output"/>
+    </net>
+    <net code="6" name="GND">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="C4" pin="1" pintype="passive"/>
+      <node ref="C5" pin="2" pintype="passive"/>
+      <node ref="C6" pin="2" pintype="passive"/>
+      <node ref="C7" pin="2" pintype="passive"/>
+      <node ref="C8" pin="2" pintype="passive"/>
+      <node ref="C9" pin="2" pintype="passive"/>
+      <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="J1" pin="6" pinfunction="6" pintype="passive"/>
+      <node ref="J2" pin="A1_B12" pinfunction="GND" pintype="power_in"/>
+      <node ref="J2" pin="B1_A12" pinfunction="GND" pintype="power_in"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="S1" pin="1" pintype="passive"/>
+      <node ref="S1" pin="2" pintype="passive"/>
+      <node ref="S2" pin="1" pintype="passive"/>
+      <node ref="S2" pin="2" pintype="passive"/>
+      <node ref="U1" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="U2" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="U3" pin="1" pinfunction="GND" pintype="power_in"/>
+    </net>
+    <net code="7" name="Net-(C5-Pad1)">
+      <node ref="C5" pin="1" pintype="passive"/>
+      <node ref="FB1" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="J2" pin="A4_B9" pinfunction="VBUS" pintype="power_in"/>
+      <node ref="J2" pin="B4_A9" pinfunction="VBUS" pintype="power_in"/>
+    </net>
+    <net code="8" name="Net-(D1-A)">
+      <node ref="D1" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+    </net>
+    <net code="9" name="Net-(J1-Pad1)">
+      <node ref="J1" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+    </net>
+    <net code="10" name="Net-(J1-SHIELD-PadS1)">
+      <node ref="J1" pin="S1" pinfunction="SHIELD" pintype="passive"/>
+      <node ref="J1" pin="S2" pinfunction="SHIELD" pintype="passive"/>
+    </net>
+    <net code="11" name="Net-(J2-CC1)">
+      <node ref="J2" pin="A5" pinfunction="CC1" pintype="bidirectional"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+    </net>
+    <net code="12" name="Net-(J2-CC2)">
+      <node ref="J2" pin="B5" pinfunction="CC2" pintype="bidirectional"/>
+      <node ref="R6" pin="1" pintype="passive"/>
+    </net>
+    <net code="13" name="Net-(J2-SHIELD-PadS1)">
+      <node ref="J2" pin="S1" pinfunction="SHIELD" pintype="passive"/>
+      <node ref="J2" pin="S2" pinfunction="SHIELD" pintype="passive"/>
+      <node ref="J2" pin="S3" pinfunction="SHIELD" pintype="passive"/>
+      <node ref="J2" pin="S4" pinfunction="SHIELD" pintype="passive"/>
+    </net>
+    <net code="14" name="Net-(Q1-Pad1)">
+      <node ref="Q1" pin="1" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+    </net>
+    <net code="15" name="Net-(Q2-Pad1)">
+      <node ref="Q2" pin="1" pintype="passive"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+    </net>
+    <net code="16" name="Net-(U3-XI)">
+      <node ref="C4" pin="2" pintype="passive"/>
+      <node ref="U3" pin="7" pinfunction="XI" pintype="input"/>
+      <node ref="Y1" pin="2" pintype="passive"/>
+    </net>
+    <net code="17" name="Net-(U3-XO)">
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="U3" pin="8" pinfunction="XO" pintype="output"/>
+      <node ref="Y1" pin="1" pintype="passive"/>
+    </net>
+    <net code="18" name="RST">
+      <node ref="C9" pin="1" pintype="passive"/>
+      <node ref="J1" pin="4" pinfunction="4" pintype="passive"/>
+      <node ref="Q1" pin="3" pintype="passive"/>
+      <node ref="S2" pin="3" pintype="passive"/>
+      <node ref="S2" pin="4" pintype="passive"/>
+    </net>
+    <net code="19" name="RTS">
+      <node ref="Q1" pin="2" pintype="passive"/>
+      <node ref="R4" pin="1" pintype="passive"/>
+      <node ref="U3" pin="14" pinfunction="~{RTS}" pintype="output"/>
+    </net>
+    <net code="20" name="RX">
+      <node ref="J1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U3" pin="3" pinfunction="RXD" pintype="input"/>
+    </net>
+    <net code="21" name="TX">
+      <node ref="J1" pin="3" pinfunction="3" pintype="passive"/>
+      <node ref="U3" pin="2" pinfunction="TXD" pintype="output"/>
+    </net>
+    <net code="22" name="VBUS">
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="C6" pin="1" pintype="passive"/>
+      <node ref="C7" pin="1" pintype="passive"/>
+      <node ref="FB1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="VIN" pintype="power_in"/>
+      <node ref="U1" pin="3" pinfunction="EN" pintype="input"/>
+      <node ref="U2" pin="5" pinfunction="VCC" pintype="power_in"/>
+    </net>
+    <net code="23" name="unconnected-(J2-SBU1-PadA8)">
+      <node ref="J2" pin="A8" pinfunction="SBU1" pintype="bidirectional"/>
+    </net>
+    <net code="24" name="unconnected-(J2-SBU2-PadB8)">
+      <node ref="J2" pin="B8" pinfunction="SBU2" pintype="bidirectional"/>
+    </net>
+    <net code="25" name="unconnected-(U3-RS232-Pad15)">
+      <node ref="U3" pin="15" pinfunction="RS232" pintype="input"/>
+    </net>
+    <net code="26" name="unconnected-(U3-~{CTS}-Pad9)">
+      <node ref="U3" pin="9" pinfunction="~{CTS}" pintype="input"/>
+    </net>
+    <net code="27" name="unconnected-(U3-~{DCD}-Pad12)">
+      <node ref="U3" pin="12" pinfunction="~{DCD}" pintype="input"/>
+    </net>
+    <net code="28" name="unconnected-(U3-~{DSR}-Pad10)">
+      <node ref="U3" pin="10" pinfunction="~{DSR}" pintype="input"/>
+    </net>
+    <net code="29" name="unconnected-(U3-~{RI}-Pad11)">
+      <node ref="U3" pin="11" pinfunction="~{RI}" pintype="input"/>
+    </net>
+  </nets>
+</export>

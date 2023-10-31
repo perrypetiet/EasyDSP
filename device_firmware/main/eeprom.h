@@ -64,12 +64,12 @@ typedef struct
 
 /******************************* LOCAL FUNCTIONS *************************/
 
-esp_err_t i2c_master_init(uint8_t i2c_scl_gpio,
-                          uint8_t i2c_sda_gpio,
-                          uint8_t i2c_port_num,
-                          bool    internal_pullup);
+esp_err_t eeprom_i2c_master_init(uint8_t i2c_scl_gpio,
+                                 uint8_t i2c_sda_gpio,
+                                 uint8_t i2c_port_num,
+                                 bool    internal_pullup);
 
-uint8_t ack_poll(void);
+uint8_t eeprom_ack_poll(void);
 
 void write_cycle_task_hold(void);
 

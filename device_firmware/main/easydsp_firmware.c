@@ -5,8 +5,9 @@
 #include "esp_log.h"
 
 #include "device_settings.h"
-#include "eeprom.h"
+#include "sigma_dsp.h"
 #include "esp_err.h"
+#include "driver/gpio.h"
 
 static const char *TAG = "Main";
 
@@ -19,17 +20,12 @@ void task_one(void* arg)
  
     device_settings_load_nv();
 
-    //settings->input2.eq5.filter_type = FILTER_TYPE_LOWSHELF;
-    //device_settings_store_nv(); 
-    //device_settings_load_nv();
+    printf("Output 3 eq1 freq: %f\n", settings->output3.eq1.freq);
+    printf("Input 1 eq1 q: %f\n", settings->input1.eq1.q);
+    printf("Input 2 eq5 type: %d\n", settings->input2.eq5.filter_type);
 
-    // printf("Output 3 eq1 freq: %f\n", settings->output3.eq1.freq);
-    // printf("Input 1 eq1 q: %f\n", settings->input1.eq1.q);
-    // printf("Input 2 eq5 type: %d\n", settings->input2.eq5.filter_type);
-
-
+    init_sigma_dsp(12, 13, 0, (0x68 >> 1) & 0xFE, GPIO_NUM_16);
   
-    
 
     
     // //SCL, SDA, and I2C interface number (0 or 1), and EEPROM address
