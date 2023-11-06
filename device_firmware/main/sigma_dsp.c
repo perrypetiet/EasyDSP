@@ -119,6 +119,18 @@ uint8_t init_sigma_dsp(uint8_t i2c_scl_gpio,
     return SIGMA_DSP_INIT_FAILED;
 }
 
+uint8_t deinit_sigma_dsp()
+{
+    if(sigma_dsp != NULL)
+    {
+        free(sigma_dsp);
+        sigma_dsp = NULL;
+        ESP_LOGI(TAG, "Sigma dsp deinit success!");
+    }
+    ESP_LOGW(TAG, "sigma dsp deinit failed!");
+    return SIGMA_DSP_DEINIT_FAILED;
+}
+
 bool set_reset_pin(uint8_t level)
 {
     if(sigma_dsp != NULL)
@@ -128,7 +140,6 @@ bool set_reset_pin(uint8_t level)
             return true;
         }
     }
-    
     return false;
 }
 

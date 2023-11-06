@@ -6,6 +6,11 @@
  * 
  * The device_settings library contains the settings of the device. The
  * settings for the device are stored in a datatype. This datatype can be 
+ *
+ *  TODO: On initializing of the device settings, if the EEPROM is not 
+ *  responding, we should load factory data to the local settings. Also, we
+ *  should add a CRC checksum to see if data is valid. If not, load 
+ *  factory to local and write local to EEPROM.
  * 
  */ 
 /******************************* INCLUDES ********************************/
@@ -21,6 +26,7 @@ static const char *TAG = "Device_settings";
 /******************************* LOCAL FUNCTIONS *************************/
 
 /******************************* GLOBAL FUNCTIONS ************************/
+
 
 uint8_t init_device_settings()
 {
@@ -38,10 +44,16 @@ uint8_t init_device_settings()
 
     if(device_settings != NULL)
     {
-        ESP_LOGI(TAG, "Device settings init succes.");
 
-        device_settings->input1.eq1.q = 0.0;
-        device_settings->input1.eq1.filter_type = FILTER_TYPE_PEAK; 
+        if(eeprom_found)
+        {
+            // Load from EEPROM.
+        }
+        else{
+            // Load factory settings
+        }
+
+        ESP_LOGI(TAG, "Device settings init succes."); 
 
         return INIT_DEVICE_SETTINGS_SUCCESS;
     }
@@ -121,6 +133,7 @@ uint8_t device_settings_store_nv()
     bool write_success = true;
     if(device_settings != NULL)
     {
+        // The EEPROM used can only write one page at once.
         // Let's see how many pages we have, we then program page for page.
         uint16_t page_amount = sizeof(device_settings_t) / EEPROM_PAGE_SIZE;
         uint8_t  remainder = sizeof(device_settings_t) % EEPROM_PAGE_SIZE;

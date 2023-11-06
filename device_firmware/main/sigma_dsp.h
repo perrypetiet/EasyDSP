@@ -74,6 +74,8 @@ uint8_t init_sigma_dsp(uint8_t i2c_scl_gpio,
                        uint8_t sigma_dsp_address,
                        gpio_num_t reset_pin);
 
+uint8_t deinit_sigma_dsp();
+
 bool set_reset_pin(uint8_t level);
 /******************************* THE END *********************************/
 
