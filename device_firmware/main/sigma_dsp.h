@@ -46,6 +46,10 @@
 #define SIGMA_DSP_DEINIT_SUCCESS 1
 #define SIGMA_DSP_DEINIT_FAILED  0 
 
+#define SIGMA_DSP_READ_SUCCESS   1
+#define SIGMA_DSP_READ_FAILED    0 
+#define SIGMA_DSP_WRITE_SUCCESS  1
+#define SIGMA_DSP_WRITE_FAILED   0 
 
 /******************************* TYPEDEFS ********************************/
 
@@ -66,6 +70,10 @@ esp_err_t i2c_master_init(uint8_t i2c_scl_gpio,
                           uint8_t i2c_port_num,
                           bool    internal_pullup);
 
+uint8_t ack_poll(void);
+
+bool load_program(void);
+
 /******************************* GLOBAL FUNCTIONS ************************/
 
 uint8_t init_sigma_dsp(uint8_t i2c_scl_gpio,
@@ -77,6 +85,10 @@ uint8_t init_sigma_dsp(uint8_t i2c_scl_gpio,
 uint8_t deinit_sigma_dsp();
 
 bool set_reset_pin(uint8_t level);
+
+uint8_t sigma_dsp_write_burst(uint16_t reg_address, 
+                              uint16_t len, 
+                              uint8_t *data);
 /******************************* THE END *********************************/
 
 #endif /* SIGMA_DSP_H_ */

@@ -63,13 +63,16 @@ uint8_t eeprom_ack_poll(void)
                                              I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
         if(ret == ESP_OK)
         {
+            i2c_cmd_link_delete(cmd);
             return ACK_POLL_SUCCESS;
         }
         if((xTaskGetTickCount() - start) > (ACK_POLL_TIMEOUT / portTICK_PERIOD_MS))
         {
+            i2c_cmd_link_delete(cmd);
             return ACK_POLL_FAILED;
         }
     }
+    i2c_cmd_link_delete(cmd);
     return ACK_POLL_FAILED;
 }
 
@@ -159,6 +162,8 @@ uint8_t eeprom_read_random_byte(uint16_t data_address,
                                                 cmd, 
                                                 I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
 
+            i2c_cmd_link_delete(cmd);
+
             if(ret == ESP_OK)
             {
                 return EEPROM_READ_SUCCESS;
@@ -188,6 +193,8 @@ uint8_t eeprom_current_address_read(uint8_t  *rx_data)
             esp_err_t ret = i2c_master_cmd_begin(eeprom->i2c_port_num, 
                                                 cmd, 
                                                 I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
+
+            i2c_cmd_link_delete(cmd);
 
             if(ret == ESP_OK)
             {
@@ -240,6 +247,8 @@ uint8_t eeprom_sequential_read(uint16_t data_address,
                                                 cmd, 
                                                 I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
 
+                i2c_cmd_link_delete(cmd);
+
                 if(ret == ESP_OK)
                 {
                     return EEPROM_READ_SUCCESS;
@@ -276,6 +285,8 @@ uint8_t eeprom_write_random_byte(uint16_t data_address,
             esp_err_t ret = i2c_master_cmd_begin(eeprom->i2c_port_num, 
                                                 cmd, 
                                                 I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
+
+            i2c_cmd_link_delete(cmd);
 
             if(ret == ESP_OK)
             {   
@@ -320,6 +331,8 @@ uint8_t eeprom_write_page(uint16_t page_address,
                     esp_err_t ret = i2c_master_cmd_begin(eeprom->i2c_port_num, 
                                                 cmd, 
                                                 I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
+
+                    i2c_cmd_link_delete(cmd);
 
                     if(ret == ESP_OK)
                     {   

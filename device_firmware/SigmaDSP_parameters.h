@@ -894,7 +894,6 @@
 
 /* DSP Program Data */
 #define PROGRAM_SIZE 5120 
-
 #define PROGRAM_ADDR 1024 
 #define PROGRAM_REGSIZE 5 
 const uint8_t PROGMEM DSP_program_data[PROGRAM_SIZE] = 
@@ -912,8 +911,7 @@ const uint8_t PROGMEM DSP_parameter_data[PARAMETER_SIZE] =
 #define CORE_REGISTER_R0_ADDR 0x081C
 #define CORE_REGISTER_R0_REGSIZE 2
 const uint8_t PROGMEM DSP_core_register_R0_data[CORE_REGISTER_R0_SIZE] = 
-{
-0x00, 0x18};
+{0x00, 0x18};
 
 /* Register Default - IC 1.HWConFiguration */
 #define HARDWARE_CONF_SIZE 24
@@ -928,8 +926,7 @@ const uint8_t PROGMEM DSP_hardware_conf_data[HARDWARE_CONF_SIZE] =
 #define CORE_REGISTER_R4_ADDR 0x081C
 #define CORE_REGISTER_R4_REGSIZE 2
 const uint8_t PROGMEM DSP_core_register_R4_data[CORE_REGISTER_R4_SIZE] = 
-{
-0x00, 0x1C};
+{0x00, 0x1C};
 
 
 
