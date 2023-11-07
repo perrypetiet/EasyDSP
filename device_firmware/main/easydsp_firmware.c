@@ -16,13 +16,12 @@ void settings_task(void* arg)
     printf("RAM left %d\n", (int)esp_get_free_heap_size());
 
     init_device_settings();
-    device_settings_t * settings = get_device_settings_address();
- 
     device_settings_load_nv();
-
-    printf("Output 3 eq1 freq: %f\n", settings->output3.eq1.freq);
-    printf("Input 1 eq1 q: %f\n", settings->input1.eq1.q);
-    printf("Input 2 eq5 type: %d\n", settings->input2.eq5.filter_type);
+  
+    device_settings_t * settings = get_device_settings_address();
+    printf("Name len: %d\n", settings->device_name_len);
+    printf("Name %s\n", settings->device_name);
+    // printf("Input 2 eq5 type: %d\n", settings->input2.eq5.filter_type);
 
     for(;;)
     {

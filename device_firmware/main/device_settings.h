@@ -36,6 +36,12 @@
 #define DEINIT_DEVICE_SETTINGS_SUCCESS 1
 #define DEINIT_DEVICE_SETTINGS_FAILED  0
 
+#define DEVICE_SETTINGS_DEVICE_NAME_LEN  64  
+#define DEVICE_SETTINGS_INPUT_AMOUNT     2
+#define DEVICE_SETTINGS_OUTPUT_AMOUNT    4
+#define DEVICE_SETTINGS_INPUT_EQ_AMOUNT  5
+#define DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT 5
+
 #define FILTER_TYPE_PEAK      0
 #define FILTER_TYPE_LOWSHELF  1
 #define FILTER_TYPE_HIGHSHELF 2
@@ -73,33 +79,22 @@ typedef struct
 
 typedef struct
 {
-    equalizer_t eq1;
-    equalizer_t eq2;
-    equalizer_t eq3;
-    equalizer_t eq4;
-    equalizer_t eq5;
+    equalizer_t eq[DEVICE_SETTINGS_INPUT_EQ_AMOUNT];
 } input_t;
 
 typedef struct
 {
-    equalizer_t eq1;
-    equalizer_t eq2;
-    equalizer_t eq3;
-    equalizer_t eq4;
-    equalizer_t eq5;
-
-    mux_t mux;
+    equalizer_t eq[DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT];
+    mux_t       mux;
 } output_t;
 
 typedef struct
 {
-    input_t input1;
-    input_t input2;
-
-    output_t output1;
-    output_t output2;
-    output_t output3;
-    output_t output4;
+    uint8_t  device_name_len;
+    char     device_name[DEVICE_SETTINGS_DEVICE_NAME_LEN];
+    
+    input_t  inputs[DEVICE_SETTINGS_INPUT_AMOUNT];
+    output_t outputs[DEVICE_SETTINGS_OUTPUT_AMOUNT];
 } device_settings_t;
 
 

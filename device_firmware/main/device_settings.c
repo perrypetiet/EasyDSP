@@ -88,41 +88,23 @@ uint8_t device_settings_load_factory()
         // Set memory block to 0
         memset(device_settings, 0, sizeof(device_settings_t));
         // Manually set settings that shouldn't be 0
-        device_settings->input1.eq1.freq  = 1000;
-        device_settings->input1.eq2.freq  = 1000;
-        device_settings->input1.eq3.freq  = 1000;
-        device_settings->input1.eq4.freq  = 1000;
-        device_settings->input1.eq5.freq  = 1000;
+        strcpy(device_settings->device_name, "EasyDSP");
+        device_settings->device_name_len = 7;
 
-        device_settings->input2.eq1.freq  = 1000;
-        device_settings->input2.eq2.freq  = 1000;
-        device_settings->input2.eq3.freq  = 1000;
-        device_settings->input2.eq4.freq  = 1000;
-        device_settings->input2.eq5.freq  = 1000;
-
-        device_settings->output1.eq1.freq = 1000;
-        device_settings->output1.eq2.freq = 1000;
-        device_settings->output1.eq3.freq = 1000;
-        device_settings->output1.eq4.freq = 1000;
-        device_settings->output1.eq5.freq = 1000;
-
-        device_settings->output2.eq1.freq = 1000;
-        device_settings->output2.eq2.freq = 1000;
-        device_settings->output2.eq3.freq = 1000;
-        device_settings->output2.eq4.freq = 1000;
-        device_settings->output2.eq5.freq = 1000;
-
-        device_settings->output3.eq1.freq = 1000;
-        device_settings->output3.eq2.freq = 1000;
-        device_settings->output3.eq3.freq = 1000;
-        device_settings->output3.eq4.freq = 1000;
-        device_settings->output3.eq5.freq = 1000;
-
-        device_settings->output4.eq1.freq = 1000;
-        device_settings->output4.eq2.freq = 1000;
-        device_settings->output4.eq3.freq = 1000;
-        device_settings->output4.eq4.freq = 1000;
-        device_settings->output4.eq5.freq = 1000;
+        for(int i = 0; i < DEVICE_SETTINGS_INPUT_AMOUNT; i++)
+        {
+            for(int j = 0; j < DEVICE_SETTINGS_INPUT_EQ_AMOUNT; j++)
+            {
+                device_settings->inputs[i].eq[j].freq = 1000;
+            }
+        }
+        for(int i = 0; i < DEVICE_SETTINGS_OUTPUT_AMOUNT; i++)
+        {
+            for(int j = 0; j < DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT; j++)
+            {
+                device_settings->outputs[i].eq[j].freq = 1000;
+            }
+        }
     }
 
     return 0;
