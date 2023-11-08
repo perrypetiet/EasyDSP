@@ -62,7 +62,7 @@ typedef struct
 {
     float q;
     float s;
-    float bandwith;
+    float bandwidth;
     float boost;
     float freq;
     float gain;

@@ -25,7 +25,7 @@
                 <Link pin="I_C45_A0_P1_in" dir="in" link="Link0" />
                 <Link pin="O_C45_A0_P2_out" dir="out" link="Link14" />
             </Algorithm>
-            <Algorithm name="EQ1940Single2" friendlyname="1 Channel - Double Precision " cell="input2_eq " location="{X=235, Y=391} " Growth="5 " GrowthB="0">
+            <Algorithm name="EQ1940Single2" friendlyname="1 Channel - Double Precision " cell="input2_eq " location="{X=228, Y=391} " Growth="5 " GrowthB="0">
                 <Link pin="I_C42_A0_P1_in" dir="in" link="Link1" />
                 <Link pin="O_C42_A0_P2_out" dir="out" link="Link15" />
             </Algorithm>
@@ -78,7 +78,7 @@
                 <Link pin="I_C17_A0_P1_in" dir="in" link="Link6" />
                 <Link pin="O_C17_A0_P2_out" dir="out" link="Link10" />
             </Algorithm>
-            <Algorithm name="SWGain1940DBAlg4" friendlyname="Gain (RC Slew) " cell="output2_gain " location="{X=1213, Y=222.1438} " Growth="1 " GrowthB="0">
+            <Algorithm name="SWGain1940DBAlg4" friendlyname="Gain (RC Slew) " cell="output2_gain " location="{X=1211, Y=222.1438} " Growth="1 " GrowthB="0">
                 <Link pin="I_C34_A0_P1_in" dir="in" link="Link7" />
                 <Link pin="O_C34_A0_P2_out" dir="out" link="Link11" />
             </Algorithm>

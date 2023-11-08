@@ -1,45 +1,45 @@
 Cell Name         = input2_eq
 Parameter Name    = EQ1940Single20B1
 Parameter Address = 25
-Parameter Value   = 1.02274823188782
+Parameter Value   = 1
 Parameter Data :
-0x00 ,	0x82 ,	0xE9 ,	0x6A ,	
+0x00 ,	0x80 ,	0x00 ,	0x00 ,	
 
 
 
 Cell Name         = input2_eq
 Parameter Name    = EQ1940Single21B1
 Parameter Address = 26
-Parameter Value   = -1.95143592357635
+Parameter Value   = 0
 Parameter Data :
-0x0F ,	0x06 ,	0x37 ,	0x59 ,	
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
 
 
 
 Cell Name         = input2_eq
 Parameter Name    = EQ1940Single22B1
 Parameter Address = 27
-Parameter Value   = 0.93282675743103
+Parameter Value   = 0
 Parameter Data :
-0x00 ,	0x77 ,	0x66 ,	0xDE ,	
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
 
 
 
 Cell Name         = input2_eq
 Parameter Name    = EQ1940Single21A1
 Parameter Address = 28
-Parameter Value   = 1.9069687128067
+Parameter Value   = 0
 Parameter Data :
-0x00 ,	0xF4 ,	0x17 ,	0x8D ,	
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
 
 
 
 Cell Name         = input2_eq
 Parameter Name    = EQ1940Single22A1
 Parameter Address = 29
-Parameter Value   = -0.911107897758484
+Parameter Value   = 0
 Parameter Data :
-0x0F ,	0x8B ,	0x60 ,	0xD1 ,	
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
 
 
 
@@ -1492,11 +1492,11 @@ See also easydsp.hex file
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x82 , 	0xE9 , 	0x6A , 	
-0x0F , 	0x06 , 	0x37 , 	0x59 , 	
-0x00 , 	0x77 , 	0x66 , 	0xDE , 	
-0x00 , 	0xF4 , 	0x17 , 	0x8D , 	
-0x0F , 	0x8B , 	0x60 , 	0xD1 , 	
+0x00 , 	0x80 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
@@ -2518,11 +2518,11 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
-00000000	10000010	11101001	01101010	
-00001111	00000110	00110111	01011001	
-00000000	01110111	01100110	11011110	
-00000000	11110100	00010111	10001101	
-00001111	10001011	01100000	11010001	
+00000000	10000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	

@@ -1,20 +1,16 @@
+#include "dsp_control.h"
+#include "device_settings.h"
 #include <stdio.h>
 #include <stdint.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
-
-#include "device_settings.h"
-#include "sigma_dsp.h"
-#include "esp_err.h"
-#include "driver/gpio.h"
+#include "sigma_dsp_module_data.h"
 
 static const char *TAG = "Main";
 
 void settings_task(void* arg)
 {
-    printf("RAM left %d\n", (int)esp_get_free_heap_size());
-
     init_device_settings();
     device_settings_load_nv();
   
@@ -25,27 +21,69 @@ void settings_task(void* arg)
 
     for(;;)
     {
-        printf("RAM left %d\n", (int)esp_get_free_heap_size());
-        vTaskDelay(10000 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
     vTaskDelete(NULL);
 }
 
 void dsp_task(void* arg)
 {
+    init_dsp_control();
 
-    init_sigma_dsp(12, 13, 0, (0x68 >> 1) & 0xFE, GPIO_NUM_16);
+    equalizer_t test_eq;
+
+    test_eq.filter_type = FILTER_TYPE_LOWPASS;
+    test_eq.phase       = PHASE_NON_INVERTED;
+    test_eq.q           = 0.7;
+    test_eq.freq        = 100;
+    test_eq.boost       = 10;
+    test_eq.gain        = 0;
+    test_eq.state       = STATE_OFF;
+
+    dsp_control_eq_secondorder(MOD_INPUT1_EQ_ALG0_STAGE0_B0_ADDR, &test_eq);
+
     for(;;)
     {
-        vTaskDelay(10000 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
     vTaskDelete(NULL);
+}
+
+void memory_watcher(void* arg)
+{
+    for(;;)
+    {
+        printf("RAM left %d\n", (int)esp_get_free_heap_size());
+        vTaskDelay(10000 / portTICK_PERIOD_MS);
+    }
+    vTaskDelete(NULL);   
 }
 
 
 void app_main(void)
 {
-    xTaskCreatePinnedToCore(dsp_task, "DSP_handler", 4096, NULL, 2, NULL, 1);
-    xTaskCreatePinnedToCore(settings_task, "Settings_handler", 4096, NULL, 2, NULL, 0);
+    xTaskCreatePinnedToCore(memory_watcher, 
+                            "Memory", 
+                            4096, 
+                            NULL, 
+                            2, 
+                            NULL, 
+                            tskNO_AFFINITY);
+
+    xTaskCreatePinnedToCore(dsp_task, 
+                            "DSP_handler", 
+                            4096, 
+                            NULL, 
+                            2, 
+                            NULL, 
+                            tskNO_AFFINITY);
+
+    xTaskCreatePinnedToCore(settings_task, 
+                            "Settings_handler", 
+                            4096, 
+                            NULL, 
+                            2, 
+                            NULL, 
+                            tskNO_AFFINITY);
 }
 

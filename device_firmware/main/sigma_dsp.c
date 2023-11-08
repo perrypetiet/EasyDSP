@@ -14,13 +14,13 @@
 /******************************* INCLUDES ********************************/
 
 #include "sigma_dsp.h"
-#include "sigma_dsp_parameters.h"
+#include "sigma_dsp_program_data.h"
 
 /******************************* GLOBAL VARIABLES ************************/
 
 sigma_dsp_t *sigma_dsp = NULL;
 
-static const char *TAG = "Sigma dsp";
+static const char *TAG = "Sigma_dsp";
 
 /******************************* LOCAL FUNCTIONS *************************/
 
@@ -232,6 +232,7 @@ uint8_t sigma_dsp_write_burst(uint16_t reg_address,
             }
         }
     }
+    ESP_LOGW(TAG, "Burst write failed!");
     return SIGMA_DSP_WRITE_FAILED;
 }
 

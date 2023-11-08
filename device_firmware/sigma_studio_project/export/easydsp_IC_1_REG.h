@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\perry\Documents\GitHub\EasyDSP\device_firmware\sigma_studio_project\export\easydsp_IC_1_REG.h
  *
- * Created:        Saturday, October 28, 2023 3:27:50 PM
+ * Created:        Wednesday, November 8, 2023 5:29:35 PM
  * Description:    easydsp:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
