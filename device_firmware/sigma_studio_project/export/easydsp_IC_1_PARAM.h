@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\perry\Documents\GitHub\EasyDSP\device_firmware\sigma_studio_project\export\easydsp_IC_1_PARAM.h
  *
- * Created:        Wednesday, November 8, 2023 5:29:35 PM
+ * Created:        Thursday, November 9, 2023 1:23:58 PM
  * Description:    easydsp:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -240,8 +240,8 @@
 #define MOD_OUTPUT1_SELECT_COUNT                       1
 #define MOD_OUTPUT1_SELECT_DEVICE                      "IC1"
 #define MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR             51
-#define MOD_OUTPUT1_SELECT_MONOSWSLEW_FIXPT            0x00000001
-#define MOD_OUTPUT1_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(1)
+#define MOD_OUTPUT1_SELECT_MONOSWSLEW_FIXPT            0x00000000
+#define MOD_OUTPUT1_SELECT_MONOSWSLEW_VALUE            SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
 #define MOD_OUTPUT1_SELECT_MONOSWSLEW_TYPE             SIGMASTUDIOTYPE_INTEGER
 
 /* Module output2_select - Mono Switch Nx1*/

@@ -56,6 +56,10 @@
 #define STATE_OFF 0
 #define STATE_ON  1
 
+#define MUX_SELECT_INPUT1   0 
+#define MUX_SELECT_INPUT1_2 1
+#define MUX_SELECT_INPUT2   2
+
 /******************************* TYPEDEFS ********************************/
 
 typedef struct

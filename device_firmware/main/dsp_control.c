@@ -46,6 +46,22 @@ bool deinit_dsp_control()
     return false;
 }
 
+bool dsp_control_mux(uint16_t sigma_dsp_address, mux_t *mux)
+{
+    printf("Writing index: %d\n", mux->index);
+
+    uint8_t data[ADA_PARAM_REG_SIZE] = {0, 0, 0, 0};
+    data[ADA_PARAM_REG_SIZE - 1] = mux->index;
+
+    if(sigma_dsp_write_burst(sigma_dsp_address,
+                             sizeof(data),
+                             data) == SIGMA_DSP_WRITE_SUCCESS)
+    {
+        return true;
+    }
+    return false;
+}
+
 bool dsp_control_eq_secondorder(uint16_t sigma_dsp_address,
                                 equalizer_t *eq)
 {
@@ -171,14 +187,6 @@ bool dsp_control_eq_secondorder(uint16_t sigma_dsp_address,
         coefficients[3] = 0;
         coefficients[4] = 0;
     }
-
-
-    printf("Coefficient 0: %f\n", coefficients[0]);
-    printf("Coefficient 1: %f\n", coefficients[1]);
-    printf("Coefficient 2: %f\n", coefficients[2]);
-    printf("Coefficient 3: %f\n", coefficients[3]);
-    printf("Coefficient 4: %f\n", coefficients[4]);
-
     // I need to conver the floats to uint8, each float is 32bit(4 ints)
     uint8_t data[ADA_COEFFICIENT_AMOUNT * 4];
 
@@ -191,8 +199,6 @@ bool dsp_control_eq_secondorder(uint16_t sigma_dsp_address,
         data[i * 4 + 2] = (fixedval >>  8) & 0xFF;
         data[i * 4 + 3] = fixedval & 0xFF;
     }
-
-    ESP_LOGI(TAG, "Writing coefficients......");
 
     if(sigma_dsp_write_burst(sigma_dsp_address,
                              sizeof(data),

@@ -40,7 +40,11 @@ void dsp_task(void* arg)
     test_eq.gain        = 0;
     test_eq.state       = STATE_OFF;
 
+    mux_t mux;
+    mux.index = MUX_SELECT_INPUT1;
+
     dsp_control_eq_secondorder(MOD_INPUT1_EQ_ALG0_STAGE0_B0_ADDR, &test_eq);
+    dsp_control_mux(MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR, &mux);
 
     for(;;)
     {

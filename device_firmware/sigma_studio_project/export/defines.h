@@ -1,7 +1,7 @@
 /*
  * File:           defines.h
  *
- * Created:        Wednesday, November 8, 2023 5:29:35 PM
+ * Created:        Thursday, November 9, 2023 1:23:58 PM
  * Description:    easydsp IC default download data definitions.
  *
  * This software is distributed in the hope that it will be useful,
