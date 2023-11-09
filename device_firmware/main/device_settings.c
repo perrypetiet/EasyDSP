@@ -91,22 +91,45 @@ uint8_t device_settings_load_factory()
         strcpy(device_settings->device_name, "EasyDSP");
         device_settings->device_name_len = 7;
 
+        // Input settings
         for(int i = 0; i < DEVICE_SETTINGS_INPUT_AMOUNT; i++)
         {
             for(int j = 0; j < DEVICE_SETTINGS_INPUT_EQ_AMOUNT; j++)
             {
+                device_settings->inputs[i].eq[j].sigma_dsp_address = 
+                    MOD_INPUT1_EQ_ALG0_STAGE0_B0_ADDR + 
+                    (j * ADA_COEFFICIENT_AMOUNT) + 
+                    (i * MOD_INPUT1_EQ_COUNT );
+
                 device_settings->inputs[i].eq[j].freq = 1000;
+                device_settings->inputs[i].eq[j].q    = 1.41;
             }
         }
+
+        // Output settings
         for(int i = 0; i < DEVICE_SETTINGS_OUTPUT_AMOUNT; i++)
         {
+            device_settings->outputs[i].mux.index = MUX_SELECT_INPUT1_2;
+
+            // Set the dsp address to the first mux address + output n
+            device_settings->outputs[i].mux.sigma_dsp_address = 
+                MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR + i;
+
             for(int j = 0; j < DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT; j++)
             {
+                device_settings->outputs[i].eq[j].sigma_dsp_address = 
+                    MOD_OUTPUT1_EQ_ALG0_STAGE0_B0_ADDR + 
+                    (j * ADA_COEFFICIENT_AMOUNT) + 
+                    (i * MOD_OUTPUT1_EQ_COUNT);
+
                 device_settings->outputs[i].eq[j].freq = 1000;
+                device_settings->outputs[i].eq[j].q    = 1.41;
             }
         }
-    }
 
+        ESP_LOGI(TAG, "Loaded factory settings.");
+        return 1;
+    }
     return 0;
 }
 

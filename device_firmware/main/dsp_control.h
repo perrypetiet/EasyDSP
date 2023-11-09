@@ -66,10 +66,9 @@ bool init_dsp_control(void);
 
 bool deinit_dsp_control(void);
 
-bool dsp_control_mux(uint16_t sigma_dsp_address, mux_t *mux);
+bool dsp_control_mux(mux_t *mux);
 
-bool dsp_control_eq_secondorder(uint16_t sigma_dsp_address, 
-                                equalizer_t *eq);
+bool dsp_control_eq_secondorder(equalizer_t *eq);
 
 /******************************* THE END *********************************/
 #endif /* DSP_CONTROL_H_ */

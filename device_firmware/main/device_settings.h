@@ -20,6 +20,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "eeprom.h"
+#include "sigma_dsp_module_data.h"
 
 /******************************* DEFINES *********************************/
 
@@ -36,7 +37,7 @@
 #define DEINIT_DEVICE_SETTINGS_SUCCESS 1
 #define DEINIT_DEVICE_SETTINGS_FAILED  0
 
-#define DEVICE_SETTINGS_DEVICE_NAME_LEN  64  
+#define DEVICE_SETTINGS_DEVICE_NAME_LEN  63  
 #define DEVICE_SETTINGS_INPUT_AMOUNT     2
 #define DEVICE_SETTINGS_OUTPUT_AMOUNT    4
 #define DEVICE_SETTINGS_INPUT_EQ_AMOUNT  5
@@ -74,11 +75,21 @@ typedef struct
     uint8_t filter_type;
     uint8_t phase;
     uint8_t state;
+
+    // Every EQ has an address for 5 coefficients in parameter RAM.
+    // because the register size is 4 bytes and a coefficient is also 4,
+    // this address is the address for the first coeffiecent. The 
+    // coefficients can then be written in burst mode using this address
+    // as the first one. 
+
+    uint16_t sigma_dsp_address;
 } equalizer_t;
 
 typedef struct
 {
     uint8_t index;
+
+    uint16_t sigma_dsp_address;
 } mux_t;
 
 typedef struct

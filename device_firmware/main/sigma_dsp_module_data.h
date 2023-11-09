@@ -1,6 +1,8 @@
 #ifndef SIGMA_DSP_MODULE_DATA_H_
 #define SIGMA_DSP_MODULE_DATA_H_
 
+#define ADA_COEFFICIENT_AMOUNT                         5
+
 /* Module input1_eq - Medium Size Eq*/
 #define MOD_INPUT1_EQ_COUNT                            25
 #define MOD_INPUT1_EQ_ALG0_STAGE0_B0_ADDR              0

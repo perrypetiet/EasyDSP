@@ -5,19 +5,62 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
-#include "sigma_dsp_module_data.h"
 
 static const char *TAG = "Main";
 
 void settings_task(void* arg)
 {
     init_device_settings();
+
     device_settings_load_nv();
-  
+
+    // device_settings_load_factory();
+    // device_settings_store_nv();
+
     device_settings_t * settings = get_device_settings_address();
-    printf("Name len: %d\n", settings->device_name_len);
-    printf("Name %s\n", settings->device_name);
-    // printf("Input 2 eq5 type: %d\n", settings->input2.eq5.filter_type);
+
+    printf("Input1 eq1 address: %d\n", settings->inputs[0].eq[0].sigma_dsp_address);
+    printf("Input1 eq2 address: %d\n", settings->inputs[0].eq[1].sigma_dsp_address);
+    printf("Input1 eq3 address: %d\n", settings->inputs[0].eq[2].sigma_dsp_address);
+    printf("Input1 eq4 address: %d\n", settings->inputs[0].eq[3].sigma_dsp_address);
+    printf("Input1 eq5 address: %d\n", settings->inputs[0].eq[4].sigma_dsp_address);
+
+    printf("Input2 eq1 address: %d\n", settings->inputs[1].eq[0].sigma_dsp_address);
+    printf("Input2 eq2 address: %d\n", settings->inputs[1].eq[1].sigma_dsp_address);
+    printf("Input2 eq3 address: %d\n", settings->inputs[1].eq[2].sigma_dsp_address);
+    printf("Input2 eq4 address: %d\n", settings->inputs[1].eq[3].sigma_dsp_address);
+    printf("Input2 eq5 address: %d\n", settings->inputs[1].eq[4].sigma_dsp_address);
+
+
+    printf("Output1 mux addr: %d\n", settings->outputs[0].mux.sigma_dsp_address);
+    printf("Output2 mux addr: %d\n", settings->outputs[1].mux.sigma_dsp_address);
+    printf("Output3 mux addr: %d\n", settings->outputs[2].mux.sigma_dsp_address);
+    printf("Output4 mux addr: %d\n", settings->outputs[3].mux.sigma_dsp_address);
+
+    printf("Output1 eq1 address: %d\n", settings->outputs[0].eq[0].sigma_dsp_address);
+    printf("Output1 eq2 address: %d\n", settings->outputs[0].eq[1].sigma_dsp_address);
+    printf("Output1 eq3 address: %d\n", settings->outputs[0].eq[2].sigma_dsp_address);
+    printf("Output1 eq4 address: %d\n", settings->outputs[0].eq[3].sigma_dsp_address);
+    printf("Output1 eq5 address: %d\n", settings->outputs[0].eq[4].sigma_dsp_address);
+
+    printf("Output2 eq1 address: %d\n", settings->outputs[1].eq[0].sigma_dsp_address);
+    printf("Output2 eq2 address: %d\n", settings->outputs[1].eq[1].sigma_dsp_address);
+    printf("Output2 eq3 address: %d\n", settings->outputs[1].eq[2].sigma_dsp_address);
+    printf("Output2 eq4 address: %d\n", settings->outputs[1].eq[3].sigma_dsp_address);
+    printf("Output2 eq5 address: %d\n", settings->outputs[1].eq[4].sigma_dsp_address);
+
+    printf("Output3 eq1 address: %d\n", settings->outputs[2].eq[0].sigma_dsp_address);
+    printf("Output3 eq2 address: %d\n", settings->outputs[2].eq[1].sigma_dsp_address);
+    printf("Output3 eq3 address: %d\n", settings->outputs[2].eq[2].sigma_dsp_address);
+    printf("Output3 eq4 address: %d\n", settings->outputs[2].eq[3].sigma_dsp_address);
+    printf("Output3 eq5 address: %d\n", settings->outputs[2].eq[4].sigma_dsp_address);
+
+    printf("Output4 eq1 address: %d\n", settings->outputs[3].eq[0].sigma_dsp_address);
+    printf("Output4 eq2 address: %d\n", settings->outputs[3].eq[1].sigma_dsp_address);
+    printf("Output4 eq3 address: %d\n", settings->outputs[3].eq[2].sigma_dsp_address);
+    printf("Output4 eq4 address: %d\n", settings->outputs[3].eq[3].sigma_dsp_address);
+    printf("Output4 eq5 address: %d\n", settings->outputs[3].eq[4].sigma_dsp_address);
+
 
     for(;;)
     {
@@ -39,12 +82,14 @@ void dsp_task(void* arg)
     test_eq.boost       = 10;
     test_eq.gain        = 0;
     test_eq.state       = STATE_OFF;
+    test_eq.sigma_dsp_address = MOD_INPUT1_EQ_ALG0_STAGE0_B0_ADDR;
 
     mux_t mux;
     mux.index = MUX_SELECT_INPUT1;
+    mux.sigma_dsp_address = MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR;
 
-    dsp_control_eq_secondorder(MOD_INPUT1_EQ_ALG0_STAGE0_B0_ADDR, &test_eq);
-    dsp_control_mux(MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR, &mux);
+    dsp_control_eq_secondorder(&test_eq);
+    dsp_control_mux(&mux);
 
     for(;;)
     {
