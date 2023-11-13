@@ -109,7 +109,7 @@ uint8_t device_settings_load_factory()
         // Output settings
         for(int i = 0; i < DEVICE_SETTINGS_OUTPUT_AMOUNT; i++)
         {
-            device_settings->outputs[i].mux.index = MUX_SELECT_INPUT1_2;
+            device_settings->outputs[i].mux.index = MUX_SELECT_INPUT1;
 
             // Set the dsp address to the first mux address + output n
             device_settings->outputs[i].mux.sigma_dsp_address = 

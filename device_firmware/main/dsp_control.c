@@ -184,7 +184,7 @@ bool dsp_control_eq_secondorder(equalizer_t *eq)
         coefficients[3] = 0;
         coefficients[4] = 0;
     }
-    // I need to conver the floats to uint8, each float is 32bit(4 ints)
+
     uint8_t data[ADA_COEFFICIENT_AMOUNT * 4];
 
     for(int i = 0; i < ADA_COEFFICIENT_AMOUNT; i++)

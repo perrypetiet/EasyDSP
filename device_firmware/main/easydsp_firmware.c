@@ -35,18 +35,42 @@ static const char *TAG = "Main";
  * initialization of the settings of the EasyDSP. After loading the 
  * settings, it sends all settings to a given queue to other tasks.
  *
- *
  */
 void settings_task(void* pvParameters)
 {
     init_device_settings();
-
     device_settings_load_nv();
 
-    // device_settings_load_factory();
-    // device_settings_store_nv();
+    //device_settings_load_factory();
+    //device_settings_store_nv();
+    device_settings_t * settings = get_device_settings_address();
 
-    //device_settings_t * settings = get_device_settings_address();
+    QueueHandle_t dsp_control = (QueueHandle_t)pvParameters;
+    communication_event_t event;
+
+    // After initializing the settings, let send all the settings to the
+    // DSP task using our queue.
+    for(int i = 0; i < DEVICE_SETTINGS_INPUT_AMOUNT; i++)
+    {
+        for(int j = 0; j < DEVICE_SETTINGS_INPUT_EQ_AMOUNT; j++)
+        {
+            event.event_type = DSP_CHANGE_EQ;
+            event.eq = settings->inputs[i].eq[j];
+            xQueueSend(dsp_control, (void *)&event, portMAX_DELAY);
+        }
+    }
+    for(int i = 0; i < DEVICE_SETTINGS_OUTPUT_AMOUNT; i++)
+    {
+        event.event_type = DSP_CHANGE_MUX;
+        event.mux = settings->outputs[i].mux;
+        xQueueSend(dsp_control, (void *)&event, portMAX_DELAY);
+        for(int j = 0; j < DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT; j++)
+        {
+            event.event_type = DSP_CHANGE_EQ;
+            event.eq = settings->outputs[i].eq[j];
+            xQueueSend(dsp_control, (void *)&event, portMAX_DELAY);
+        }
+    }  
 
     for(;;)
     {
@@ -55,6 +79,16 @@ void settings_task(void* pvParameters)
     vTaskDelete(NULL);
 }
 
+/* Function: dsp_task 
+ *
+ * This function runs as a freeRTOS task. It handles everything related
+ * to the DSP module. It initialises the DSP module and loads the program
+ * onto the Analog Devices chip. The EQ's and Muxes can be changed by 
+ * sending an event to the task using a given Queue.
+ *
+ * Events are described in "event.h".
+ *
+ */
 void dsp_task(void* pvParameters)
 {
     init_dsp_control();
@@ -123,15 +157,6 @@ void app_main(void)
                             2, 
                             NULL, 
                             tskNO_AFFINITY);
-
-
-    communication_event_t event;
-    event.event_type            = DSP_CHANGE_MUX;
-    event.mux.index             = MUX_SELECT_INPUT1;
-    event.mux.sigma_dsp_address = MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR;
-
-    xQueueSend(dsp_control, (void *)&event, (TickType_t) 10 );
-
 }
 
 /******************************* THE END *********************************/
