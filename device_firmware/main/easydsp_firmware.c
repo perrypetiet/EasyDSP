@@ -89,6 +89,8 @@ void settings_task(void* pvParameters)
  * Events are described in "event.h".
  *
  */
+
+ // TODO: fix this.
 void dsp_task(void* pvParameters)
 {
     init_dsp_control();

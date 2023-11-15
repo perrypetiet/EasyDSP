@@ -11,6 +11,7 @@
  * 
  * 
  */ 
+// TODO: Change adding to i2c command. Can be done without loop.
 /******************************* INCLUDES ********************************/
 
 #include "sigma_dsp.h"

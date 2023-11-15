@@ -5,8 +5,9 @@
  * Author: Perry Petiet
  * 
  * Library to write and read data to and from a 24LC128 EEPROM.
- * 
+ *
  */ 
+// TODO: Change adding to i2c command. Can be done without loop.
 /******************************* INCLUDES ********************************/
 
 #include "eeprom.h"

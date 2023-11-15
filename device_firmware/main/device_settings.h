@@ -82,6 +82,9 @@ typedef struct
     // coefficients can then be written in burst mode using this address
     // as the first one. 
 
+    // TODO: Change the settings so that addresses do not have to be stored.
+    // They should be stored in a const so that we don't have to store the
+    // sigma dsp address on the EEPROM.
     uint16_t sigma_dsp_address;
 } equalizer_t;
 
