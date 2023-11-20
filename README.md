@@ -23,7 +23,7 @@ Explain how to firmware is written.
 
 ## Hardware <a name="Hardware"></a>
 The EasyDSP is based on the ADAU1701 digital signal processor from Analog Devices. The chip is used in I2C control mode. This way, we can control the the signal processor from an external microcontroller during operation. The microcontroller used is an ESP32-S3 in the form a WROOM module to make development of the prototype hardware easier. The board and firmware have the ability to store the EQ, MUX and gain settings on an EEPROM. The EEPROM used is a 24LC128 in an MSOP package. Technically lower storage 24LC EEPROM's can also be used. In order to upload the firmware to the board, an external programmer with a USB to uart converter has to be used. There is an example board in the hardware folder. Following is the hardware schematic. The schematic can also be opened using KiCad.
-</br>![Hardware schematic](hardware_design/dsp_board/img/schematic.png)</br>
+</br>![Hardware schematic](hardware_design/dsp_board/img/schematic.PNG)</br>
 The PCB fabrication files can be found in the hardware_design folder. Using these gerber and drill files you can order a PCB from a manufactorer.
-</br>![PCB top](hardware_design/dsp_board/img/top.png)</br>
-</br>![PCB bottom](hardware_design/dsp_board/img/bottom.png)</br>
+</br>![PCB top](hardware_design/dsp_board/img/top.PNG)</br>
+</br>![PCB bottom](hardware_design/dsp_board/img/bottom.PNG)</br>
