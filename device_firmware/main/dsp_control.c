@@ -55,6 +55,7 @@ bool dsp_control_mux(mux_t *mux)
                              sizeof(data),
                              data) == SIGMA_DSP_WRITE_SUCCESS)
     {
+        ESP_LOGI(TAG, "Mux write success.");
         return true;
     }
     return false;
@@ -201,6 +202,7 @@ bool dsp_control_eq_secondorder(equalizer_t *eq)
                              sizeof(data),
                              data) == SIGMA_DSP_WRITE_SUCCESS)
     {
+        ESP_LOGI(TAG, "EQ write success.");
         return true;
     }
     return false;

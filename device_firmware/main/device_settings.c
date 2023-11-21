@@ -107,6 +107,7 @@ uint8_t device_settings_load_factory()
         }
 
         // Output settings
+        // TODO: add gain to factory settings.
         for(int i = 0; i < DEVICE_SETTINGS_OUTPUT_AMOUNT; i++)
         {
             device_settings->outputs[i].mux.index = MUX_SELECT_INPUT1;

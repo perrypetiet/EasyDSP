@@ -70,5 +70,7 @@ bool dsp_control_mux(mux_t *mux);
 
 bool dsp_control_eq_secondorder(equalizer_t *eq);
 
+//TODO: add gain adjustment support
+
 /******************************* THE END *********************************/
 #endif /* DSP_CONTROL_H_ */

@@ -104,6 +104,7 @@ typedef struct
 {
     equalizer_t eq[DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT];
     mux_t       mux;
+    //TODO: Add gain.
 } output_t;
 
 typedef struct
