@@ -16,7 +16,11 @@ The EasyDSP has two inputs and four outputs. The mux makes it possible to connec
 The goal of the protoype is to implement the basic functioning of this system while doing it reliably. When this is achieved, functionality can be upgraded.
 
 ## Communication and protocol <a name="Communication"></a>
-Explain communication to the EasyDSP.
+The EasyDSP can be controlled through one of the interfaces using it's own communication protocol. In this chapter the communication protocol is explained. The basic structure of a message is as follows:
+</br>![Hardware schematic](control_software/protocol/message-basic.PNG)</br>
+The bottom table describes every message type you can send to the EasyDSP and with what message type the message will be responded with.
+
+
 
 ## Firmware <a name="Firmware"></a>
 Explain how to firmware is written.
