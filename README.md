@@ -19,11 +19,19 @@ The goal of the protoype is to implement the basic functioning of this system wh
 The EasyDSP can be controlled through one of the interfaces using it's own communication protocol. In this chapter the communication protocol is explained. The basic structure of a message is as follows:
 </br>![Hardware schematic](control_software/protocol/message-basic.PNG)</br>
 The bottom table describes every message type you can send to the EasyDSP and with what message type the message will be responded with.
-
+|Message Type  	 |  ID 	|  Meaning 	|  Responded with 	|   
+|:-----------:	 |:---:	|:-------:	|:---------------:	|
+|Status          |0x00  |Status msg from EasyDSP                       | -  |
+|Settings save NV|0x01  |Saves settings to NV storage(EEPROM)   	     |0x00|
+|Set Mux         |0x02  |Set to which input an output is connected     |0x00|  
+|Set EQ          |0x03  |Set an EQ setting                             |0x00|
+|Get Mux         |0x04  |Get to which input an output is connected     |0x02|
+|Get EQ          |0x05  |Get an EQ setting                             |0x03|
+|Set device name |0x04  |Set device name (restart required)            |0x04|
 
 
 ## Firmware <a name="Firmware"></a>
-Explain how to firmware is written.
+Explain how the firmware is written.
 
 ## Hardware <a name="Hardware"></a>
 The EasyDSP is based on the ADAU1701 digital signal processor from Analog Devices. The chip is used in I2C control mode. This way, we can control the the signal processor from an external microcontroller during operation. The microcontroller used is an ESP32-S3 in the form a WROOM module to make development of the prototype hardware easier. The board and firmware have the ability to store the EQ, MUX and gain settings on an EEPROM. The EEPROM used is a 24LC128 in an MSOP package. Technically lower storage 24LC EEPROM's can also be used. In order to upload the firmware to the board, an external programmer with a USB to uart converter has to be used. There is an example board in the hardware folder. Following is the hardware schematic. The schematic can also be opened using KiCad.
