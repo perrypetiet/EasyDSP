@@ -6,4 +6,5 @@ idf_component_register(SRCS "easydsp_firmware.c"
                             "event.c"
                             "task_dsp_task.c"
                             "task_settings_task.c"
+                            "task_interface_ble.c"
                     INCLUDE_DIRS "/")
