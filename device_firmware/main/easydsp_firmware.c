@@ -33,6 +33,8 @@ void settings_task(void* pvParameters);
 
 void dsp_task(void* pvParameters);
 
+void task_interface_ble(void* pvParameters);
+
 void memory_watcher(void* arg)
 {
     for(;;)
@@ -65,14 +67,20 @@ void app_main(void)
                             2, 
                             NULL, 
                             tskNO_AFFINITY);
-
+    xTaskCreatePinnedToCore(task_interface_ble, 
+                            "BLE_interface", 
+                            4096, 
+                            NULL, 
+                            2, 
+                            NULL, 
+                            tskNO_AFFINITY);
     xTaskCreatePinnedToCore(settings_task, 
                             "Settings_handler", 
                             4096, 
                             (void *) settingstodsp, 
                             2, 
                             NULL, 
-                            tskNO_AFFINITY);
+                            tskNO_AFFINITY);                            
 }
 
 /******************************* THE END *********************************/

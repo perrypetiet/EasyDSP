@@ -5,15 +5,11 @@
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "event.h"
-#include "esp_system.h"
-#include "esp_bt.h"
-#include "esp_gap_ble_api.h"
-#include "esp_gatts_api.h"
-#include "esp_bt_defs.h"
-#include "esp_bt_main.h"
-#include "esp_gatt_common_api.h"
 
-/* Function: interface_ble 
+#include "interface_ble.h"
+
+
+/* Function: interface_ble_task 
  *
  * This function is run as a thread by FreeRTOS. 
  * This task handles initialization of the BLE GATT server for
@@ -23,3 +19,15 @@
  * send it to the command interface task using an event.
  *
  */
+
+ void task_interface_ble(void* pvParameters)
+{
+    bool ret = init_interface_ble();
+
+    // Infinite loop, waits for event from command interface.
+    for(;;)
+    {
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+    }
+    vTaskDelete(NULL);
+}
