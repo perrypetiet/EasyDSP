@@ -22,7 +22,7 @@
 
 /******************************* DEFINES *********************************/
 
-#define QUEUE_SIZE           1
+#define QUEUE_SIZE              1
 #define EVENT_STD_TIMEOUT_MS    5000
 #define EVENT_STD_TIMEOUT_TICKS (EVENT_STD_TIMEOUT_MS / portTICK_PERIOD_MS)
 
