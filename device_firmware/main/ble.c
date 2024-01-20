@@ -11,23 +11,24 @@
  */
 /******************************* INCLUDES ********************************/
 
-#include "interface_ble.h" 
+#include "ble.h" 
 
 /******************************* GLOBAL VARIABLES ************************/
 
-static const char *TAG = "interface_ble";
+static const char *TAG = "ble";
 
 /******************************* LOCAL FUNCTIONS *************************/
 
 /******************************* GLOBAL FUNCTIONS ************************/
 
-bool init_interface_ble()
+bool init_ble()
 {
     esp_err_t ret;
     
 
     // Initialize NVS. We need to do this in order for BLE to work. It 
-    // saves things like calibration data :(
+    // saves things like calibration data :(. This takes alot of flash 
+    // unfortunately.
     ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         ESP_ERROR_CHECK(nvs_flash_erase());

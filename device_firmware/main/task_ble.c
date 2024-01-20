@@ -5,8 +5,7 @@
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "event.h"
-
-#include "interface_ble.h"
+#include "ble.h"
 
 
 /* Function: interface_ble_task 
@@ -20,9 +19,9 @@
  *
  */
 
- void task_interface_ble(void* pvParameters)
+ void task_ble(void* pvParameters)
 {
-    bool ret = init_interface_ble();
+    bool ret = init_ble();
 
     // Infinite loop, waits for event from command interface.
     for(;;)

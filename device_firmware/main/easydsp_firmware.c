@@ -33,7 +33,7 @@ void settings_task(void* pvParameters);
 
 void dsp_task(void* pvParameters);
 
-void task_interface_ble(void* pvParameters);
+void task_ble(void* pvParameters);
 
 void memory_watcher(void* arg)
 {
@@ -67,8 +67,8 @@ void app_main(void)
                             2, 
                             NULL, 
                             tskNO_AFFINITY);
-    xTaskCreatePinnedToCore(task_interface_ble, 
-                            "BLE_interface", 
+    xTaskCreatePinnedToCore(task_ble, 
+                            "BLE", 
                             4096, 
                             NULL, 
                             2, 
