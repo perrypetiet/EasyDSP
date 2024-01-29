@@ -20,6 +20,7 @@
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "event.h"
+#include "ble.h"
 
 /******************************* GLOBAL VARIABLES ************************/
 
@@ -33,7 +34,7 @@ void settings_task(void* pvParameters);
 
 void dsp_task(void* pvParameters);
 
-void task_ble(void* pvParameters);
+void task_interfaces(void* pvParameters);
 
 void memory_watcher(void* arg)
 {
@@ -67,13 +68,15 @@ void app_main(void)
                             2, 
                             NULL, 
                             tskNO_AFFINITY);
-    xTaskCreatePinnedToCore(task_ble, 
-                            "BLE", 
+
+    xTaskCreatePinnedToCore(task_interfaces, 
+                            "Interfaces", 
                             4096, 
                             NULL, 
                             2, 
                             NULL, 
                             tskNO_AFFINITY);
+                            
     xTaskCreatePinnedToCore(settings_task, 
                             "Settings_handler", 
                             4096, 

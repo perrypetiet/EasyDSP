@@ -9,8 +9,8 @@
  * with a read and write characteristic to make it a "serial" device.
  * 
  */ 
-#ifndef INTERFACE_BLE_H_
-#define INTERFACE_BLE_H_
+#ifndef BLE_H
+#define BLE_H
 
 /******************************* INCLUDES ********************************/
 
@@ -21,13 +21,15 @@
 #include "esp_err.h"
 #include "event.h"
 #include "nvs_flash.h"
-#include "esp_system.h"
-#include "esp_bt.h"
-#include "esp_gap_ble_api.h"
-#include "esp_gatts_api.h"
-#include "esp_bt_defs.h"
-#include "esp_bt_main.h"
-#include "esp_gatt_common_api.h"
+#include "esp_nimble_hci.h"
+#include "nimble/nimble_port.h"
+#include "nimble/nimble_port_freertos.h"
+#include "host/ble_hs.h"
+#include "host/util/util.h"
+#include "host/ble_uuid.h"
+#include "console/console.h"
+#include "services/gap/ble_svc_gap.h"
+#include "services/gatt/ble_svc_gatt.h"
 
 /******************************* DEFINES *********************************/
 
@@ -35,10 +37,28 @@
 
 /******************************* LOCAL FUNCTIONS *************************/
 
+int serial_write_cb(uint16_t conn_handle, 
+                    uint16_t attr_handle, 
+                    struct ble_gatt_access_ctxt *ctxt, 
+                    void *arg);
+
+int serial_read_cb(uint16_t con_handle, 
+                   uint16_t attr_handle, 
+                   struct ble_gatt_access_ctxt *ctxt, 
+                   void *arg);
+
+void ble_app_on_sync(void);
+
+int ble_gap_event(struct ble_gap_event *event, void *arg);
+
+void ble_app_advertise(void);
+
+void host_task(void *param);
+
 /******************************* GLOBAL FUNCTIONS ************************/
 
 bool init_ble();
 
 /******************************* THE END *********************************/
 
-#endif /* INTERFACE_BLE_H_ */
+#endif /* BLE_H_ */
