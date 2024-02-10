@@ -30,6 +30,7 @@
 #include "console/console.h"
 #include "services/gap/ble_svc_gap.h"
 #include "services/gatt/ble_svc_gatt.h"
+#include "buffer.h"
 
 /******************************* DEFINES *********************************/
 
@@ -57,7 +58,7 @@ void host_task(void *param);
 
 /******************************* GLOBAL FUNCTIONS ************************/
 
-bool init_ble();
+bool init_ble(uint8_t *name, data_buffer_t *data_buffer);
 
 /******************************* THE END *********************************/
 

@@ -2,6 +2,7 @@
     "files.associations": {
         "sdkconfig.h": "c",
         "event.h": "c",
-        "ble.h": "c"
+        "ble.h": "c",
+        "protocol.h": "c"
     }
 }

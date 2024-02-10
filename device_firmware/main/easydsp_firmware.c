@@ -53,6 +53,7 @@ void app_main(void)
 
     communication_t *settingstodsp = dsp_communication_create();    
 
+    // creates memory watcher task
     xTaskCreatePinnedToCore(memory_watcher, 
                             "Memory", 
                             4096, 
@@ -61,6 +62,7 @@ void app_main(void)
                             NULL, 
                             tskNO_AFFINITY);
 
+    // creates the dsp control task
     xTaskCreatePinnedToCore(dsp_task, 
                             "DSP_handler", 
                             4096, 
@@ -69,6 +71,7 @@ void app_main(void)
                             NULL, 
                             tskNO_AFFINITY);
 
+    // creates the task to create interfaces
     xTaskCreatePinnedToCore(task_interfaces, 
                             "Interfaces", 
                             4096, 
@@ -76,7 +79,8 @@ void app_main(void)
                             2, 
                             NULL, 
                             tskNO_AFFINITY);
-                            
+
+    // creates the task that handles the settings                        
     xTaskCreatePinnedToCore(settings_task, 
                             "Settings_handler", 
                             4096, 

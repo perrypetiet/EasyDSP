@@ -8,11 +8,14 @@
  * functionality on the ESP32 as a GATT device. It initalises 1 service
  * with a read and write characteristic to make it a "serial" device.
  * 
+ * Custom BLE services and characteristics for each EQ may be implemented
+ * after this prototype. 
+ * 
  */
 /******************************* INCLUDES ********************************/
 
 #include "ble.h"
-
+  
 /******************************* GLOBAL VARIABLES ************************/
 
 static const char *TAG = "ble";
@@ -32,25 +35,36 @@ static const struct ble_gatt_svc_def gatt_svcs[] = {
          {0}}},
     {0}};
 
+data_buffer_t *ble_data_buffer = NULL;
+
 /******************************* LOCAL FUNCTIONS *************************/
 
-// Write data to ESP32 defined as server
+//Write data to EasyDSP from client
 int serial_write_cb(uint16_t conn_handle, 
-                           uint16_t attr_handle, 
-                           struct ble_gatt_access_ctxt *ctxt, 
-                           void *arg)
+                    uint16_t attr_handle, 
+                    struct ble_gatt_access_ctxt *ctxt, 
+                    void *arg)
 {
+    // Add to receive ring buffer
     printf("Data from the client: %.*s\n", ctxt->om->om_len, ctxt->om->om_data);
+    ring_add_data(&ble_data_buffer->rx, ctxt->om->om_data, ctxt->om->om_len);
     return 0;
 }
 
-// Read data from ESP32 defined as server
+//Send data from EasyDSP to client
 int serial_read_cb(uint16_t con_handle, 
-                          uint16_t attr_handle, 
-                          struct ble_gatt_access_ctxt *ctxt, 
-                          void *arg)
+                   uint16_t attr_handle, 
+                   struct ble_gatt_access_ctxt *ctxt, 
+                   void *arg)
 {
-    os_mbuf_append(ctxt->om, "Data from the server", strlen("Data from the server"));
+    // Remove from transmit buffer and transmit
+    uint8_t data[DATA_BUF_LEN];
+    uint8_t len;
+
+    if (ring_get_data(&ble_data_buffer->tx, data, &len))
+    {
+        os_mbuf_append(ctxt->om, "test", strlen("test"));
+    }
     return 0;
 }
 
@@ -120,7 +134,7 @@ void host_task(void *param)
 
 /******************************* GLOBAL FUNCTIONS ************************/
 
-bool init_ble()
+bool init_ble(uint8_t *name, data_buffer_t *data_buffer)
 {
     /* Initialize NVS — it is used to store PHY calibration data */
     esp_err_t ret = nvs_flash_init();
@@ -137,7 +151,7 @@ bool init_ble()
 
     esp_nimble_hci_init();
     nimble_port_init();
-    ble_svc_gap_device_name_set("BLE-Server"); 
+    ble_svc_gap_device_name_set((char*)name); 
     ble_svc_gap_init();                        
     ble_svc_gatt_init();
 
@@ -145,9 +159,10 @@ bool init_ble()
     ble_gatts_add_svcs(gatt_svcs);
     ble_hs_cfg.sync_cb = ble_app_on_sync;
     nimble_port_freertos_init(host_task);
+
+    ble_data_buffer = data_buffer;
+
     return true;
 }
-
-
 
 /******************************* THE END *********************************/

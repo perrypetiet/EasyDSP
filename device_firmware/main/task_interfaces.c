@@ -6,10 +6,22 @@
 #include "esp_log.h"
 #include "event.h"
 #include "ble.h"
+#include "buffer.h"
+#include "event.h"
 
- void task_interfaces(void* pvParameters)
+void task_interfaces(void* pvParameters)
 {
-    bool ret = init_ble();
+
+    // -- Block the task and wait for the device name from the
+    //    settings task.
+
+    uint8_t device_name[] = "easydsp";
+
+    // Initialize the BLE, it will run as a task on its own.
+    // TODO: Give it the created data buff
+ 
+    init_ble(device_name, buf_inst_create());
+    
 
     // Infinite loop, waits for event from command interface.
     for(;;)

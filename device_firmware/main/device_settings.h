@@ -81,7 +81,6 @@ typedef struct
     // this address is the address for the first coeffiecent. The 
     // coefficients can then be written in burst mode using this address
     // as the first one. 
-
     // TODO: Change the settings so that addresses do not have to be stored.
     // They should be stored in a const so that we don't have to store the
     // sigma dsp address on the EEPROM.

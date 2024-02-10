@@ -75,7 +75,7 @@ typedef struct
 
 /******************************* GLOBAL FUNCTIONS ************************/
 
-// For communication between settings and dsp task
+// For communication between interfaces, settings and dsp task
 communication_t* dsp_communication_create();
 
 // Waits for DSP event until timout
