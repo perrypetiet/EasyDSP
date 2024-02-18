@@ -46,19 +46,21 @@ void buf_clear_data(data_buffer_t *buf)
     }
 }
 
+//add given data to buffer.
 bool ring_add_data(ring_t *ring, uint8_t *data, uint8_t len)
 {
     ESP_LOGI(TAG, "Adding data to buffer...");  
-    if (ring != NULL)
+    if (ring != NULL) // Ring exists
     {
-        if (len + ring->w > DATA_BUF_LEN) // overflow  
+        if(((ring->r - ring->w - 1 + DATA_BUF_LEN) % DATA_BUF_LEN) < len)
         {
-            /* code */
+            ESP_LOGI(TAG, "Ring buffer full");
         }
     }
     return false;
 }
 
+//get all available data from buffer.
 bool ring_get_data(ring_t *ring, uint8_t *data, uint8_t *len)
 {
     ESP_LOGI(TAG, "Getting data from buffer...");
