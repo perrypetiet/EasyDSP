@@ -48,6 +48,7 @@ int serial_write_cb(uint16_t conn_handle,
     // Add to receive ring buffer
     printf("Data from the client: %.*s\n", ctxt->om->om_len, ctxt->om->om_data);
     ring_add_data(&ble_data_buffer->rx, ctxt->om->om_data, ctxt->om->om_len);
+    //printf("data in rx buf: %u\n", data_len_available(&ble_data_buffer->rx));
     return 0;
 }
 
@@ -61,11 +62,15 @@ int serial_read_cb(uint16_t con_handle,
     uint8_t data[DATA_BUF_LEN];
     uint8_t len;
 
-    if (ring_get_data(&ble_data_buffer->tx, data, &len))
+    // Simple echo program. We send the data in the receive buffer back
+    len = data_len_available(&ble_data_buffer->rx);
+    if(len > 0)
     {
-        os_mbuf_append(ctxt->om, "test", strlen("test"));
+        ring_get_data(&ble_data_buffer->rx, data, len);
+        os_mbuf_append(ctxt->om, data, len);
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 // On sync callback function

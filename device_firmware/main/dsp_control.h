@@ -27,11 +27,11 @@
 
 /******************************* DEFINES *********************************/
 
-#define ADA_I2C_SCL_PIN  12
-#define ADA_I2C_SDA_PIN  13
+#define ADA_I2C_SCL_PIN  10
+#define ADA_I2C_SDA_PIN  11
 #define ADA_I2C_PORT_NUM 0
 #define ADA_I2C_ADDRESS  (0x68 >> 1) & 0xFE
-#define ADA_GPIO_RESET   GPIO_NUM_16
+#define ADA_GPIO_RESET   12
 
 #define ADA_SAMPLE_FREQ  48000
 

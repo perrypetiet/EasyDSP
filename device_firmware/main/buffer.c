@@ -50,21 +50,53 @@ void buf_clear_data(data_buffer_t *buf)
 bool ring_add_data(ring_t *ring, uint8_t *data, uint8_t len)
 {
     ESP_LOGI(TAG, "Adding data to buffer...");  
-    if (ring != NULL) // Ring exists
+    
+    for(int i = 0; i < len; i++)
     {
-        if(((ring->r - ring->w - 1 + DATA_BUF_LEN) % DATA_BUF_LEN) < len)
+        ring->data[ring->w] = data[i];
+        // increment write pointer.
+        if(ring->w == DATA_BUF_LEN - 1)
         {
-            ESP_LOGI(TAG, "Ring buffer full");
+            ring->w = 0;
+        }
+        else
+        {
+            ring->w++;
         }
     }
-    return false;
+    return true;
 }
 
-//get all available data from buffer.
-bool ring_get_data(ring_t *ring, uint8_t *data, uint8_t *len)
+//get data from buffer
+bool ring_get_data(ring_t *ring, uint8_t *data, uint8_t len)
 {
     ESP_LOGI(TAG, "Getting data from buffer...");
+    for(int i = 0; i < len; i++)
+    {
+        data[i] = ring->data[ring->r];
+        if(ring->r == DATA_BUF_LEN - 1)
+        {
+            ring->r = 0;
+        }
+        else
+        {
+            ring->r++;
+        }
+    }
     return true;
+}
+
+uint16_t data_len_available(ring_t *ring)
+{
+    if(ring->w >= ring->r)
+    {
+        return ring->w - ring->r;
+    }
+    if(ring->w <= ring->r)
+    {
+        return (DATA_BUF_LEN - ring->r) + ring->w; 
+    }
+    return 0;
 }
 
 

@@ -21,15 +21,15 @@
 
 /******************************* DEFINES *********************************/
 
-#define DATA_BUF_LEN 4
+#define DATA_BUF_LEN 255
 
 /******************************* TYPEDEFS ********************************/
 
 typedef struct
 {
     uint8_t data[DATA_BUF_LEN];
-    uint8_t w;
-    uint8_t r;
+    uint16_t w;
+    uint16_t r;
 } ring_t;
 
 typedef struct
@@ -48,7 +48,9 @@ void buf_clear_data(data_buffer_t *buf);
 
 bool ring_add_data(ring_t *ring, uint8_t *data, uint8_t len);
 
-bool ring_get_data(ring_t *ring, uint8_t *data, uint8_t *len);
+bool ring_get_data(ring_t *ring, uint8_t *data, uint8_t len);
+
+uint16_t data_len_available(ring_t *ring);
 
 
 /******************************* THE END *********************************/

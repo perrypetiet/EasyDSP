@@ -27,8 +27,8 @@
 #define NV_STORAGE_SETTINGS_ADDRESS    0x40
 #define NV_STORAGE_I2C_ADDRESS         0x50
 #define NV_STORAGE_I2C_INTERFACE       1
-#define NV_STORAGE_SCL_PIN             14
-#define NV_STORAGE_SDA_PIN             15
+#define NV_STORAGE_SCL_PIN             37
+#define NV_STORAGE_SDA_PIN             38
 #define NV_RW_SUCCESS                  1
 #define NV_RW_FAILED                   0
 
