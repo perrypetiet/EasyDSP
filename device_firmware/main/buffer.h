@@ -1,11 +1,9 @@
 /*
- * protocol.h
+ * buffer.h
  *
  * Created: 02-02-2024 
  * Author: Perry Petiet
  *
- * This module contains the types and corresponding functions that
- * implement the communciation protocol. 
  * 
  */
 #ifndef BUFFER_H
@@ -52,7 +50,10 @@ bool ring_get_data(ring_t *ring, uint8_t *data, uint8_t len);
 
 uint16_t data_len_available(ring_t *ring);
 
+// Peeks in a buffer. Index starts at read pointer.
+uint8_t buffer_peek(ring_t *ring, uint16_t index);
 
-/******************************* THE END *********************************/
+
+
 
 #endif /* BUFFER_H_ */

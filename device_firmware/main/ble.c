@@ -47,8 +47,9 @@ int serial_write_cb(uint16_t conn_handle,
 {
     // Add to receive ring buffer
     printf("Data from the client: %.*s\n", ctxt->om->om_len, ctxt->om->om_data);
-    ring_add_data(&ble_data_buffer->rx, ctxt->om->om_data, ctxt->om->om_len);
-    //printf("data in rx buf: %u\n", data_len_available(&ble_data_buffer->rx));
+    ring_add_data(&ble_data_buffer->rx, 
+                  ctxt->om->om_data, 
+                  ctxt->om->om_len);
     return 0;
 }
 

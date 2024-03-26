@@ -1,16 +1,14 @@
 /*
- * protocol.c
+ * buffer.c
  *
  * Created: 02-02-2024 
  * Author: Perry Petiet
  *
- * This module contains the types and corresponding functions that
- * implement the communciation protocol. 
  * 
  */
 /******************************* INCLUDES ********************************/
 
-#include "Buffer.h"
+#include "buffer.h"
 
 /******************************* GLOBAL VARIABLES ************************/
 

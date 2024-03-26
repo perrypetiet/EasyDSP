@@ -14,7 +14,9 @@
         "stdbool.h": "c",
         "stdint.h": "c",
         "esp_compiler.h": "c",
-        "esp_system.h": "c"
+        "esp_system.h": "c",
+        "string.h": "c",
+        "buffer.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

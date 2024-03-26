@@ -19,8 +19,9 @@ void task_interfaces(void* pvParameters)
 
     // Initialize the BLE, it will run as a task on its own.
     // TODO: Give it the created data buff
- 
-    init_ble(device_name, buf_inst_create());
+
+    data_buffer_t *ble_buffer = buf_inst_create();
+    init_ble(device_name, ble_buffer);
     
 
     // Infinite loop, waits for event from command interface.
