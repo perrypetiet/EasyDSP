@@ -71,6 +71,14 @@ typedef struct
     QueueHandle_t event_response_queue;
 }communication_t;
 
+// The settings task needs two different queues, one for communication with
+// The DSP task and one for communication with the interfaces task.
+typedef struct
+{
+    communication_t* settings_dsp;
+    communication_t* settings_interfaces;
+}settings_task_communications_t;
+
 /******************************* LOCAL FUNCTIONS *************************/
 
 /******************************* GLOBAL FUNCTIONS ************************/
@@ -94,8 +102,6 @@ bool send_event(communication_t *communication,
                 void *response,
                 TickType_t timeout);
 
-// For communication between interfaces and command interface task
-communication_t* command_communication_create();
 
 /******************************* THE END *********************************/
 

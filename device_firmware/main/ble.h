@@ -31,6 +31,7 @@
 #include "services/gap/ble_svc_gap.h"
 #include "services/gatt/ble_svc_gatt.h"
 #include "buffer.h"
+#include "led.h"
 
 /******************************* DEFINES *********************************/
 

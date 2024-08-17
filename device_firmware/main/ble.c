@@ -92,9 +92,15 @@ int ble_gap_event(struct ble_gap_event *event, void *arg)
         {
             ble_app_advertise();
         }
+        else
+        {
+            led_fade_stop();
+            led_static();
+        }
         break;
     case BLE_GAP_EVENT_DISCONNECT:
         ESP_LOGI(TAG, "Client disconnected.");
+        led_fade_start();
         ble_app_advertise();
         break;    
     case BLE_GAP_EVENT_ADV_COMPLETE:
@@ -142,6 +148,7 @@ void host_task(void *param)
 
 bool init_ble(uint8_t *name, data_buffer_t *data_buffer)
 {
+    //https://github.com/SIMS-IOT-Devices/FreeRTOS-ESP-IDF-BLE-Server/blob/main/proj3.c
     /* Initialize NVS — it is used to store PHY calibration data */
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || 
@@ -152,8 +159,6 @@ bool init_ble(uint8_t *name, data_buffer_t *data_buffer)
     }
 
     ESP_LOGI(TAG, "Staring BLE...");
-
-    //https://github.com/SIMS-IOT-Devices/FreeRTOS-ESP-IDF-BLE-Server/blob/main/proj3.c
 
     esp_nimble_hci_init();
     nimble_port_init();
@@ -166,7 +171,14 @@ bool init_ble(uint8_t *name, data_buffer_t *data_buffer)
     ble_hs_cfg.sync_cb = ble_app_on_sync;
     nimble_port_freertos_init(host_task);
 
+    // Set serial data buffer pointer
     ble_data_buffer = data_buffer;
+
+    // Initialize led
+    if(led_init())
+    {
+        led_fade_start();
+    }
 
     return true;
 }

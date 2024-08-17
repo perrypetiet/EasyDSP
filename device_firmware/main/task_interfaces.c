@@ -18,7 +18,6 @@ void task_interfaces(void* pvParameters)
     uint8_t device_name[] = "easydsp";
 
     // Initialize the BLE, it will run as a task on its own.
-    // TODO: Give it the created data buff
 
     data_buffer_t *ble_buffer = buf_inst_create();
     init_ble(device_name, ble_buffer);

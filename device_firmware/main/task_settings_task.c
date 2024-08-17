@@ -20,10 +20,10 @@ static const char *TAG = "Settings task";
 void settings_task(void* pvParameters)
 {
     init_device_settings();
-    device_settings_load_nv();
+    //device_settings_load_nv();
 
-    //device_settings_load_factory();
-    //device_settings_store_nv();
+    device_settings_load_factory();
+    device_settings_store_nv();
     device_settings_t * settings = get_device_settings_address();
 
     dsp_event_t          event;

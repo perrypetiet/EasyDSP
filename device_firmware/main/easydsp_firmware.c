@@ -50,17 +50,21 @@ void memory_watcher(void* arg)
 
 void app_main(void)
 {
+    communication_t *settingstodsp        = dsp_communication_create();    
+    communication_t *settingstointerfaces = dsp_communication_create();
 
-    communication_t *settingstodsp = dsp_communication_create();    
+    settings_task_communications_t settings_queues;
+    settings_queues.settings_dsp        = settingstodsp;
+    settings_queues.settings_interfaces = settingstointerfaces;
 
     // creates memory watcher task
-    xTaskCreatePinnedToCore(memory_watcher, 
-                            "Memory", 
-                            4096, 
-                            NULL, 
-                            2, 
-                            NULL, 
-                            tskNO_AFFINITY);
+    // xTaskCreatePinnedToCore(memory_watcher, 
+    //                         "Memory", 
+    //                         4096, 
+    //                         NULL, 
+    //                         2, 
+    //                         NULL, 
+    //                         tskNO_AFFINITY);
 
     // creates the dsp control task
     xTaskCreatePinnedToCore(dsp_task, 

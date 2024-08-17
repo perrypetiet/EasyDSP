@@ -101,8 +101,9 @@ uint8_t device_settings_load_factory()
                     (j * ADA_COEFFICIENT_AMOUNT) + 
                     (i * MOD_INPUT1_EQ_COUNT );
 
-                device_settings->inputs[i].eq[j].freq = 1000;
-                device_settings->inputs[i].eq[j].q    = 1.41;
+                device_settings->inputs[i].eq[j].freq         = 1000;
+                device_settings->inputs[i].eq[j].q            = 1.41;
+                device_settings->outputs[i].eq[j].filter_type = FILTER_TYPE_PEAK;
             }
         }
 
@@ -123,8 +124,9 @@ uint8_t device_settings_load_factory()
                     (j * ADA_COEFFICIENT_AMOUNT) + 
                     (i * MOD_OUTPUT1_EQ_COUNT);
 
-                device_settings->outputs[i].eq[j].freq = 1000;
-                device_settings->outputs[i].eq[j].q    = 1.41;
+                device_settings->outputs[i].eq[j].freq        = 1000;
+                device_settings->outputs[i].eq[j].q           = 1.41;
+                device_settings->outputs[i].eq[j].filter_type = FILTER_TYPE_PEAK;
             }
         }
 

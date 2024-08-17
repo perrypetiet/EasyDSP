@@ -10,4 +10,5 @@ idf_component_register(SRCS "easydsp_firmware.c"
                             "ble.c"
                             "task_interfaces.c"
                             "task_dsp_task.c"
+                            "led.c"
                     INCLUDE_DIRS "/")
