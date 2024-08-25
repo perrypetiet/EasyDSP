@@ -33,7 +33,7 @@ void dsp_task(void* pvParameters)
         event_response.response_event_type = EVENT_RESPONSE_ERROR;
 
         if(await_event(communication, &event, EVENT_STD_TIMEOUT_TICKS))
-        {
+        { 
             if(event.event_type == DSP_SET_EQ)
             {
                 if(dsp_control_eq_secondorder(&event.eq))

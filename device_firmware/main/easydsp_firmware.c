@@ -26,6 +26,8 @@
 
 static const char *TAG = "Main";
 
+settings_task_communications_t settings_queues;
+
 /******************************* DEFINES *********************************/
 
 /******************************* TASK FUNCTIONS **************************/
@@ -50,10 +52,9 @@ void memory_watcher(void* arg)
 
 void app_main(void)
 {
-    communication_t *settingstodsp        = dsp_communication_create();    
-    communication_t *settingstointerfaces = dsp_communication_create();
+    communication_t* settingstodsp        = dsp_communication_create();    
+    communication_t* settingstointerfaces = dsp_communication_create();
 
-    settings_task_communications_t settings_queues;
     settings_queues.settings_dsp        = settingstodsp;
     settings_queues.settings_interfaces = settingstointerfaces;
 
@@ -79,7 +80,7 @@ void app_main(void)
     xTaskCreatePinnedToCore(task_interfaces, 
                             "Interfaces", 
                             4096, 
-                            NULL, 
+                            (void*)settingstointerfaces, 
                             2, 
                             NULL, 
                             tskNO_AFFINITY);
@@ -88,7 +89,7 @@ void app_main(void)
     xTaskCreatePinnedToCore(settings_task, 
                             "Settings_handler", 
                             4096, 
-                            (void *) settingstodsp, 
+                            (void *) &settings_queues, 
                             2, 
                             NULL, 
                             tskNO_AFFINITY);                            

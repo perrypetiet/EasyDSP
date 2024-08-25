@@ -23,13 +23,17 @@ void settings_task(void* pvParameters)
     //device_settings_load_nv();
 
     device_settings_load_factory();
-    device_settings_store_nv();
+
     device_settings_t * settings = get_device_settings_address();
 
     dsp_event_t          event;
     dsp_event_response_t event_response;
     event_response.response_event_type = EVENT_RESPONSE_ERROR;
-    communication_t *communication = (communication_t*)pvParameters;
+
+    settings_task_communications_t* queues = (settings_task_communications_t*)pvParameters;
+
+    communication_t* communicationDsp        = queues->settings_dsp;
+    communication_t* communicationInterfaces = queues->settings_interfaces;
 
     // After initializing the settings, let send all the settings to the
     // DSP task using our communication
@@ -40,7 +44,7 @@ void settings_task(void* pvParameters)
             event.event_type = DSP_SET_EQ;
             event.eq = settings->inputs[i].eq[j];
 
-            if(send_event(communication, 
+            if(send_event(communicationDsp, 
                           &event, 
                           &event_response, 
                           EVENT_STD_TIMEOUT_TICKS))
@@ -56,7 +60,7 @@ void settings_task(void* pvParameters)
     {
         event.event_type = DSP_SET_MUX;
         event.mux = settings->outputs[i].mux;
-        if(send_event(communication, 
+        if(send_event(communicationDsp, 
                       &event, 
                       &event_response, 
                       EVENT_STD_TIMEOUT_TICKS))
@@ -70,7 +74,7 @@ void settings_task(void* pvParameters)
         {
             event.event_type = DSP_SET_EQ;
             event.eq = settings->outputs[i].eq[j];
-            if(send_event(communication, 
+            if(send_event(communicationDsp, 
                       &event, 
                       &event_response, 
                       EVENT_STD_TIMEOUT_TICKS))
@@ -87,7 +91,14 @@ void settings_task(void* pvParameters)
     // Infinite loop, waits for event from command interface.
     for(;;)
     {
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+        if(await_event(communicationInterfaces, &event, EVENT_STD_TIMEOUT_TICKS))
+        {
+            ESP_LOGI(TAG, "Received event from the interfaces task!");
+            event_response.response_event_type = EVENT_RESPONSE_OK;
+            send_event_response(communicationInterfaces, 
+                                &event_response, 
+                                EVENT_STD_TIMEOUT_TICKS);
+        }
     }
     vTaskDelete(NULL);
 }

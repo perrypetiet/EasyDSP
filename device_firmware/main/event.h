@@ -46,10 +46,12 @@
 
 /******************************* TYPEDEFS ********************************/
 
-//TODO: add gain
 typedef struct
 {
     uint8_t      event_type;
+
+    uint8_t      chan_num;
+    bool         output;
 
     equalizer_t  eq;
     mux_t        mux;
