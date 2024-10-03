@@ -93,8 +93,44 @@ void settings_task(void* pvParameters)
     {
         if(await_event(communicationInterfaces, &event, EVENT_STD_TIMEOUT_TICKS))
         {
-            ESP_LOGI(TAG, "Received event from the interfaces task!");
-            event_response.response_event_type = EVENT_RESPONSE_OK;
+            event_response.response_event_type = EVENT_RESPONSE_ERROR;
+            if(event.event_type == DSP_GET_EQ)
+            {
+                uint8_t channelNum = event.chan_num;
+                uint8_t eqNum      = event.eq_num;
+                bool    output     = event.output;
+                
+                if(output)
+                {
+                    if((channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT) &&
+                       (eqNum      < DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT))
+                    {
+                        event_response.response_eq = settings->outputs[channelNum].eq[eqNum];
+                        event_response.response_event_type = EVENT_RESPONSE_OK;
+                    }
+                }
+                else
+                {
+                    if((channelNum < DEVICE_SETTINGS_INPUT_AMOUNT) &&
+                       (eqNum      < DEVICE_SETTINGS_INPUT_EQ_AMOUNT))
+                    {
+                        event_response.response_eq = settings->inputs[channelNum].eq[eqNum];
+                        event_response.response_event_type = EVENT_RESPONSE_OK;
+                    }
+                }
+            }
+
+            if(event.event_type == DSP_GET_MUX)
+            {
+                 uint8_t channelNum = event.chan_num;
+                 bool    output     = event.output;
+                 if(output && (channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT))
+                 {
+                    event_response.response_mux = settings->outputs[channelNum].mux;
+                    event_response.response_event_type = EVENT_RESPONSE_OK;
+                 }
+            }
+
             send_event_response(communicationInterfaces, 
                                 &event_response, 
                                 EVENT_STD_TIMEOUT_TICKS);

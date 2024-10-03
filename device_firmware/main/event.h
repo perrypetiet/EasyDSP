@@ -51,6 +51,7 @@ typedef struct
     uint8_t      event_type;
 
     uint8_t      chan_num;
+    uint8_t      eq_num;
     bool         output;
 
     equalizer_t  eq;
@@ -106,5 +107,4 @@ bool send_event(communication_t *communication,
 
 
 /******************************* THE END *********************************/
-
 #endif /* EVENT_H_ */

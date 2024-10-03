@@ -18,60 +18,161 @@
   
 /******************************* GLOBAL VARIABLES ************************/
 
+uint8_t     channelIndex = 0;
+uint8_t     eqIndex      = 0;
+bool        isOutput     = false;
+equalizer_t currentEq;
+mux_t       currentMux;
+
+communication_t*     toSettings = NULL;
+dsp_event_t          event;
+dsp_event_response_t event_response;
+
+void (*ble_event_handler)(dsp_event_t) = NULL;
 static const char *TAG = "ble";
 uint8_t ble_addr_type;
 
 // Describes services and characteristics
 static const struct ble_gatt_svc_def gatt_svcs[] = {
+    /* INDEXES */
     {.type = BLE_GATT_SVC_TYPE_PRIMARY,
-     .uuid = BLE_UUID16_DECLARE(0x180),
-     .characteristics = (struct ble_gatt_chr_def[]){
-         {.uuid = BLE_UUID16_DECLARE(0xFEF4),
-          .flags = BLE_GATT_CHR_F_READ,  
-          .access_cb = serial_read_cb},
-         {.uuid = BLE_UUID16_DECLARE(0xDEAD),
-          .flags = BLE_GATT_CHR_F_WRITE,
-          .access_cb = serial_write_cb},
-         {0}}},
-    {0}};
-
-data_buffer_t *ble_data_buffer = NULL;
+     .uuid = BLE_UUID16_DECLARE(0x0001),
+     .characteristics = (struct ble_gatt_chr_def[])
+     {
+        /* CHANNEL INDEX*/
+        {.uuid = BLE_UUID16_DECLARE(0x0002),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = chan_index_action,
+        },
+        /* IS OUTPUT*/
+        {.uuid = BLE_UUID16_DECLARE(0x0003),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = chan_index_action,
+        },
+        /* EQ INDEX*/
+        {.uuid = BLE_UUID16_DECLARE(0x0004),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        {0}    
+     }
+    },
+    /* EQUALIZER SERVICE */
+    {.type = BLE_GATT_SVC_TYPE_PRIMARY,
+     .uuid = BLE_UUID16_DECLARE(0x0005),
+     .characteristics = (struct ble_gatt_chr_def[])
+     {
+        /* Q */
+        {.uuid = BLE_UUID16_DECLARE(0x0006),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = chan_index_action,
+        },
+        /* S */
+        {.uuid = BLE_UUID16_DECLARE(0x0007),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        /* BANDWITH */
+        {.uuid = BLE_UUID16_DECLARE(0x0008),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        /* BOOST */
+        {.uuid = BLE_UUID16_DECLARE(0x0009),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        /* FREQ */
+        {.uuid = BLE_UUID16_DECLARE(0x000A),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        /* GAIN */
+        {.uuid = BLE_UUID16_DECLARE(0x000B),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        /* FILTER TYPE */
+        {.uuid = BLE_UUID16_DECLARE(0x000C),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        /* PHASE */
+        {.uuid = BLE_UUID16_DECLARE(0x000D),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        /* STATE */
+        {.uuid = BLE_UUID16_DECLARE(0x000E),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = eq_index_action,
+        },
+        {0}    
+     }
+    },
+    /* MUX SERVICE */
+    {.type = BLE_GATT_SVC_TYPE_PRIMARY,
+     .uuid = BLE_UUID16_DECLARE(0x000F),
+     .characteristics = (struct ble_gatt_chr_def[])
+     {
+        /* MUX VALUE*/ // Only for output channels.
+        // On inputs this value is just 0 and can't be set.
+        {.uuid = BLE_UUID16_DECLARE(0x0010),
+         .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE,  
+         .access_cb = chan_index_action,
+        },
+        {0}    
+     }
+    },
+    {0}
+};
 
 /******************************* LOCAL FUNCTIONS *************************/
 
-//Write data to EasyDSP from client
-int serial_write_cb(uint16_t conn_handle, 
+int chan_index_action(uint16_t conn_handle, 
+                     uint16_t attr_handle, 
+                     struct ble_gatt_access_ctxt *ctxt, 
+                     void *arg)
+{
+    if(toSettings != NULL)
+    {
+        switch(ctxt->op)
+        {
+            // Get channel index.
+            case BLE_GATT_ACCESS_OP_READ_CHR:
+                os_mbuf_append(ctxt->om, &channelIndex, sizeof(uint8_t));  
+                break;
+
+            // Set channel index.
+            case BLE_GATT_ACCESS_OP_WRITE_CHR:
+                channelIndex = *(ctxt->om->om_data);
+                break;
+        }
+    }
+    return 0;
+}
+
+int eq_index_action(uint16_t conn_handle, 
                     uint16_t attr_handle, 
                     struct ble_gatt_access_ctxt *ctxt, 
                     void *arg)
 {
-    // Add to receive ring buffer
-    printf("Data from the client: %.*s\n", ctxt->om->om_len, ctxt->om->om_data);
-    ring_add_data(&ble_data_buffer->rx, 
-                  ctxt->om->om_data, 
-                  ctxt->om->om_len);
-    return 0;
-}
-
-//Send data from EasyDSP to client
-int serial_read_cb(uint16_t con_handle, 
-                   uint16_t attr_handle, 
-                   struct ble_gatt_access_ctxt *ctxt, 
-                   void *arg)
-{
-    // Remove from transmit buffer and transmit
-    uint8_t data[DATA_BUF_LEN];
-    uint8_t len;
-
-    // Simple echo program. We send the data in the receive buffer back
-    len = data_len_available(&ble_data_buffer->rx);
-    if(len > 0)
+    if(toSettings != NULL)
     {
-        ring_get_data(&ble_data_buffer->rx, data, len);
-        os_mbuf_append(ctxt->om, data, len);
-        return 0;
+        switch(ctxt->op)
+        {
+            // Get eq index.
+            case BLE_GATT_ACCESS_OP_READ_CHR:
+                os_mbuf_append(ctxt->om, &eqIndex, sizeof(uint8_t));  
+                break;
+
+            // Set eq index.
+            case BLE_GATT_ACCESS_OP_WRITE_CHR:
+                eqIndex = *(ctxt->om->om_data);
+                break;
+        }
     }
-    return 1;
+    return 0;
 }
 
 // On sync callback function
@@ -146,7 +247,7 @@ void host_task(void *param)
 
 /******************************* GLOBAL FUNCTIONS ************************/
 
-bool init_ble(uint8_t *name, data_buffer_t *data_buffer)
+bool init_ble(uint8_t* name, communication_t* communication_data)
 {
     //https://github.com/SIMS-IOT-Devices/FreeRTOS-ESP-IDF-BLE-Server/blob/main/proj3.c
     /* Initialize NVS — it is used to store PHY calibration data */
@@ -171,16 +272,56 @@ bool init_ble(uint8_t *name, data_buffer_t *data_buffer)
     ble_hs_cfg.sync_cb = ble_app_on_sync;
     nimble_port_freertos_init(host_task);
 
-    // Set serial data buffer pointer
-    ble_data_buffer = data_buffer;
-
     // Initialize led
-    if(led_init())
+    if(led_init() && (communication_data != NULL))
     {
-        led_fade_start();
-    }
+        toSettings = communication_data;
+        // Gather eq data for selected channel (0) from settings task.
+        event.event_type = DSP_GET_EQ;
+        event.chan_num   = channelIndex;
+        event.eq_num     = eqIndex;
+        event.output     = isOutput;
 
-    return true;
+        if(send_event(toSettings, 
+                      &event, 
+                      &event_response, 
+                      EVENT_STD_TIMEOUT_TICKS))
+        {
+            if(event_response.response_event_type == EVENT_RESPONSE_OK)
+            {
+                currentEq = event_response.response_eq;
+                ESP_LOGI(TAG, "freq: %f\n", event_response.response_eq.freq);
+            }
+        }
+
+        event.event_type = DSP_GET_MUX;
+
+        if(send_event(toSettings, 
+                      &event, 
+                      &event_response, 
+                      EVENT_STD_TIMEOUT_TICKS))
+        {
+            if(event_response.response_event_type == EVENT_RESPONSE_OK)
+            {
+                currentMux = event_response.response_mux;
+                ESP_LOGI(TAG, "mux index: %i\n", event_response.response_mux.index);
+            }
+        }
+
+        led_fade_start();
+        return true;
+    }
+    return false;
+}
+
+void set_event_handler(void (*event_handler)(dsp_event_t))
+{   
+    ble_event_handler = event_handler; 
+}
+
+void remove_event_handler()
+{
+    ble_event_handler = NULL;
 }
 
 /******************************* THE END *********************************/

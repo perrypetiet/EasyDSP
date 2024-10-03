@@ -31,23 +31,16 @@
 #include "services/gap/ble_svc_gap.h"
 #include "services/gatt/ble_svc_gatt.h"
 #include "buffer.h"
+#include "device_settings.h"
 #include "led.h"
 
 /******************************* DEFINES *********************************/
 
+#define CHAN_TOTAL DEVICE_SETTINGS_INPUT_AMOUNT + DEVICE_SETTINGS_OUTPUT_AMOUNT
+
 /******************************* TYPEDEFS ********************************/
 
 /******************************* LOCAL FUNCTIONS *************************/
-
-int serial_write_cb(uint16_t conn_handle, 
-                    uint16_t attr_handle, 
-                    struct ble_gatt_access_ctxt *ctxt, 
-                    void *arg);
-
-int serial_read_cb(uint16_t con_handle, 
-                   uint16_t attr_handle, 
-                   struct ble_gatt_access_ctxt *ctxt, 
-                   void *arg);
 
 void ble_app_on_sync(void);
 
@@ -57,9 +50,73 @@ void ble_app_advertise(void);
 
 void host_task(void *param);
 
+/******************************* CHARACTERSTIC CALLBACKS *****************/
+
+int chan_index_action(uint16_t con_handle, 
+                      uint16_t attr_handle, 
+                      struct ble_gatt_access_ctxt *ctxt, 
+                      void *arg);
+
+int eq_index_action(uint16_t con_handle, 
+                    uint16_t attr_handle, 
+                    struct ble_gatt_access_ctxt *ctxt, 
+                    void *arg);
+
+int q_action(uint16_t con_handle, 
+             uint16_t attr_handle, 
+             struct ble_gatt_access_ctxt *ctxt, 
+             void *arg);   
+
+int s_action(uint16_t con_handle, 
+             uint16_t attr_handle, 
+             struct ble_gatt_access_ctxt *ctxt, 
+             void *arg);
+
+int bandwith_action(uint16_t con_handle, 
+                    uint16_t attr_handle, 
+                    struct ble_gatt_access_ctxt *ctxt, 
+                    void *arg);   
+int boost_action(uint16_t con_handle, 
+                 uint16_t attr_handle, 
+                 struct ble_gatt_access_ctxt *ctxt, 
+                 void *arg);
+
+int freq_action(uint16_t con_handle, 
+                uint16_t attr_handle, 
+                struct ble_gatt_access_ctxt *ctxt, 
+                void *arg);
+
+int gain_action(uint16_t con_handle, 
+                uint16_t attr_handle, 
+                struct ble_gatt_access_ctxt *ctxt, 
+                void *arg);   
+
+int filter_type_action(uint16_t con_handle, 
+                       uint16_t attr_handle, 
+                       struct ble_gatt_access_ctxt *ctxt, 
+                       void *arg);
+
+int phase_action(uint16_t con_handle, 
+                 uint16_t attr_handle, 
+                 struct ble_gatt_access_ctxt *ctxt, 
+                 void *arg);
+
+int state_action(uint16_t con_handle, 
+                 uint16_t attr_handle, 
+                 struct ble_gatt_access_ctxt *ctxt, 
+                 void *arg);
+
+int mux_action(uint16_t con_handle, 
+                 uint16_t attr_handle, 
+                 struct ble_gatt_access_ctxt *ctxt, 
+                 void *arg);   
+
 /******************************* GLOBAL FUNCTIONS ************************/
 
-bool init_ble(uint8_t *name, data_buffer_t *data_buffer);
+bool init_ble(uint8_t* name, communication_t* communication_data);
+
+void set_event_handler(void (*event_handler)(dsp_event_t));
+void remove_event_handler(void);
 
 /******************************* THE END *********************************/
 

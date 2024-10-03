@@ -49,7 +49,8 @@ uint8_t init_device_settings()
         {
             // Load from EEPROM.
         }
-        else{
+        else
+        {
             // Load factory settings
         }
 

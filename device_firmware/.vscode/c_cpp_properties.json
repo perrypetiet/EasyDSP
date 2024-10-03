@@ -11,7 +11,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "C:/mingw/bin/gcc.exe"
+            "compilerPath": "${config:idf.toolsPathWin}\\tools\\xtensa-esp32s3-elf\\esp-12.2.0_20230208\\xtensa-esp32s3-elf\\bin\\xtensa-esp32s3-elf-gcc.exe"
         }
     ],
     "version": 4
