@@ -20,7 +20,8 @@
 
 uint8_t     channelIndex = 0;
 uint8_t     eqIndex      = 0;
-bool        isOutput     = false;
+bool        isOutput     = true;
+
 equalizer_t currentEq;
 mux_t       currentMux;
 
@@ -127,7 +128,62 @@ static const struct ble_gatt_svc_def gatt_svcs[] = {
     {0}
 };
 
+
 /******************************* LOCAL FUNCTIONS *************************/
+
+bool update_current_eq()
+{
+    if(toSettings != NULL)
+    {
+        event.chan_num   = channelIndex;
+        event.eq_num     = eqIndex;
+        event.output     = isOutput;
+
+        event.event_type = DSP_GET_EQ;
+
+        if(send_event(toSettings, 
+                      &event, 
+                      &event_response, 
+                      EVENT_STD_TIMEOUT_TICKS))
+        {
+            if(event_response.response_event_type == EVENT_RESPONSE_OK)
+            {
+                currentEq = event_response.response_eq;
+                ESP_LOGI(TAG, "freq: %f\n", currentEq.freq);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool update_current_mux()
+{
+    if(toSettings != NULL)
+    {
+        event.chan_num   = channelIndex;
+        event.eq_num     = eqIndex;
+        event.output     = isOutput;
+
+        event.event_type = DSP_GET_MUX;
+
+        if(send_event(toSettings, 
+                      &event, 
+                      &event_response, 
+                      EVENT_STD_TIMEOUT_TICKS))
+        {
+            if(event_response.response_event_type == EVENT_RESPONSE_OK)
+            {
+                currentMux = event_response.response_mux;
+                ESP_LOGI(TAG, "mux index: %i\n", currentMux.index);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+/******************************* CHARACTERSTIC CALLBACKS *****************/
 
 int chan_index_action(uint16_t conn_handle, 
                      uint16_t attr_handle, 
@@ -145,7 +201,39 @@ int chan_index_action(uint16_t conn_handle,
 
             // Set channel index.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
+                uint8_t previous_index = channelIndex;
                 channelIndex = *(ctxt->om->om_data);
+
+                if(!update_current_eq() ||
+                   !update_current_mux()  )
+                {
+                    channelIndex = previous_index;
+                }
+                break;
+        }
+    }
+    return 0;
+}
+
+int is_output_action(uint16_t conn_handle, 
+                     uint16_t attr_handle, 
+                     struct ble_gatt_access_ctxt *ctxt, 
+                     void *arg)
+{
+    if(toSettings != NULL)
+    {
+        switch(ctxt->op)
+        {
+            // get is output
+            case BLE_GATT_ACCESS_OP_READ_CHR:
+                os_mbuf_append(ctxt->om, &isOutput, sizeof(uint8_t));  
+                break;
+
+            // Set is output
+            case BLE_GATT_ACCESS_OP_WRITE_CHR:
+                isOutput = *(ctxt->om->om_data);
+                update_current_eq();
+                update_current_mux();
                 break;
         }
     }
@@ -174,6 +262,15 @@ int eq_index_action(uint16_t conn_handle,
     }
     return 0;
 }
+
+
+
+
+
+
+
+
+
 
 // On sync callback function
 void ble_app_on_sync(void)
@@ -276,37 +373,9 @@ bool init_ble(uint8_t* name, communication_t* communication_data)
     if(led_init() && (communication_data != NULL))
     {
         toSettings = communication_data;
-        // Gather eq data for selected channel (0) from settings task.
-        event.event_type = DSP_GET_EQ;
-        event.chan_num   = channelIndex;
-        event.eq_num     = eqIndex;
-        event.output     = isOutput;
 
-        if(send_event(toSettings, 
-                      &event, 
-                      &event_response, 
-                      EVENT_STD_TIMEOUT_TICKS))
-        {
-            if(event_response.response_event_type == EVENT_RESPONSE_OK)
-            {
-                currentEq = event_response.response_eq;
-                ESP_LOGI(TAG, "freq: %f\n", event_response.response_eq.freq);
-            }
-        }
-
-        event.event_type = DSP_GET_MUX;
-
-        if(send_event(toSettings, 
-                      &event, 
-                      &event_response, 
-                      EVENT_STD_TIMEOUT_TICKS))
-        {
-            if(event_response.response_event_type == EVENT_RESPONSE_OK)
-            {
-                currentMux = event_response.response_mux;
-                ESP_LOGI(TAG, "mux index: %i\n", event_response.response_mux.index);
-            }
-        }
+        update_current_eq();
+        update_current_mux();
 
         led_fade_start();
         return true;

@@ -93,7 +93,10 @@ void settings_task(void* pvParameters)
     {
         if(await_event(communicationInterfaces, &event, EVENT_STD_TIMEOUT_TICKS))
         {
+            ESP_LOGI(TAG, "Received event!!");
             event_response.response_event_type = EVENT_RESPONSE_ERROR;
+
+            /* BLE REQUESTING EQ DATA */
             if(event.event_type == DSP_GET_EQ)
             {
                 uint8_t channelNum = event.chan_num;
@@ -120,6 +123,7 @@ void settings_task(void* pvParameters)
                 }
             }
 
+            /* BLE REQUESTING EQ DATA */
             if(event.event_type == DSP_GET_MUX)
             {
                  uint8_t channelNum = event.chan_num;
@@ -129,6 +133,21 @@ void settings_task(void* pvParameters)
                     event_response.response_mux = settings->outputs[channelNum].mux;
                     event_response.response_event_type = EVENT_RESPONSE_OK;
                  }
+            }
+
+            /* BLE SETTING EQ DATA */
+            if(event.event_type == DSP_SET_EQ)
+            {
+                // Copy from event the the new channel EQ ->
+                // Send the new eq data in settings to dsp task ->
+
+            }
+            /* BLE SETTING MUX DATA */
+            if(event.event_type == DSP_SET_MUX)
+            {
+                // Copy from event the the new channel MUX ->
+                // Send the new mux data in settings to dsp task ->
+
             }
 
             send_event_response(communicationInterfaces, 

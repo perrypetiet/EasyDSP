@@ -50,12 +50,20 @@ void ble_app_advertise(void);
 
 void host_task(void *param);
 
+bool update_current_eq(void);
+bool update_current_mux(void);
+
 /******************************* CHARACTERSTIC CALLBACKS *****************/
 
 int chan_index_action(uint16_t con_handle, 
                       uint16_t attr_handle, 
                       struct ble_gatt_access_ctxt *ctxt, 
                       void *arg);
+
+int is_output_action(uint16_t con_handle, 
+                     uint16_t attr_handle, 
+                     struct ble_gatt_access_ctxt *ctxt, 
+                     void *arg);                     
 
 int eq_index_action(uint16_t con_handle, 
                     uint16_t attr_handle, 
