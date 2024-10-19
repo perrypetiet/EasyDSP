@@ -123,7 +123,7 @@ void settings_task(void* pvParameters)
                 }
             }
 
-            /* BLE REQUESTING EQ DATA */
+            /* BLE REQUESTING MUX DATA */
             if(event.event_type == DSP_GET_MUX)
             {
                  uint8_t channelNum = event.chan_num;
@@ -138,16 +138,70 @@ void settings_task(void* pvParameters)
             /* BLE SETTING EQ DATA */
             if(event.event_type == DSP_SET_EQ)
             {
+                bool settingsUpdated = false;
                 // Copy from event the the new channel EQ ->
                 // Send the new eq data in settings to dsp task ->
-
+                uint8_t channelNum = event.chan_num;
+                uint8_t eqNum      = event.eq_num;
+                bool    output     = event.output;
+                if(output)
+                {
+                    if(channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT)
+                    {
+                        uint16_t old_address = settings->outputs[channelNum].eq[eqNum].sigma_dsp_address;
+                        event.eq.sigma_dsp_address = old_address;
+                        settings->outputs[channelNum].eq[eqNum] = event.eq;
+                        settings->outputs[channelNum].eq[eqNum].sigma_dsp_address = old_address;
+                        settingsUpdated = true;
+                    }
+                }
+                else
+                {
+                    if(channelNum < DEVICE_SETTINGS_INPUT_AMOUNT)
+                    {
+                        uint16_t old_address = settings->inputs[channelNum].eq[eqNum].sigma_dsp_address;
+                        event.eq.sigma_dsp_address = old_address;
+                        settings->inputs[channelNum].eq[eqNum] = event.eq;
+                        settings->inputs[channelNum].eq[eqNum].sigma_dsp_address = old_address;
+                        settingsUpdated = true;
+                    }
+                }
+                if(settingsUpdated)
+                {
+                    // Event is now the same as stored in settings, send to dsp
+                    event.event_type = DSP_SET_EQ;
+                    if(send_event(communicationDsp, 
+                       &event, 
+                       &event_response, 
+                       EVENT_STD_TIMEOUT_TICKS))
+                    {
+                        event_response.response_event_type = EVENT_RESPONSE_OK;       
+                    }
+                }
             }
+
             /* BLE SETTING MUX DATA */
             if(event.event_type == DSP_SET_MUX)
             {
                 // Copy from event the the new channel MUX ->
                 // Send the new mux data in settings to dsp task ->
-
+                uint8_t channelNum = event.chan_num;
+                bool    output     = event.output;
+                if(output && channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT)
+                {
+                    uint16_t old_address = settings->outputs[channelNum].mux.sigma_dsp_address;
+                    event.mux.sigma_dsp_address = old_address;
+                    settings->outputs[channelNum].mux = event.mux;
+                    settings->outputs[channelNum].mux.sigma_dsp_address = old_address;
+                }
+                event.event_type = DSP_SET_MUX;
+                if(send_event(communicationDsp, 
+                              &event, 
+                              &event_response, 
+                              EVENT_STD_TIMEOUT_TICKS))
+                {
+                    event_response.response_event_type = EVENT_RESPONSE_OK;       
+                }
             }
 
             send_event_response(communicationInterfaces, 

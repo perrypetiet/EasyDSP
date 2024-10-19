@@ -1,6 +1,8 @@
 /*
  * easydsp_firmware.c
  *
+ * 🎶🎶🎶🎶🎶🎶🎶🎶
+ *
  * Author: Perry Petiet
  * 
  * This file is the main file ran by ESP-IDF for the firmware of the EasyDSP

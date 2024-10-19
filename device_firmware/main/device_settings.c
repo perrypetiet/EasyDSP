@@ -36,9 +36,9 @@ uint8_t init_device_settings()
                    NV_STORAGE_SDA_PIN,
                    NV_STORAGE_I2C_INTERFACE,
                    NV_STORAGE_I2C_ADDRESS))
-    {
-        eeprom_found = true;
-    }
+     {
+         eeprom_found = true;
+     }
     
     device_settings = malloc(sizeof(device_settings_t));
 

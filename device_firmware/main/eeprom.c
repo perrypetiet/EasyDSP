@@ -102,10 +102,10 @@ uint8_t init_eeprom(uint8_t i2c_scl_gpio,
         esp_err_t err_code = eeprom_i2c_master_init(i2c_scl_gpio,
                                                     i2c_sda_gpio,
                                                     i2c_port_num,
-                                                    false);
+                                                    true);
 
         if(err_code == ESP_OK)
-        {
+        {  
             // Let's poll the i2c line to see if we get a response.
             if(eeprom_ack_poll())
             {

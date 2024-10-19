@@ -50,6 +50,8 @@ void ble_app_advertise(void);
 
 void host_task(void *param);
 
+bool send_current_eq(void);
+bool send_current_mux(void);
 bool update_current_eq(void);
 bool update_current_mux(void);
 

@@ -36,7 +36,9 @@
         "functional": "c",
         "tuple": "c",
         "type_traits": "c",
-        "utility": "c"
+        "utility": "c",
+        "sigma_dsp_module_data.h": "c",
+        "eeprom.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "idf.adapterTargetName": "esp32s3",
@@ -44,6 +46,6 @@
         "interface/ftdi/esp32_devkitj_v1.cfg",
         "target/esp32s3.cfg"
     ],
-    "idf.portWin": "COM3",
+    "idf.portWin": "COM8",
     "idf.flashType": "UART"
 }
