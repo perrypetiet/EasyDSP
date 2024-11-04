@@ -297,10 +297,21 @@ int is_output_action(uint16_t conn_handle,
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
                 bool prev = isOutput;
                 isOutput = *(ctxt->om->om_data);
-                if(!update_current_eq() ||
-                   !update_current_mux())
+
+                if(isOutput)
                 {
-                    isOutput = prev;
+                    if(!update_current_mux() ||
+                       !update_current_eq()    )
+                    {
+                        isOutput = prev;
+                    }
+                }
+                else
+                {
+                    if(!update_current_eq())
+                    {
+                        isOutput = prev;
+                    }
                 }
                 break;
         }
@@ -347,14 +358,14 @@ int q_action(uint16_t con_handle,
         {
             // Get q.
             case BLE_GATT_ACCESS_OP_READ_CHR:
-                fToIntBuf = (int32_t)(currentEq.q * 100);
+                fToIntBuf = (int32_t)(currentEq.q * 10);
                 os_mbuf_append(ctxt->om, &fToIntBuf, sizeof(int32_t));  
                 break;
 
             // Set q.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
                 float old = currentEq.q;
-                currentEq.q = (float)(*(ctxt->om->om_data) / 100);
+                currentEq.q = (float)(*(ctxt->om->om_data) / 10);
                 if(!send_current_eq())
                 {
                     currentEq.q = old;
@@ -434,14 +445,14 @@ int boost_action(uint16_t con_handle,
         {
             // Get boost.
             case BLE_GATT_ACCESS_OP_READ_CHR:
-                fToIntBuf = (int32_t)(currentEq.boost * 100);
+                fToIntBuf = (int32_t)(currentEq.boost * 10);
                 os_mbuf_append(ctxt->om, &fToIntBuf, sizeof(int32_t));  
                 break;
 
             // Set boost.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
                 float old = currentEq.boost;
-                currentEq.boost = (float)(*(ctxt->om->om_data) / 100);
+                currentEq.boost = (float)(*(ctxt->om->om_data) / 10);
                 if(!send_current_eq())
                 {
                     currentEq.boost = old;
@@ -494,14 +505,14 @@ int gain_action(uint16_t con_handle,
         {
             // Get gain.
             case BLE_GATT_ACCESS_OP_READ_CHR:
-                fToIntBuf = (int32_t)(currentEq.gain * 100);
+                fToIntBuf = (int32_t)(currentEq.gain * 10);
                 os_mbuf_append(ctxt->om, &fToIntBuf, sizeof(int32_t));  
                 break;
 
             // Set gain.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
                 float old = currentEq.gain;
-                currentEq.gain = (float)(*(ctxt->om->om_data) / 100);
+                currentEq.gain = (float)(*(ctxt->om->om_data) / 10);
                 if(!send_current_eq())
                 {
                     currentEq.gain = old;
@@ -736,14 +747,5 @@ bool init_ble(uint8_t* name, communication_t* communication_data)
     return false;
 }
 
-void set_event_handler(void (*event_handler)(dsp_event_t))
-{   
-    ble_event_handler = event_handler; 
-}
-
-void remove_event_handler()
-{
-    ble_event_handler = NULL;
-}
 
 /******************************* THE END *********************************/

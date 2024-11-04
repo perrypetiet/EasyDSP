@@ -1,5 +1,11 @@
+# Perry Petiet
+# 23-10-2024
+# EasyDsp python module. Uses bleak for BLE python functionality.
+# This module contains functions to connect to and control EasyDsp.
+
 from bleak import BleakScanner
 from bleak import BleakClient
+import serv_char
 import asyncio
 import cmd
 
@@ -47,14 +53,191 @@ async def connect(addr_or_name):
                 connected = True
     
     if connected == True:
-        services = client.services
-        
-        #todo: check services and characteristics.
-
-        print(len(services.characteristics))
-        print("Connected!\n")
+        return True
+    return False
 
 async def disconnect():
     if client != None:
         await client.disconnect()
-        print("Disconnected!\n")
+        return True
+    return False
+
+async def selectinput(inputNum):
+    if client != None:
+        dataNum    = bytes([inputNum])
+        dataOutput = bytes([int(0)])
+        await client.write_gatt_char(char_specifier=serv_char.char_chan_index, data=dataNum,    response= True)
+        checkInput    = await client.read_gatt_char(char_specifier=serv_char.char_chan_index)
+        await client.write_gatt_char(char_specifier=serv_char.char_is_output,  data=dataOutput, response= True)
+        checkIsOutput = await client.read_gatt_char(char_specifier=serv_char.char_is_output)
+        if checkIsOutput == dataOutput:
+            if checkInput == dataNum:
+                return True
+    return False
+
+async def selectOutput(outputNum):
+    if client != None:
+        dataNum    = bytes([outputNum])
+        dataOutput = bytes([int(1)])
+        await client.write_gatt_char(char_specifier=serv_char.char_is_output,  data=dataOutput, response= True)
+        checkIsOutput = await client.read_gatt_char(char_specifier=serv_char.char_is_output)
+        await client.write_gatt_char(char_specifier=serv_char.char_chan_index, data=dataNum,    response= True)
+        checkNum    = await client.read_gatt_char(char_specifier=serv_char.char_chan_index)
+        if checkIsOutput == dataOutput:
+            if checkNum == dataNum:
+                return True
+    return False
+
+async def selectEq(eqNum):
+    if client != None:
+        data = bytes([eqNum])
+        await client.write_gatt_char(char_specifier=serv_char.char_eq_index,  data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_eq_index)
+        if checkData == data:
+            return True
+    return False
+
+#
+# EQ GET AND SET FUNCTIONS:
+#
+
+async def eqSetState(state):
+    if client != None:
+        data = bytes([state])
+        await client.write_gatt_char(char_specifier=serv_char.char_state, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_gain)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetState():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_state)
+    return rx[0]
+
+async def eqSetGain(gain):
+    if client != None:
+        data = bytes([gain])
+        await client.write_gatt_char(char_specifier=serv_char.char_gain, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_gain)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetGain():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_gain)
+    return rx[0]
+
+async def eqSetS(s):
+    if client != None:
+        data = bytes([s])
+        await client.write_gatt_char(char_specifier=serv_char.char_s, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_s)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetS():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_s)
+    return rx[0]
+
+async def eqSetQ(q):
+    if client != None:
+        data = bytes([q])
+        await client.write_gatt_char(char_specifier=serv_char.char_q, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_q)
+        print(checkData)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetQ():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_q)
+    return rx[0]
+
+async def eqSetBandwith(bandwith):
+    if client != None:
+        data = bytes([bandwith])
+        await client.write_gatt_char(char_specifier=serv_char.char_bandwith, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_bandwith)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetBandwith():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_bandwith)
+    return rx[0]
+
+async def eqSetBoost(boost):
+    if client != None:
+        data = bytes([boost])
+        await client.write_gatt_char(char_specifier=serv_char.char_boost, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_boost)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetBoost():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_boost)
+    return rx[0]
+
+async def eqSetFreq(freq):
+    if client != None:
+        data = bytes([freq])
+        await client.write_gatt_char(char_specifier=serv_char.char_freq, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_freq)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetFreq():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_freq)
+    return rx[0]
+
+async def eqSetFilterType(filter_type):
+    if client != None:
+        data = bytes([filter_type])
+        await client.write_gatt_char(char_specifier=serv_char.char_filt_type, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_filt_type)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetFilterType():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_filt_type)
+    return rx[0]
+
+async def eqSetPhase(phase):
+    if client != None:
+        data = bytes([phase])
+        await client.write_gatt_char(char_specifier=serv_char.char_phase, data=data, response= True)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_phase)
+        if checkData == data:
+            return True             
+    return False
+
+async def eqGetPhase():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_phase)
+    return rx[0]
+
+async def setMux(muxVal):
+    if client != None:
+        dataMux = bytes([muxVal])
+        await client.write_gatt_char(char_specifier=serv_char.char_mux_val, data=dataMux, response= True)
+        checkMux = await client.read_gatt_char(char_specifier=serv_char.char_mux_val)
+        if checkMux == dataMux:
+            return True
+    return False
+
+async def getMux():
+    if client != None:
+        rx = await client.read_gatt_char(char_specifier=serv_char.char_mux_val)
+    return rx[0]

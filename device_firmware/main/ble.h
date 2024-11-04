@@ -125,9 +125,6 @@ int mux_action(uint16_t con_handle,
 
 bool init_ble(uint8_t* name, communication_t* communication_data);
 
-void set_event_handler(void (*event_handler)(dsp_event_t));
-void remove_event_handler(void);
-
 /******************************* THE END *********************************/
 
 #endif /* BLE_H_ */
