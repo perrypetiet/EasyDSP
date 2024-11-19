@@ -254,7 +254,7 @@ int chan_index_action(uint16_t conn_handle,
 
             // Set channel index.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
-                uint8_t previous_index = channelIndex;
+                uint32_t previous_index = (uint32_t)channelIndex;
                 channelIndex = *(ctxt->om->om_data);
                 
                 if(isOutput)
@@ -387,14 +387,14 @@ int s_action(uint16_t con_handle,
         {
             // Get s.
             case BLE_GATT_ACCESS_OP_READ_CHR:
-                fToIntBuf = (int32_t)(currentEq.s * 100);
+                fToIntBuf = (int32_t)(currentEq.s * 10);
                 os_mbuf_append(ctxt->om, &fToIntBuf, sizeof(int32_t));  
                 break;
 
             // Set s.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
                 float old = currentEq.s;
-                currentEq.s = (float)(*(ctxt->om->om_data) / 100);
+                currentEq.s = (float)(*(ctxt->om->om_data) / 10);
                 if(!send_current_eq())
                 {
                     currentEq.s = old;
@@ -416,14 +416,14 @@ int bandwith_action(uint16_t con_handle,
         {
             // Get bandwith.
             case BLE_GATT_ACCESS_OP_READ_CHR:
-                fToIntBuf = (int32_t)(currentEq.bandwidth * 100);
+                fToIntBuf = (int32_t)(currentEq.bandwidth);
                 os_mbuf_append(ctxt->om, &fToIntBuf, sizeof(int32_t));  
                 break;
 
             // Set bandwith.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
                 float old = currentEq.bandwidth;
-                currentEq.bandwidth = (float)(*(ctxt->om->om_data) / 100);
+                currentEq.bandwidth = (float)(*(ctxt->om->om_data));
                 if(!send_current_eq())
                 {
                     currentEq.bandwidth = old;
@@ -472,18 +472,18 @@ int freq_action(uint16_t con_handle,
     {
         switch(ctxt->op)
         {
-            // Get boost.
+            // Get freq.
             case BLE_GATT_ACCESS_OP_READ_CHR:
-                ESP_LOGW(TAG, "%f", currentEq.freq);
-                fToIntBuf = (int32_t)(currentEq.freq * 100);
-                ESP_LOGW(TAG, "%ld", fToIntBuf);
+                //ESP_LOGW(TAG, "%f", currentEq.freq);
+                fToIntBuf = (int32_t)(currentEq.freq);
+                //ESP_LOGW(TAG, "%ld", fToIntBuf);
                 os_mbuf_append(ctxt->om, &fToIntBuf, sizeof(int32_t));  
                 break;
 
-            // Set boost.
+            // Set freq.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
                 float old = currentEq.freq;
-                currentEq.freq = (float)(*(ctxt->om->om_data) / 100);
+                currentEq.freq = (float)(*(ctxt->om->om_data));
                 if(!send_current_eq())
                 {
                     currentEq.freq = old;
@@ -596,7 +596,7 @@ int state_action(uint16_t con_handle,
             // Set state.
             case BLE_GATT_ACCESS_OP_WRITE_CHR:
                 float old = currentEq.state;
-                currentEq.state = *ctxt->om->om_data;
+                currentEq.state = (uint32_t)*ctxt->om->om_data;
                 if(!send_current_eq())
                 {
                     currentEq.state = old;

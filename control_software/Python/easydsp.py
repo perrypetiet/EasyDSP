@@ -13,6 +13,8 @@ devices = None
 scanned = False
 client  = None
 
+intSize = 4
+
 async def exit():
     await disconnect()
 
@@ -105,7 +107,8 @@ async def eqSetState(state):
     if client != None:
         data = bytes([state])
         await client.write_gatt_char(char_specifier=serv_char.char_state, data=data, response= True)
-        checkData = await client.read_gatt_char(char_specifier=serv_char.char_gain)
+        checkData = await client.read_gatt_char(char_specifier=serv_char.char_state)
+        print(checkData)
         if checkData == data:
             return True             
     return False
@@ -113,11 +116,11 @@ async def eqSetState(state):
 async def eqGetState():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_state)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def eqSetGain(gain):
     if client != None:
-        data = bytes([gain])
+        data = gain.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_gain, data=data, response= True)
         checkData = await client.read_gatt_char(char_specifier=serv_char.char_gain)
         if checkData == data:
@@ -127,11 +130,11 @@ async def eqSetGain(gain):
 async def eqGetGain():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_gain)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def eqSetS(s):
     if client != None:
-        data = bytes([s])
+        data = s.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_s, data=data, response= True)
         checkData = await client.read_gatt_char(char_specifier=serv_char.char_s)
         if checkData == data:
@@ -141,11 +144,11 @@ async def eqSetS(s):
 async def eqGetS():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_s)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def eqSetQ(q):
     if client != None:
-        data = bytes([q])
+        data = q.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_q, data=data, response= True)
         checkData = await client.read_gatt_char(char_specifier=serv_char.char_q)
         print(checkData)
@@ -156,11 +159,11 @@ async def eqSetQ(q):
 async def eqGetQ():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_q)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def eqSetBandwith(bandwith):
     if client != None:
-        data = bytes([bandwith])
+        data = bandwith.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_bandwith, data=data, response= True)
         checkData = await client.read_gatt_char(char_specifier=serv_char.char_bandwith)
         if checkData == data:
@@ -170,11 +173,11 @@ async def eqSetBandwith(bandwith):
 async def eqGetBandwith():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_bandwith)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def eqSetBoost(boost):
     if client != None:
-        data = bytes([boost])
+        data = boost.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_boost, data=data, response= True)
         checkData = await client.read_gatt_char(char_specifier=serv_char.char_boost)
         if checkData == data:
@@ -184,11 +187,11 @@ async def eqSetBoost(boost):
 async def eqGetBoost():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_boost)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def eqSetFreq(freq):
     if client != None:
-        data = bytes([freq])
+        data = freq.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_freq, data=data, response= True)
         checkData = await client.read_gatt_char(char_specifier=serv_char.char_freq)
         if checkData == data:
@@ -198,11 +201,11 @@ async def eqSetFreq(freq):
 async def eqGetFreq():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_freq)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def eqSetFilterType(filter_type):
     if client != None:
-        data = bytes([filter_type])
+        data = filter_type.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_filt_type, data=data, response= True)
         checkData = await client.read_gatt_char(char_specifier=serv_char.char_filt_type)
         if checkData == data:
@@ -212,11 +215,11 @@ async def eqSetFilterType(filter_type):
 async def eqGetFilterType():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_filt_type)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def eqSetPhase(phase):
     if client != None:
-        data = bytes([phase])
+        data = phase.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_phase, data=data, response= True)
         checkData = await client.read_gatt_char(char_specifier=serv_char.char_phase)
         if checkData == data:
@@ -226,11 +229,11 @@ async def eqSetPhase(phase):
 async def eqGetPhase():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_phase)
-    return rx[0]
+    return int.from_bytes(rx, "little")
 
 async def setMux(muxVal):
     if client != None:
-        dataMux = bytes([muxVal])
+        dataMux = muxVal.to_bytes(intSize, "little")
         await client.write_gatt_char(char_specifier=serv_char.char_mux_val, data=dataMux, response= True)
         checkMux = await client.read_gatt_char(char_specifier=serv_char.char_mux_val)
         if checkMux == dataMux:
@@ -240,4 +243,4 @@ async def setMux(muxVal):
 async def getMux():
     if client != None:
         rx = await client.read_gatt_char(char_specifier=serv_char.char_mux_val)
-    return rx[0]
+    return int.from_bytes(rx, "little")
