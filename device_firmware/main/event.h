@@ -22,8 +22,8 @@
 
 /******************************* DEFINES *********************************/
 
-#define QUEUE_SIZE              1
-#define EVENT_STD_TIMEOUT_MS    5000
+#define QUEUE_SIZE        1
+#define EVENT_STD_TIMEOUT_MS  5000
 #define EVENT_STD_TIMEOUT_TICKS (EVENT_STD_TIMEOUT_MS / portTICK_PERIOD_MS)
 
 // MODIFY SETTINGS EVENT TYPES
@@ -35,11 +35,11 @@
 #define DSP_GET_GAIN 5
 
 // EVENT RESPONSE EVENT TYPES
-#define EVENT_RESPONSE_OK             0
-#define EVENT_RESPONSE_ERROR          1
-#define EVENT_RESPONSE_DSP_ERROR      2
+#define EVENT_RESPONSE_OK       0
+#define EVENT_RESPONSE_ERROR      1
+#define EVENT_RESPONSE_DSP_ERROR    2
 #define EVENT_RESPONSE_SETTINGS_ERROR 3
-#define EVENT_RESPONSE_SETTINGS_EQ    4
+#define EVENT_RESPONSE_SETTINGS_EQ  4
 #define EVENT_RESPONSE_SETTINGS_MUX   5
 #define EVENT_RESPONSE_SETTINGS_GAIN  6
 
@@ -48,38 +48,38 @@
 
 typedef struct
 {
-    uint8_t      event_type;
+  uint8_t    event_type;
 
-    uint8_t      chan_num;
-    uint8_t      eq_num;
-    bool         output;
+  uint8_t    chan_num;
+  uint8_t    eq_num;
+  bool     output;
 
-    equalizer_t  eq;
-    mux_t        mux;
-    // gain_t      gain;
+  equalizer_t  eq;
+  mux_t    mux;
+  // gain_t    gain;
 }dsp_event_t;
 
 typedef struct
 {
-    uint8_t response_event_type;
+  uint8_t response_event_type;
 
-    equalizer_t response_eq;
-    mux_t       response_mux;
-    //gain_t      response_gain;
+  equalizer_t response_eq;
+  mux_t     response_mux;
+  //gain_t    response_gain;
 }dsp_event_response_t;
 
 typedef struct
 {
-    QueueHandle_t event_queue;
-    QueueHandle_t event_response_queue;
+  QueueHandle_t event_queue;
+  QueueHandle_t event_response_queue;
 }communication_t;
 
 // The settings task needs two different queues, one for communication with
 // The DSP task and one for communication with the interfaces task.
 typedef struct
 {
-    communication_t* settings_dsp;
-    communication_t* settings_interfaces;
+  communication_t* settings_dsp;
+  communication_t* settings_interfaces;
 }settings_task_communications_t;
 
 /******************************* LOCAL FUNCTIONS *************************/
@@ -91,19 +91,19 @@ communication_t* dsp_communication_create();
 
 // Waits for DSP event until timout
 bool await_event(communication_t *communication, 
-                 void *event, 
-                 TickType_t timeout);
+         void *event, 
+         TickType_t timeout);
 
 // Sends a single DSP event response
 bool send_event_response(communication_t *communcation,
-                         void *event_response,
-                         TickType_t timeout);  
+             void *event_response,
+             TickType_t timeout);  
 
 // Sends a DSP event and waits for response until timeout
 bool send_event(communication_t *communication,
-                void *event,
-                void *response,
-                TickType_t timeout);
+        void *event,
+        void *response,
+        TickType_t timeout);
 
 
 /******************************* THE END *********************************/

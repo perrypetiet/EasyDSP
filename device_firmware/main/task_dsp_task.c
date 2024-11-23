@@ -22,48 +22,48 @@ static const char *TAG = "DSP task";
  */
 void dsp_task(void* pvParameters)
 {
-    init_dsp_control();
+  init_dsp_control();
 
-    communication_t      *communication = (communication_t*)pvParameters;
-    dsp_event_t          event;
-    dsp_event_response_t event_response;
-    
-    for(;;)
-    {
-        event_response.response_event_type = EVENT_RESPONSE_ERROR;
+  communication_t    *communication = (communication_t*)pvParameters;
+  dsp_event_t      event;
+  dsp_event_response_t event_response;
+  
+  for(;;)
+  {
+    event_response.response_event_type = EVENT_RESPONSE_ERROR;
 
-        if(await_event(communication, &event, EVENT_STD_TIMEOUT_TICKS))
-        { 
-            if(event.event_type == DSP_SET_EQ)
-            {
-                if(dsp_control_eq_secondorder(&event.eq))
-                {
-                    event_response.response_event_type = EVENT_RESPONSE_OK;
-                }
-                else
-                {
-                    event_response.response_event_type = EVENT_RESPONSE_DSP_ERROR;
-                }
-            }
-            else if(event.event_type == DSP_SET_MUX)
-            {
-                if(dsp_control_mux(&event.mux))
-                {
-                    event_response.response_event_type = EVENT_RESPONSE_OK;
-                }
-                else
-                {
-                    event_response.response_event_type = EVENT_RESPONSE_DSP_ERROR;
-                }
-            }
-            
-            if(!send_event_response(communication, 
-                                    &event_response, 
-                                    EVENT_STD_TIMEOUT_TICKS))
-            {
-                ESP_LOGE(TAG, "Unable to put event response in response queue!");
-            }
+    if(await_event(communication, &event, EVENT_STD_TIMEOUT_TICKS))
+    { 
+      if(event.event_type == DSP_SET_EQ)
+      {
+        if(dsp_control_eq_secondorder(&event.eq))
+        {
+          event_response.response_event_type = EVENT_RESPONSE_OK;
         }
+        else
+        {
+          event_response.response_event_type = EVENT_RESPONSE_DSP_ERROR;
+        }
+      }
+      else if(event.event_type == DSP_SET_MUX)
+      {
+        if(dsp_control_mux(&event.mux))
+        {
+          event_response.response_event_type = EVENT_RESPONSE_OK;
+        }
+        else
+        {
+          event_response.response_event_type = EVENT_RESPONSE_DSP_ERROR;
+        }
+      }
+      
+      if(!send_event_response(communication, 
+                  &event_response, 
+                  EVENT_STD_TIMEOUT_TICKS))
+      {
+        ESP_LOGE(TAG, "Unable to put event response in response queue!");
+      }
     }
-    vTaskDelete(NULL);
+  }
+  vTaskDelete(NULL);
 }

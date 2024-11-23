@@ -5,8 +5,8 @@
  * Author: Perry Petiet
  *
  * This module contains the functions to initaliaze and use the BLE
- * functionality on the ESP32 as a GATT device. It initalises 1 service
- * with a read and write characteristic to make it a "serial" device.
+ * functionality on the ESP32 as a GATT device. It initalizes all the
+ * custom services an characteristics needed for the DSP control.
  * 
  */ 
 #ifndef BLE_H
@@ -58,68 +58,68 @@ bool update_current_mux(void);
 /******************************* CHARACTERSTIC CALLBACKS *****************/
 
 int chan_index_action(uint16_t con_handle, 
-                      uint16_t attr_handle, 
-                      struct ble_gatt_access_ctxt *ctxt, 
-                      void *arg);
+            uint16_t attr_handle, 
+            struct ble_gatt_access_ctxt *ctxt, 
+            void *arg);
 
 int is_output_action(uint16_t con_handle, 
-                     uint16_t attr_handle, 
-                     struct ble_gatt_access_ctxt *ctxt, 
-                     void *arg);                     
+           uint16_t attr_handle, 
+           struct ble_gatt_access_ctxt *ctxt, 
+           void *arg);           
 
 int eq_index_action(uint16_t con_handle, 
-                    uint16_t attr_handle, 
-                    struct ble_gatt_access_ctxt *ctxt, 
-                    void *arg);
+          uint16_t attr_handle, 
+          struct ble_gatt_access_ctxt *ctxt, 
+          void *arg);
 
 int q_action(uint16_t con_handle, 
-             uint16_t attr_handle, 
-             struct ble_gatt_access_ctxt *ctxt, 
-             void *arg);   
+       uint16_t attr_handle, 
+       struct ble_gatt_access_ctxt *ctxt, 
+       void *arg);   
 
 int s_action(uint16_t con_handle, 
+       uint16_t attr_handle, 
+       struct ble_gatt_access_ctxt *ctxt, 
+       void *arg);
+
+int bandwith_action(uint16_t con_handle, 
+          uint16_t attr_handle, 
+          struct ble_gatt_access_ctxt *ctxt, 
+          void *arg);   
+int boost_action(uint16_t con_handle, 
+         uint16_t attr_handle, 
+         struct ble_gatt_access_ctxt *ctxt, 
+         void *arg);
+
+int freq_action(uint16_t con_handle, 
+        uint16_t attr_handle, 
+        struct ble_gatt_access_ctxt *ctxt, 
+        void *arg);
+
+int gain_action(uint16_t con_handle, 
+        uint16_t attr_handle, 
+        struct ble_gatt_access_ctxt *ctxt, 
+        void *arg);   
+
+int filter_type_action(uint16_t con_handle, 
              uint16_t attr_handle, 
              struct ble_gatt_access_ctxt *ctxt, 
              void *arg);
 
-int bandwith_action(uint16_t con_handle, 
-                    uint16_t attr_handle, 
-                    struct ble_gatt_access_ctxt *ctxt, 
-                    void *arg);   
-int boost_action(uint16_t con_handle, 
-                 uint16_t attr_handle, 
-                 struct ble_gatt_access_ctxt *ctxt, 
-                 void *arg);
-
-int freq_action(uint16_t con_handle, 
-                uint16_t attr_handle, 
-                struct ble_gatt_access_ctxt *ctxt, 
-                void *arg);
-
-int gain_action(uint16_t con_handle, 
-                uint16_t attr_handle, 
-                struct ble_gatt_access_ctxt *ctxt, 
-                void *arg);   
-
-int filter_type_action(uint16_t con_handle, 
-                       uint16_t attr_handle, 
-                       struct ble_gatt_access_ctxt *ctxt, 
-                       void *arg);
-
 int phase_action(uint16_t con_handle, 
-                 uint16_t attr_handle, 
-                 struct ble_gatt_access_ctxt *ctxt, 
-                 void *arg);
+         uint16_t attr_handle, 
+         struct ble_gatt_access_ctxt *ctxt, 
+         void *arg);
 
 int state_action(uint16_t con_handle, 
-                 uint16_t attr_handle, 
-                 struct ble_gatt_access_ctxt *ctxt, 
-                 void *arg);
+         uint16_t attr_handle, 
+         struct ble_gatt_access_ctxt *ctxt, 
+         void *arg);
 
 int mux_action(uint16_t con_handle, 
-                 uint16_t attr_handle, 
-                 struct ble_gatt_access_ctxt *ctxt, 
-                 void *arg);   
+         uint16_t attr_handle, 
+         struct ble_gatt_access_ctxt *ctxt, 
+         void *arg);   
 
 /******************************* GLOBAL FUNCTIONS ************************/
 

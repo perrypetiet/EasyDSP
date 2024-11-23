@@ -22,75 +22,75 @@ static const char *TAG = "Event";
 
 /******************************* GLOBAL FUNCTIONS ************************/
 
-communication_t* dsp_communication_create()                                       
+communication_t* dsp_communication_create()                     
 {
-    communication_t* ret = 
-                  (communication_t*)malloc(sizeof(communication_t));
+  communication_t* ret = 
+          (communication_t*)malloc(sizeof(communication_t));
 
-    if(ret != NULL)
-    {
-        ret->event_queue = xQueueCreate(QUEUE_SIZE, sizeof(dsp_event_t));
-        ret->event_response_queue = xQueueCreate(QUEUE_SIZE, 
-                                          sizeof(dsp_event_response_t));
-        return ret;        
-    }
-    return ret;
+  if(ret != NULL)
+  {
+    ret->event_queue = xQueueCreate(QUEUE_SIZE, sizeof(dsp_event_t));
+    ret->event_response_queue = xQueueCreate(QUEUE_SIZE, 
+                      sizeof(dsp_event_response_t));
+    return ret;    
+  }
+  return ret;
 }
 
 // Combination of communication and event has to be correct, queues in the 
 // communication have the be created for the event types using.
 bool await_event(communication_t *communication,
-                 void *event,
-                 TickType_t timeout)
+         void *event,
+         TickType_t timeout)
 {
-    if(communication != NULL && event != NULL)
+  if(communication != NULL && event != NULL)
+  {
+    if(xQueueReceive(communication->event_queue, event, timeout) == pdTRUE)
     {
-        if(xQueueReceive(communication->event_queue, event, timeout) == pdTRUE)
-        {
-            return true;
-        }
+      return true;
     }
-    return false;
+  }
+  return false;
 }
 
 bool send_event_response(communication_t *communication,
-                         void *event_response,
-                         TickType_t timeout)
+             void *event_response,
+             TickType_t timeout)
 {
-    if(communication != NULL && event_response != NULL)
+  if(communication != NULL && event_response != NULL)
+  {
+    if(xQueueSend(communication->event_response_queue, 
+            event_response, 
+            timeout) == pdTRUE)
     {
-        if(xQueueSend(communication->event_response_queue, 
-                      event_response, 
-                      timeout) == pdTRUE)
-        {
-            return true;
-        }
+      return true;
     }
-    return false;
+  }
+  return false;
 }
 
 bool send_event(communication_t *communication,
-                void *event,
-                void *response,
-                TickType_t timeout)
+        void *event,
+        void *response,
+        TickType_t timeout)
 {
-    if(communication != NULL && event != NULL && response != NULL)
+  if(communication != NULL && event != NULL && response != NULL)
+  {
+    // Send the event,
+    if(xQueueSend(communication->event_queue, 
+            event, 
+            timeout) == pdTRUE)
     {
-        // Send the event,
-        if(xQueueSend(communication->event_queue, 
-                      event, 
-                      timeout) == pdTRUE)
-        {
-            // And await a response
-            if(xQueueReceive(communication->event_response_queue, 
-                             response, 
-                             timeout) == pdTRUE)
-            {
-                return true;
-            }
-        }
+      // And await a response
+      if(xQueueReceive(communication->event_response_queue, 
+               response, 
+               timeout) == pdTRUE)
+      {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 

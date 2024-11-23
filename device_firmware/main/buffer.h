@@ -25,15 +25,15 @@
 
 typedef struct
 {
-    uint8_t data[DATA_BUF_LEN];
-    uint16_t w;
-    uint16_t r;
+  uint8_t data[DATA_BUF_LEN];
+  uint16_t w;
+  uint16_t r;
 } ring_t;
 
 typedef struct
 {
-    ring_t rx;
-    ring_t tx;
+  ring_t rx;
+  ring_t tx;
 } data_buffer_t;
 
 /******************************* LOCAL FUNCTIONS *************************/

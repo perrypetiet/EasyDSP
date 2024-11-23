@@ -42,59 +42,59 @@ void task_interfaces(void* pvParameters);
 
 void memory_watcher(void* arg)
 {
-    for(;;)
-    {
-        printf("RAM left %d\n", (int)esp_get_free_heap_size());
-        vTaskDelay(10000 / portTICK_PERIOD_MS);
-    }
-    vTaskDelete(NULL);   
+  for(;;)
+  {
+    printf("RAM left %d\n", (int)esp_get_free_heap_size());
+    vTaskDelay(10000 / portTICK_PERIOD_MS);
+  }
+  vTaskDelete(NULL);   
 }
 
 /******************************** PROGRAM ENTRY **************************/
 
 void app_main(void)
 {
-    communication_t* settingstodsp        = dsp_communication_create();    
-    communication_t* settingstointerfaces = dsp_communication_create();
+  communication_t* settingstodsp    = dsp_communication_create();  
+  communication_t* settingstointerfaces = dsp_communication_create();
 
-    settings_queues.settings_dsp        = settingstodsp;
-    settings_queues.settings_interfaces = settingstointerfaces;
+  settings_queues.settings_dsp    = settingstodsp;
+  settings_queues.settings_interfaces = settingstointerfaces;
 
-    // creates memory watcher task
-    // xTaskCreatePinnedToCore(memory_watcher, 
-    //                         "Memory", 
-    //                         4096, 
-    //                         NULL, 
-    //                         2, 
-    //                         NULL, 
-    //                         tskNO_AFFINITY);
+  // creates memory watcher task
+  // xTaskCreatePinnedToCore(memory_watcher, 
+  //             "Memory", 
+  //             4096, 
+  //             NULL, 
+  //             2, 
+  //             NULL, 
+  //             tskNO_AFFINITY);
 
-    // creates the dsp control task
-    xTaskCreatePinnedToCore(dsp_task, 
-                            "DSP_handler", 
-                            4096, 
-                            (void *) settingstodsp, 
-                            2, 
-                            NULL, 
-                            tskNO_AFFINITY);
+  // creates the dsp control task
+  xTaskCreatePinnedToCore(dsp_task, 
+              "DSP_handler", 
+              4096, 
+              (void *) settingstodsp, 
+              2, 
+              NULL, 
+              tskNO_AFFINITY);
 
-    // creates the task to create interfaces
-    xTaskCreatePinnedToCore(task_interfaces, 
-                            "Interfaces", 
-                            4096, 
-                            (void*)settingstointerfaces, 
-                            2, 
-                            NULL, 
-                            tskNO_AFFINITY);
+  // creates the task to create interfaces
+  xTaskCreatePinnedToCore(task_interfaces, 
+              "Interfaces", 
+              4096, 
+              (void*)settingstointerfaces, 
+              2, 
+              NULL, 
+              tskNO_AFFINITY);
 
-    // creates the task that handles the settings                        
-    xTaskCreatePinnedToCore(settings_task, 
-                            "Settings_handler", 
-                            4096, 
-                            (void *) &settings_queues, 
-                            2, 
-                            NULL, 
-                            tskNO_AFFINITY);                            
+  // creates the task that handles the settings            
+  xTaskCreatePinnedToCore(settings_task, 
+              "Settings_handler", 
+              4096, 
+              (void *) &settings_queues, 
+              2, 
+              NULL, 
+              tskNO_AFFINITY);              
 }
 
 /******************************* THE END *********************************/
