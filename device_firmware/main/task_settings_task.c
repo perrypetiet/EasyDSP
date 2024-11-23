@@ -26,13 +26,13 @@ void settings_task(void* pvParameters)
 
   device_settings_t * settings = get_device_settings_address();
 
-  dsp_event_t      event;
+  dsp_event_t          event;
   dsp_event_response_t event_response;
+   
   event_response.response_event_type = EVENT_RESPONSE_ERROR;
 
-  settings_task_communications_t* queues = (settings_task_communications_t*)pvParameters;
-
-  communication_t* communicationDsp    = queues->settings_dsp;
+  settings_task_communications_t* queues   = (settings_task_communications_t*)pvParameters;
+  communication_t* communicationDsp        = queues->settings_dsp;
   communication_t* communicationInterfaces = queues->settings_interfaces;
 
   // After initializing the settings, let send all the settings to the

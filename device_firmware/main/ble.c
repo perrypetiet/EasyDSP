@@ -17,13 +17,13 @@
 
 uint8_t   channelIndex = 0;
 uint8_t   eqIndex    = 0;
-bool    isOutput   = false;
+bool      isOutput   = false;
 
 equalizer_t currentEq;
-mux_t     currentMux;
+mux_t       currentMux;
 
-communication_t*   toSettings = NULL;
-dsp_event_t      event;
+communication_t*     toSettings = NULL;
+dsp_event_t          event;
 dsp_event_response_t event_response;
 
 void (*ble_event_handler)(dsp_event_t) = NULL;
@@ -656,17 +656,21 @@ int ble_gap_event(struct ble_gap_event *event, void *arg)
       led_static();
     }
     break;
+    
   case BLE_GAP_EVENT_DISCONNECT:
     ESP_LOGI(TAG, "Client disconnected.");
     led_fade_start();
     ble_app_advertise();
-    break;  
+    break;
+
   case BLE_GAP_EVENT_ADV_COMPLETE:
     ESP_LOGI(TAG, "BLE GAP EVENT");
     ble_app_advertise();
     break;
+
   default:
     break;
+
   }
   return 0;
 }
@@ -678,11 +682,11 @@ void ble_app_advertise(void)
   const char *device_name;
   memset(&fields, 0, sizeof(fields));
    
-  device_name       = ble_svc_gap_device_name(); 
-  fields.name       = (uint8_t *)device_name;
-  fields.name_len     = strlen(device_name);
+  device_name             = ble_svc_gap_device_name(); 
+  fields.name             = (uint8_t *)device_name;
+  fields.name_len         = strlen(device_name);
   fields.name_is_complete = 1;
-  fields.tx_pwr_lvl     = -128; // auto power level is -128
+  fields.tx_pwr_lvl       = -128; // auto power level is -128
 
   ble_gap_adv_set_fields(&fields);
 
@@ -692,11 +696,11 @@ void ble_app_advertise(void)
   adv_params.conn_mode = BLE_GAP_CONN_MODE_UND; 
   adv_params.disc_mode = BLE_GAP_DISC_MODE_GEN;
   ble_gap_adv_start(ble_addr_type, 
-            NULL, 
-            BLE_HS_FOREVER, 
-            &adv_params, 
-            ble_gap_event, 
-            NULL);
+                    NULL, 
+                    BLE_HS_FOREVER, 
+                    &adv_params, 
+                    ble_gap_event, 
+                    NULL);
 }
 
 // The infinite RTOS task. This is the taks that runs the actual BLE stack

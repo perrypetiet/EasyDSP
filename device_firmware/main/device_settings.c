@@ -33,9 +33,9 @@ uint8_t init_device_settings()
   bool eeprom_found = false;
   
   if(init_eeprom(NV_STORAGE_SCL_PIN,
-           NV_STORAGE_SDA_PIN,
-           NV_STORAGE_I2C_INTERFACE,
-           NV_STORAGE_I2C_ADDRESS))
+                 NV_STORAGE_SDA_PIN,
+                 NV_STORAGE_I2C_INTERFACE,
+                 NV_STORAGE_I2C_ADDRESS))
    {
      eeprom_found = true;
    }
@@ -102,8 +102,8 @@ uint8_t device_settings_load_factory()
           (j * ADA_COEFFICIENT_AMOUNT) + 
           (i * MOD_INPUT1_EQ_COUNT );
 
-        device_settings->inputs[i].eq[j].freq     = 1000;
-        device_settings->inputs[i].eq[j].q      = 1.41;
+        device_settings->inputs[i].eq[j].freq         = 1000;
+        device_settings->inputs[i].eq[j].q            = 1.41;
         device_settings->outputs[i].eq[j].filter_type = FILTER_TYPE_PEAK;
       }
     }
@@ -116,7 +116,7 @@ uint8_t device_settings_load_factory()
 
       // Set the dsp address to the first mux address + output n
       device_settings->outputs[i].mux.sigma_dsp_address = 
-        MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR + i;
+                                    MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR + i;
 
       for(int j = 0; j < DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT; j++)
       {
@@ -125,8 +125,8 @@ uint8_t device_settings_load_factory()
           (j * ADA_COEFFICIENT_AMOUNT) + 
           (i * MOD_OUTPUT1_EQ_COUNT);
 
-        device_settings->outputs[i].eq[j].freq    = 1000;
-        device_settings->outputs[i].eq[j].q       = 1.41;
+        device_settings->outputs[i].eq[j].freq        = 1000;
+        device_settings->outputs[i].eq[j].q           = 1.41;
         device_settings->outputs[i].eq[j].filter_type = FILTER_TYPE_PEAK;
       }
     }
@@ -148,22 +148,22 @@ uint8_t device_settings_store_nv()
     uint8_t  remainder = sizeof(device_settings_t) % EEPROM_PAGE_SIZE;
     
     printf("Size of settings: %d\n", sizeof(device_settings_t));
-    printf("Amount of pages: %d\n", page_amount);
-    printf("Remaining bytes: %d\n", remainder);
+    printf("Amount of pages:  %d\n", page_amount);
+    printf("Remaining bytes:  %d\n", remainder);
     
     for(int i = 0; i < page_amount; i++)
     {
       if(!eeprom_write_page(NV_STORAGE_SETTINGS_ADDRESS + (i * EEPROM_PAGE_SIZE), 
-                  (uint8_t*)device_settings + (i * EEPROM_PAGE_SIZE), 
-                  EEPROM_PAGE_SIZE))
+                            (uint8_t*)device_settings   + (i * EEPROM_PAGE_SIZE), 
+                            EEPROM_PAGE_SIZE))
       {
         write_success = false;
       }
     }
     // Remaining bytes:
     if(!eeprom_write_page(NV_STORAGE_SETTINGS_ADDRESS + (page_amount * (EEPROM_PAGE_SIZE)),
-               (uint8_t*)device_settings + (page_amount * EEPROM_PAGE_SIZE),
-               remainder))
+                          (uint8_t*)device_settings   + (page_amount * EEPROM_PAGE_SIZE),
+                          remainder))
     {
       write_success = false;
     }
@@ -186,8 +186,8 @@ uint8_t device_settings_load_nv()
   {
     // Do a sequential read for all settings starting on device_settings pointer.
     if(eeprom_sequential_read(NV_STORAGE_SETTINGS_ADDRESS,
-                  (uint8_t*)device_settings,
-                  sizeof(device_settings_t)))
+                              (uint8_t*)device_settings,
+                              sizeof(device_settings_t)))
     {
       ESP_LOGI(TAG, "Loaded device settings from NV storage.");
       return NV_RW_SUCCESS;

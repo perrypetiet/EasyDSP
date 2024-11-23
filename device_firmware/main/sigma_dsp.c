@@ -87,41 +87,41 @@ bool load_program(void)
   {
     // Load dsp_core_register_R0_data
     if(!(sigma_dsp_write_burst(CORE_REGISTER_R0_ADDR,
-                   CORE_REGISTER_R0_SIZE,
-                   (uint8_t*)dsp_core_register_R0_data) 
-                   == SIGMA_DSP_WRITE_SUCCESS))
+                               CORE_REGISTER_R0_SIZE,
+                               (uint8_t*)dsp_core_register_R0_data) 
+                               == SIGMA_DSP_WRITE_SUCCESS))
     {
       return false;
     }
     // Load the program data:
     if(!(sigma_dsp_write_burst(PROGRAM_ADDR,
-                   PROGRAM_SIZE,
-                   (uint8_t*)dsp_program_data) 
-                   == SIGMA_DSP_WRITE_SUCCESS))
+                               PROGRAM_SIZE,
+                              (uint8_t*)dsp_program_data) 
+                              == SIGMA_DSP_WRITE_SUCCESS))
     {
       return false;
     }
     // Load the parameter data:
     if(!(sigma_dsp_write_burst(PARAMETER_ADDR,
-                   PARAMETER_SIZE,
-                   (uint8_t*)dsp_parameter_data) 
-                   == SIGMA_DSP_WRITE_SUCCESS))
+                               PARAMETER_SIZE,
+                               (uint8_t*)dsp_parameter_data) 
+                               == SIGMA_DSP_WRITE_SUCCESS))
     {
       return false;
     }
     // Load dsp_hardware_conf_data
     if(!(sigma_dsp_write_burst(HARDWARE_CONF_ADDR,
-                   HARDWARE_CONF_SIZE,
-                   (uint8_t*)dsp_hardware_conf_data) 
-                   == SIGMA_DSP_WRITE_SUCCESS))
+                               HARDWARE_CONF_SIZE,
+                               (uint8_t*)dsp_hardware_conf_data) 
+                               == SIGMA_DSP_WRITE_SUCCESS))
     {
       return false;
     }
     // Load dsp_core_register_R4_data
     if(!(sigma_dsp_write_burst(CORE_REGISTER_R4_ADDR,
-                   CORE_REGISTER_R4_SIZE,
-                   (uint8_t*)dsp_core_register_R4_data) 
-                   == SIGMA_DSP_WRITE_SUCCESS))
+                               CORE_REGISTER_R4_SIZE,
+                               (uint8_t*)dsp_core_register_R4_data) 
+                               == SIGMA_DSP_WRITE_SUCCESS))
     {
       return false;
     }
@@ -132,25 +132,25 @@ bool load_program(void)
 /******************************* GLOBAL FUNCTIONS ************************/
 
 uint8_t init_sigma_dsp(uint8_t i2c_scl_gpio,
-             uint8_t i2c_sda_gpio,
-             uint8_t i2c_port_num,
-             uint8_t sigma_dsp_address,
-             gpio_num_t reset_pin)
+                       uint8_t i2c_sda_gpio,
+                       uint8_t i2c_port_num,
+                       uint8_t sigma_dsp_address,
+                       gpio_num_t reset_pin)
 {
   sigma_dsp = malloc(sizeof(sigma_dsp_t));
 
   if(sigma_dsp != NULL)
   {
-    sigma_dsp->i2c_scl_gpio    = i2c_scl_gpio;
-    sigma_dsp->i2c_sda_gpio    = i2c_sda_gpio;
-    sigma_dsp->i2c_port_num    = i2c_port_num;
+    sigma_dsp->i2c_scl_gpio      = i2c_scl_gpio;
+    sigma_dsp->i2c_sda_gpio      = i2c_sda_gpio;
+    sigma_dsp->i2c_port_num      = i2c_port_num;
     sigma_dsp->sigma_dsp_address = sigma_dsp_address;
-    sigma_dsp->reset_pin     = reset_pin;
+    sigma_dsp->reset_pin         = reset_pin;
 
     if(i2c_master_init(i2c_scl_gpio,
-               i2c_sda_gpio,
-               i2c_port_num,
-               false) == ESP_OK)
+                       i2c_sda_gpio,
+                       i2c_port_num,
+                       false) == ESP_OK)
     {
       if(gpio_set_direction(reset_pin, GPIO_MODE_OUTPUT) == ESP_OK)
       {
@@ -210,8 +210,8 @@ uint8_t sigma_dsp_write_burst(uint16_t reg_address,
       i2c_master_start(cmd);
       // Control byte -->
       i2c_master_write_byte(cmd, 
-                (sigma_dsp->sigma_dsp_address << 1) | WRITE_BIT, 
-                ACK_CHECK_EN);
+                            (sigma_dsp->sigma_dsp_address << 1) | WRITE_BIT, 
+                            ACK_CHECK_EN);
       i2c_master_write_byte(cmd, address_high, ACK_CHECK_EN);
       i2c_master_write_byte(cmd, address_low,  ACK_CHECK_EN);
 
@@ -222,8 +222,8 @@ uint8_t sigma_dsp_write_burst(uint16_t reg_address,
       i2c_master_stop(cmd);
 
       esp_err_t ret = i2c_master_cmd_begin(sigma_dsp->i2c_port_num, 
-                        cmd, 
-                        I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
+                                           cmd, 
+                                           I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
 
       i2c_cmd_link_delete(cmd);
 

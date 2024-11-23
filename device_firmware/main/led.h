@@ -27,17 +27,17 @@
 
 /******************************* DEFINES *********************************/
 
-#define LED_PIN_NUM   GPIO_NUM_4
+#define LED_PIN_NUM     GPIO_NUM_4
 #define LED_FREQUENCY   4000
-#define LED_MAX_DUTY  100
+#define LED_MAX_DUTY    100
 #define LED_FADE_TIME   1200
-#define LED_FADE_MAX  100
-#define LED_FADE_MIN  2
-#define LED_STATIC    100
+#define LED_FADE_MAX    100
+#define LED_FADE_MIN    2
+#define LED_STATIC      100
 
-#define LEDC_MODE     LEDC_LOW_SPEED_MODE
-#define LEDC_TIMER    LEDC_TIMER_2
-#define LEDC_CHANNEL  LEDC_CHANNEL_0
+#define LEDC_MODE       LEDC_LOW_SPEED_MODE
+#define LEDC_TIMER      LEDC_TIMER_2
+#define LEDC_CHANNEL    LEDC_CHANNEL_0
 #define LEDC_RESOLUTION LEDC_TIMER_10_BIT
 #define LEDC_MAX_DUTY   1024
 

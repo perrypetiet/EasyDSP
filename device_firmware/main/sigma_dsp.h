@@ -24,32 +24,32 @@
 
 /******************************* DEFINES *********************************/
 
-#define I2C_MASTER_FREQ_HZ      400000 /* I2C master clock frequency */
-#define I2C_MASTER_TX_BUF_DISABLE   0    /* Disable buffer as master   */
-#define I2C_MASTER_RX_BUF_DISABLE   0    /* Disable buffer as master   */
-#define I2C_TIMEOUT_MS        1000
+#define I2C_MASTER_FREQ_HZ          400000 /* I2C master clock frequency */
+#define I2C_MASTER_TX_BUF_DISABLE   0      /* Disable buffer as master   */
+#define I2C_MASTER_RX_BUF_DISABLE   0      /* Disable buffer as master   */
+#define I2C_TIMEOUT_MS              1000
 
-#define ACK_CHECK_EN        0x1  /* Check ACK from slave     */
-#define ACK_CHECK_DIS         0x0  /* Do not chekc ACK from slave*/
-#define ACK_VAL           0x0  /* I2C ack value        */
-#define NACK_VAL          0x1  /* I2C nack value       */
+#define ACK_CHECK_EN                0x1    /* Check ACK from slave       */
+#define ACK_CHECK_DIS               0x0    /* Do not chekc ACK from slave*/
+#define ACK_VAL                     0x0    /* I2C ack value              */
+#define NACK_VAL                    0x1    /* I2C nack value             */
 
-#define WRITE_BIT           0    /* I2C master write value   */
-#define READ_BIT          1    /* I2C master read value    */
+#define WRITE_BIT                   0      /* I2C master write value     */
+#define READ_BIT                    1      /* I2C master read value      */
 
-#define ACK_POLL_TIMEOUT      1000
-#define ACK_POLL_SUCCESS      1
-#define ACK_POLL_FAILED       0
+#define ACK_POLL_TIMEOUT            1000
+#define ACK_POLL_SUCCESS            1
+#define ACK_POLL_FAILED             0
 
-#define SIGMA_DSP_INIT_SUCCESS   1
-#define SIGMA_DSP_INIT_FAILED  0 
-#define SIGMA_DSP_DEINIT_SUCCESS 1
-#define SIGMA_DSP_DEINIT_FAILED  0 
+#define SIGMA_DSP_INIT_SUCCESS      1
+#define SIGMA_DSP_INIT_FAILED       0 
+#define SIGMA_DSP_DEINIT_SUCCESS    1
+#define SIGMA_DSP_DEINIT_FAILED     0 
 
-#define SIGMA_DSP_READ_SUCCESS   1
-#define SIGMA_DSP_READ_FAILED  0 
-#define SIGMA_DSP_WRITE_SUCCESS  1
-#define SIGMA_DSP_WRITE_FAILED   0 
+#define SIGMA_DSP_READ_SUCCESS      1
+#define SIGMA_DSP_READ_FAILED       0 
+#define SIGMA_DSP_WRITE_SUCCESS     1
+#define SIGMA_DSP_WRITE_FAILED      0 
 
 /******************************* TYPEDEFS ********************************/
 

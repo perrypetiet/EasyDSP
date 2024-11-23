@@ -22,26 +22,26 @@
 
 /******************************* DEFINES *********************************/
 
-#define QUEUE_SIZE        1
-#define EVENT_STD_TIMEOUT_MS  5000
+#define QUEUE_SIZE              1
+#define EVENT_STD_TIMEOUT_MS    5000
 #define EVENT_STD_TIMEOUT_TICKS (EVENT_STD_TIMEOUT_MS / portTICK_PERIOD_MS)
 
 // MODIFY SETTINGS EVENT TYPES
-#define DSP_SET_EQ   0
-#define DSP_SET_MUX  1
-#define DSP_SET_GAIN 2
-#define DSP_GET_EQ   3
-#define DSP_GET_MUX  4
-#define DSP_GET_GAIN 5
+#define DSP_SET_EQ    0
+#define DSP_SET_MUX   1
+#define DSP_SET_GAIN  2
+#define DSP_GET_EQ    3
+#define DSP_GET_MUX   4
+#define DSP_GET_GAIN  5
 
 // EVENT RESPONSE EVENT TYPES
-#define EVENT_RESPONSE_OK       0
-#define EVENT_RESPONSE_ERROR      1
-#define EVENT_RESPONSE_DSP_ERROR    2
-#define EVENT_RESPONSE_SETTINGS_ERROR 3
-#define EVENT_RESPONSE_SETTINGS_EQ  4
-#define EVENT_RESPONSE_SETTINGS_MUX   5
-#define EVENT_RESPONSE_SETTINGS_GAIN  6
+#define EVENT_RESPONSE_OK              0
+#define EVENT_RESPONSE_ERROR           1
+#define EVENT_RESPONSE_DSP_ERROR       2
+#define EVENT_RESPONSE_SETTINGS_ERROR  3
+#define EVENT_RESPONSE_SETTINGS_EQ     4
+#define EVENT_RESPONSE_SETTINGS_MUX    5
+#define EVENT_RESPONSE_SETTINGS_GAIN   6
 
 
 /******************************* TYPEDEFS ********************************/
@@ -52,19 +52,19 @@ typedef struct
 
   uint8_t    chan_num;
   uint8_t    eq_num;
-  bool     output;
+  bool       output;
 
   equalizer_t  eq;
-  mux_t    mux;
+  mux_t        mux;
   // gain_t    gain;
 }dsp_event_t;
 
 typedef struct
 {
-  uint8_t response_event_type;
+  uint8_t     response_event_type;
 
   equalizer_t response_eq;
-  mux_t     response_mux;
+  mux_t       response_mux;
   //gain_t    response_gain;
 }dsp_event_response_t;
 
@@ -91,19 +91,19 @@ communication_t* dsp_communication_create();
 
 // Waits for DSP event until timout
 bool await_event(communication_t *communication, 
-         void *event, 
-         TickType_t timeout);
+                 void *event, 
+                 TickType_t timeout);
 
 // Sends a single DSP event response
 bool send_event_response(communication_t *communcation,
-             void *event_response,
-             TickType_t timeout);  
+                         void *event_response,
+                         TickType_t timeout);  
 
 // Sends a DSP event and waits for response until timeout
 bool send_event(communication_t *communication,
-        void *event,
-        void *response,
-        TickType_t timeout);
+                void *event,
+                void *response,
+                TickType_t timeout);
 
 
 /******************************* THE END *********************************/

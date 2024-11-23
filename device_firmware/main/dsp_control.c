@@ -52,8 +52,8 @@ bool dsp_control_mux(mux_t *mux)
   data[ADA_PARAM_REG_SIZE - 1] = mux->index;
 
   if(sigma_dsp_write_burst(mux->sigma_dsp_address,
-               sizeof(data),
-               data) == SIGMA_DSP_WRITE_SUCCESS)
+                           sizeof(data),
+                           data) == SIGMA_DSP_WRITE_SUCCESS)
   {
     ESP_LOGI(TAG, "Mux write success.");
     return true;
