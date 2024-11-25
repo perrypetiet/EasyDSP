@@ -1,4 +1,6 @@
-idf_component_register(SRCS "easydsp_firmware.c"
+idf_component_register(SRCS
+              "easydsp_firmware.c" 
+              "crc16.c" 
               "eeprom.c"
               "device_settings.c"
               "sigma_dsp.c"
@@ -11,4 +13,5 @@ idf_component_register(SRCS "easydsp_firmware.c"
               "task_interfaces.c"
               "task_dsp_task.c"
               "led.c"
+            
           INCLUDE_DIRS "/")

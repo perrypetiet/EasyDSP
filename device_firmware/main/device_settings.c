@@ -19,7 +19,8 @@
 
 /******************************* GLOBAL VARIABLES ************************/
 
-device_settings_t *device_settings = NULL;
+device_settings_t* device_settings  = NULL;
+bool               eeprom_available = false;
 
 static const char *TAG = "Device_settings";
 
@@ -27,31 +28,29 @@ static const char *TAG = "Device_settings";
 
 /******************************* GLOBAL FUNCTIONS ************************/
 
-
 uint8_t init_device_settings()
 {
-  bool eeprom_found = false;
-  
-  if(init_eeprom(NV_STORAGE_SCL_PIN,
-                 NV_STORAGE_SDA_PIN,
-                 NV_STORAGE_I2C_INTERFACE,
-                 NV_STORAGE_I2C_ADDRESS))
-   {
-     eeprom_found = true;
-   }
-  
+  deinit_device_settings();
+
   device_settings = malloc(sizeof(device_settings_t));
+  memset(device_settings, 0x00, sizeof(device_settings_t));
 
   if(device_settings != NULL)
   {
 
-    if(eeprom_found)
+    if(init_eeprom(NV_STORAGE_SCL_PIN,
+                   NV_STORAGE_SDA_PIN,
+                   NV_STORAGE_I2C_INTERFACE,
+                   NV_STORAGE_I2C_ADDRESS))
     {
-      // Load from EEPROM.
+      eeprom_available = true;
     }
-    else
+
+    if(device_settings_load_nv() == NV_RW_FAILED)
     {
-      // Load factory settings
+      ESP_LOGW(TAG, "No EEPROM or faulty CRC");
+      device_settings_load_factory();
+      device_settings_store_nv();
     }
 
     ESP_LOGI(TAG, "Device settings init succes."); 
@@ -68,6 +67,8 @@ uint8_t init_device_settings()
 
 uint8_t deinit_device_settings()
 {
+  eeprom_available = false;
+
   if(device_settings != NULL)
   {
     free(device_settings);
@@ -140,21 +141,26 @@ uint8_t device_settings_load_factory()
 uint8_t device_settings_store_nv()
 {
   bool write_success = true;
-  if(device_settings != NULL)
+  nv_store_t nv_data = {0};
+
+  if(device_settings != NULL && eeprom_available)
   {
+    nv_data.settings = *device_settings;
+    nv_data.crc16 = crc_16((uint8_t*)&(nv_data.settings), sizeof(device_settings_t));
+
     // The EEPROM used can only write one page at once.
     // Let's see how many pages we have, we then program page for page.
-    uint16_t page_amount = sizeof(device_settings_t) / EEPROM_PAGE_SIZE;
-    uint8_t  remainder = sizeof(device_settings_t) % EEPROM_PAGE_SIZE;
+    uint16_t page_amount = sizeof(nv_store_t) / EEPROM_PAGE_SIZE;
+    uint8_t  remainder   = sizeof(nv_store_t) % EEPROM_PAGE_SIZE;
     
-    printf("Size of settings: %d\n", sizeof(device_settings_t));
+    printf("Size of settings: %d\n", sizeof(nv_store_t));
     printf("Amount of pages:  %d\n", page_amount);
     printf("Remaining bytes:  %d\n", remainder);
     
     for(int i = 0; i < page_amount; i++)
     {
       if(!eeprom_write_page(NV_STORAGE_SETTINGS_ADDRESS + (i * EEPROM_PAGE_SIZE), 
-                            (uint8_t*)device_settings   + (i * EEPROM_PAGE_SIZE), 
+                            (uint8_t*)&nv_data          + (i * EEPROM_PAGE_SIZE), 
                             EEPROM_PAGE_SIZE))
       {
         write_success = false;
@@ -162,7 +168,7 @@ uint8_t device_settings_store_nv()
     }
     // Remaining bytes:
     if(!eeprom_write_page(NV_STORAGE_SETTINGS_ADDRESS + (page_amount * (EEPROM_PAGE_SIZE)),
-                          (uint8_t*)device_settings   + (page_amount * EEPROM_PAGE_SIZE),
+                          (uint8_t*)&nv_data          + (page_amount * EEPROM_PAGE_SIZE),
                           remainder))
     {
       write_success = false;
@@ -176,24 +182,38 @@ uint8_t device_settings_store_nv()
     {
       ESP_LOGI(TAG, "Wrote settings to NV storage!");
     }
-  }   
+  }
   return (uint8_t)write_success;
 }
 
 uint8_t device_settings_load_nv()
 {
-  if(device_settings != NULL)
+  uint16_t   crc16 = 0x0000;
+  nv_store_t nv_store = {0};
+
+  if(device_settings != NULL && eeprom_available)
   {
     // Do a sequential read for all settings starting on device_settings pointer.
     if(eeprom_sequential_read(NV_STORAGE_SETTINGS_ADDRESS,
-                              (uint8_t*)device_settings,
-                              sizeof(device_settings_t)))
+                              (uint8_t*)&nv_store,
+                              sizeof(nv_store_t)))
     {
-      ESP_LOGI(TAG, "Loaded device settings from NV storage.");
-      return NV_RW_SUCCESS;
+      crc16 = crc_16((uint8_t*)&(nv_store.settings), sizeof(device_settings_t));
+
+      printf("crc NV: %d, crc calc: %d\n", nv_store.crc16, crc16);
+
+      if(crc16 == nv_store.crc16)
+      {
+        
+        *device_settings = nv_store.settings;
+        return NV_RW_SUCCESS;
+      }
+      else
+      {
+        ESP_LOGE(TAG, "CRC error!");
+      }
     }
   }
-  ESP_LOGW(TAG, "Failed to load device settings from NV storage");
   return NV_RW_FAILED;
 }
 

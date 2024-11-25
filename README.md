@@ -20,7 +20,7 @@ The goal of the protoype is to implement the basic functioning of this system wh
 
 ## TODO list <a name="TODO list"></a>
 
-- Make the settings store on the EEPROM.
+- Make the settings store on the EEPROM. ✅
 - Implement more filters (Bessel?) for better low pass and high pass.
 - Maybe improve Python module for this verstion.
 

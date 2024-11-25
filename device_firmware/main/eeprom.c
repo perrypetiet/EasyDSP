@@ -330,8 +330,8 @@ uint8_t eeprom_write_page(uint16_t page_address,
           i2c_master_stop(cmd);
 
           esp_err_t ret = i2c_master_cmd_begin(eeprom->i2c_port_num, 
-                        cmd, 
-                        I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
+                                               cmd, 
+                                               I2C_TIMEOUT_MS / portTICK_PERIOD_MS);
 
           i2c_cmd_link_delete(cmd);
 

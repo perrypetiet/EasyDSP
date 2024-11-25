@@ -20,9 +20,6 @@ static const char *TAG = "Settings task";
 void settings_task(void* pvParameters)
 {
   init_device_settings();
-  //device_settings_load_nv();
-
-  device_settings_load_factory();
 
   device_settings_t * settings = get_device_settings_address();
 
@@ -93,6 +90,7 @@ void settings_task(void* pvParameters)
   {
     if(await_event(communicationInterfaces, &event, EVENT_STD_TIMEOUT_TICKS))
     {
+      bool update_nv = false;
       ESP_LOGI(TAG, "Received event!!");
       event_response.response_event_type = EVENT_RESPONSE_ERROR;
 
@@ -100,13 +98,13 @@ void settings_task(void* pvParameters)
       if(event.event_type == DSP_GET_EQ)
       {
         uint8_t channelNum = event.chan_num;
-        uint8_t eqNum    = event.eq_num;
-        bool  output   = event.output;
+        uint8_t eqNum      = event.eq_num;
+        bool  output       = event.output;
         
         if(output)
         {
-          if((channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT) &&
-             (eqNum    < DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT))
+          if((channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT)   &&
+             (eqNum      < DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT)  )
           {
             event_response.response_eq = settings->outputs[channelNum].eq[eqNum];
             event_response.response_event_type = EVENT_RESPONSE_OK;
@@ -115,7 +113,7 @@ void settings_task(void* pvParameters)
         else
         {
           if((channelNum < DEVICE_SETTINGS_INPUT_AMOUNT) &&
-             (eqNum    < DEVICE_SETTINGS_INPUT_EQ_AMOUNT))
+             (eqNum      < DEVICE_SETTINGS_INPUT_EQ_AMOUNT))
           {
             event_response.response_eq = settings->inputs[channelNum].eq[eqNum];
             event_response.response_event_type = EVENT_RESPONSE_OK;
@@ -171,11 +169,12 @@ void settings_task(void* pvParameters)
           // Event is now the same as stored in settings, send to dsp
           event.event_type = DSP_SET_EQ;
           if(send_event(communicationDsp, 
-             &event, 
-             &event_response, 
-             EVENT_STD_TIMEOUT_TICKS))
+                        &event, 
+                        &event_response, 
+                        EVENT_STD_TIMEOUT_TICKS))
           {
             event_response.response_event_type = EVENT_RESPONSE_OK;     
+            update_nv                          = true;
           }
         }
       }
@@ -186,7 +185,7 @@ void settings_task(void* pvParameters)
         // Copy from event the the new channel MUX ->
         // Send the new mux data in settings to dsp task ->
         uint8_t channelNum = event.chan_num;
-        bool  output   = event.output;
+        bool    output     = event.output;
         if(output && channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT)
         {
           uint16_t old_address = settings->outputs[channelNum].mux.sigma_dsp_address;
@@ -196,17 +195,23 @@ void settings_task(void* pvParameters)
         }
         event.event_type = DSP_SET_MUX;
         if(send_event(communicationDsp, 
-                &event, 
-                &event_response, 
-                EVENT_STD_TIMEOUT_TICKS))
+                      &event, 
+                      &event_response, 
+                      EVENT_STD_TIMEOUT_TICKS))
         {
-          event_response.response_event_type = EVENT_RESPONSE_OK;     
+          event_response.response_event_type = EVENT_RESPONSE_OK;
+          update_nv                          = true;  
         }
       }
 
       send_event_response(communicationInterfaces, 
-                &event_response, 
-                EVENT_STD_TIMEOUT_TICKS);
+                          &event_response, 
+                          EVENT_STD_TIMEOUT_TICKS);
+
+      if(update_nv)
+      {
+        device_settings_store_nv();
+      }
     }
   }
   vTaskDelete(NULL);

@@ -21,10 +21,11 @@
 #include <string.h>
 #include "eeprom.h"
 #include "sigma_dsp_module_data.h"
+#include "crc16.h"
 
 /******************************* DEFINES *********************************/
 
-#define NV_STORAGE_SETTINGS_ADDRESS  0x40
+#define NV_STORAGE_SETTINGS_ADDRESS  0x00
 #define NV_STORAGE_I2C_ADDRESS       0x50
 #define NV_STORAGE_I2C_INTERFACE     1
 #define NV_STORAGE_SCL_PIN           37
@@ -37,7 +38,7 @@
 #define DEINIT_DEVICE_SETTINGS_SUCCESS 1
 #define DEINIT_DEVICE_SETTINGS_FAILED  0
 
-#define DEVICE_SETTINGS_DEVICE_NAME_LEN  63  
+#define DEVICE_SETTINGS_DEVICE_NAME_LEN  64  
 #define DEVICE_SETTINGS_INPUT_AMOUNT     2
 #define DEVICE_SETTINGS_OUTPUT_AMOUNT    4
 #define DEVICE_SETTINGS_INPUT_EQ_AMOUNT  5
@@ -119,6 +120,12 @@ typedef struct
   
 } device_settings_t;
 
+typedef struct
+{
+  device_settings_t settings;
+  uint16_t          crc16;
+
+} nv_store_t;
 
 /******************************* LOCAL FUNCTIONS *************************/
 
