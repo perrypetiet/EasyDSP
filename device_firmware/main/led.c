@@ -15,6 +15,9 @@
 
 static const char *TAG = "led";
 
+bool led_error_enabled = false;
+bool task_active       = false;
+
 const ledc_timer_config_t ledc_timer = 
 {
   .speed_mode    = LEDC_MODE,
@@ -35,7 +38,7 @@ const ledc_channel_config_t ledc_channel =
   .hpoint   = 0
 };
 
-TaskHandle_t    led_task;
+TaskHandle_t      led_task;
 SemaphoreHandle_t led_sem;
 
 /******************************* LOCAL FUNCTIONS *************************/
@@ -111,8 +114,19 @@ void task_led_fade(void* pvParameters)
   vTaskDelete(NULL);
 }
 
-/******************************* GLOBAL FUNCTIONS ************************/
+void task_led_error(void* pvParameters)
+{
+  for(;;)
+  {
+    led_off();
+    vTaskDelay(LED_BLINK_OFF);
+    led_static();
+    vTaskDelay(LED_BLINK_ON);
+  }
+  vTaskDelete(NULL);
+}
 
+/******************************* GLOBAL FUNCTIONS ************************/
 
 bool led_init()
 {
@@ -137,22 +151,55 @@ bool led_init()
 
 void led_fade_start()
 {
-  xTaskCreatePinnedToCore(task_led_fade, 
+  if(!led_error_enabled)
+  {
+
+    led_fade_stop();
+    xTaskCreatePinnedToCore(task_led_fade, 
               "LED_fader", 
               4096, 
               (void*) led_sem, 2, 
               &led_task, 
               tskNO_AFFINITY);
+    task_active = true;
+    
+  }
+  else
+  {
+    led_error_start();
+  }
+}
+
+void led_error_start()
+{
+  led_fade_stop();
+  led_error_enabled = true;
+  xTaskCreatePinnedToCore(task_led_error, 
+              "LED_fader", 
+              4096, 
+              NULL, 2, 
+              &led_task, 
+              tskNO_AFFINITY);
+  task_active = true;
 }
 
 void led_fade_stop()
 {
-  vTaskDelete(led_task);
+  if(task_active)
+  {
+    vTaskDelete(led_task);
+    task_active = false;
+  }
 }
 
 void led_static()
 {
   led_set_duty(LED_STATIC);
+}
+
+void led_off()
+{
+  led_set_duty(0);
 }
 
 

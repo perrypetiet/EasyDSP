@@ -93,6 +93,8 @@ uint8_t device_settings_load_factory()
     strcpy(device_settings->device_name, "EasyDSP");
     device_settings->device_name_len = 7;
 
+    device_settings->settings_version = NV_SETTINGS_VERSION;
+
     // Input settings
     for(int i = 0; i < DEVICE_SETTINGS_INPUT_AMOUNT; i++)
     {
@@ -132,7 +134,7 @@ uint8_t device_settings_load_factory()
       }
     }
 
-    ESP_LOGI(TAG, "Loaded factory settings.");
+    ESP_LOGI(TAG, "Loaded factory settings."); 
     return 1;
   }
   return 0;
@@ -142,6 +144,8 @@ uint8_t device_settings_store_nv()
 {
   bool write_success = true;
   nv_store_t nv_data = {0};
+
+  nv_data.settings.settings_version = NV_SETTINGS_VERSION;
 
   if(device_settings != NULL && eeprom_available)
   {
@@ -153,10 +157,12 @@ uint8_t device_settings_store_nv()
     uint16_t page_amount = sizeof(nv_store_t) / EEPROM_PAGE_SIZE;
     uint8_t  remainder   = sizeof(nv_store_t) % EEPROM_PAGE_SIZE;
     
+    /*
     printf("Size of settings: %d\n", sizeof(nv_store_t));
     printf("Amount of pages:  %d\n", page_amount);
     printf("Remaining bytes:  %d\n", remainder);
-    
+    */
+
     for(int i = 0; i < page_amount; i++)
     {
       if(!eeprom_write_page(NV_STORAGE_SETTINGS_ADDRESS + (i * EEPROM_PAGE_SIZE), 
@@ -202,9 +208,9 @@ uint8_t device_settings_load_nv()
 
       printf("crc NV: %d, crc calc: %d\n", nv_store.crc16, crc16);
 
-      if(crc16 == nv_store.crc16)
+      if(crc16                              == nv_store.crc16      && 
+         nv_store.settings.settings_version == NV_SETTINGS_VERSION   )
       {
-        
         *device_settings = nv_store.settings;
         return NV_RW_SUCCESS;
       }

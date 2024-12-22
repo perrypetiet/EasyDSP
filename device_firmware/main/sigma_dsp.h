@@ -13,7 +13,6 @@
  */ 
 #ifndef SIGMA_DSP_H_
 #define SIGMA_DSP_H_
-
 /******************************* INCLUDES ********************************/
 
 #include <stdio.h>
@@ -21,6 +20,7 @@
 #include "esp_log.h"
 #include "driver/i2c.h"
 #include "driver/gpio.h"
+#include "led.h"
 
 /******************************* DEFINES *********************************/
 
@@ -62,6 +62,8 @@ typedef struct
   gpio_num_t reset_pin;
   uint8_t sigma_dsp_address;
 } sigma_dsp_t;
+
+
 
 /******************************* LOCAL FUNCTIONS *************************/
 

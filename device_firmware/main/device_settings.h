@@ -25,18 +25,20 @@
 
 /******************************* DEFINES *********************************/
 
-#define NV_STORAGE_SETTINGS_ADDRESS  0x00
-#define NV_STORAGE_I2C_ADDRESS       0x50
-#define NV_STORAGE_I2C_INTERFACE     1
-#define NV_STORAGE_SCL_PIN           37
-#define NV_STORAGE_SDA_PIN           38
-#define NV_RW_SUCCESS                1
-#define NV_RW_FAILED                 0
+#define NV_STORAGE_SETTINGS_ADDRESS      0x00
+#define NV_STORAGE_I2C_ADDRESS           0x50
+#define NV_STORAGE_I2C_INTERFACE         1
+#define NV_STORAGE_SCL_PIN               37
+#define NV_STORAGE_SDA_PIN               38
+#define NV_RW_SUCCESS                    1
+#define NV_RW_FAILED                     0
 
-#define INIT_DEVICE_SETTINGS_SUCCESS   1
-#define INIT_DEVICE_SETTINGS_FAILED    0
-#define DEINIT_DEVICE_SETTINGS_SUCCESS 1
-#define DEINIT_DEVICE_SETTINGS_FAILED  0
+#define NV_SETTINGS_VERSION              1
+
+#define INIT_DEVICE_SETTINGS_SUCCESS     1
+#define INIT_DEVICE_SETTINGS_FAILED      0
+#define DEINIT_DEVICE_SETTINGS_SUCCESS   1
+#define DEINIT_DEVICE_SETTINGS_FAILED    0
 
 #define DEVICE_SETTINGS_DEVICE_NAME_LEN  64  
 #define DEVICE_SETTINGS_INPUT_AMOUNT     2
@@ -44,23 +46,23 @@
 #define DEVICE_SETTINGS_INPUT_EQ_AMOUNT  5
 #define DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT 5
 
-#define FILTER_TYPE_PEAK      0
-#define FILTER_TYPE_LOWSHELF  1
-#define FILTER_TYPE_HIGHSHELF 2
-#define FILTER_TYPE_LOWPASS   3
-#define FILTER_TYPE_HIGHPASS  4
-#define FILTER_TYPE_BANDPASS  5 
-#define FILTER_TYPE_BANDSTOP  6
+#define FILTER_TYPE_PEAK                 0
+#define FILTER_TYPE_LOWSHELF             1
+#define FILTER_TYPE_HIGHSHELF            2
+#define FILTER_TYPE_LOWPASS              3
+#define FILTER_TYPE_HIGHPASS             4
+#define FILTER_TYPE_BANDPASS             5  
+#define FILTER_TYPE_BANDSTOP             6
 
-#define PHASE_NON_INVERTED 0
-#define PHASE_INVERTED     1
+#define PHASE_NON_INVERTED               0
+#define PHASE_INVERTED                   1
 
-#define STATE_OFF 0
-#define STATE_ON  1
+#define STATE_OFF                        0
+#define STATE_ON                         1
 
-#define MUX_SELECT_INPUT1   0 
-#define MUX_SELECT_INPUT1_2 1
-#define MUX_SELECT_INPUT2   2
+#define MUX_SELECT_INPUT1                0 
+#define MUX_SELECT_INPUT1_2              1
+#define MUX_SELECT_INPUT2                2
 
 /******************************* TYPEDEFS ********************************/
 
@@ -112,19 +114,20 @@ typedef struct
 
 typedef struct
 {
+  uint8_t  settings_version;
+
   uint8_t  device_name_len;
   char     device_name[DEVICE_SETTINGS_DEVICE_NAME_LEN];
   
   input_t  inputs[DEVICE_SETTINGS_INPUT_AMOUNT];
   output_t outputs[DEVICE_SETTINGS_OUTPUT_AMOUNT];
-  
+
 } device_settings_t;
 
 typedef struct
 {
   device_settings_t settings;
   uint16_t          crc16;
-
 } nv_store_t;
 
 /******************************* LOCAL FUNCTIONS *************************/

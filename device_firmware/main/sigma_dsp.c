@@ -168,6 +168,7 @@ uint8_t init_sigma_dsp(uint8_t i2c_scl_gpio,
   free(sigma_dsp);
   sigma_dsp = NULL;
   ESP_LOGW(TAG, "Sigma DSP init failed!");
+  led_error_start();
   return SIGMA_DSP_INIT_FAILED;
 }
 

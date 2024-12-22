@@ -117,6 +117,7 @@ uint8_t init_eeprom(uint8_t i2c_scl_gpio,
   free(eeprom);
   eeprom = NULL;
   ESP_LOGW(TAG, "EEPROM init failed!");
+  led_error_start();
   return EEPROM_INIT_FAILED;
 }
 

@@ -34,6 +34,8 @@
 #define LED_FADE_MAX    100
 #define LED_FADE_MIN    2
 #define LED_STATIC      100
+#define LED_BLINK_ON    5
+#define LED_BLINK_OFF   145
 
 #define LEDC_MODE       LEDC_LOW_SPEED_MODE
 #define LEDC_TIMER      LEDC_TIMER_2
@@ -57,9 +59,13 @@ bool led_init(void);
 
 void led_fade_start(void);
 
+void led_error_start(void);
+
 void led_fade_stop(void);
 
 void led_static(void);
+
+void led_off(void);
 
 /******************************* THE END *********************************/
 
