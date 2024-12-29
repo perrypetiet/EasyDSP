@@ -38,7 +38,8 @@
         "type_traits": "c",
         "utility": "c",
         "sigma_dsp_module_data.h": "c",
-        "eeprom.h": "c"
+        "eeprom.h": "c",
+        "dsp_addressing.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "idf.adapterTargetName": "esp32s3",

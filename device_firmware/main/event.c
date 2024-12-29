@@ -70,21 +70,21 @@ bool send_event_response(communication_t *communication,
 }
 
 bool send_event(communication_t *communication,
-        void *event,
-        void *response,
-        TickType_t timeout)
+                void *event,
+                void *response,
+                TickType_t timeout)
 {
   if(communication != NULL && event != NULL && response != NULL)
   {
     // Send the event,
     if(xQueueSend(communication->event_queue, 
-            event, 
-            timeout) == pdTRUE)
+                  event, 
+                  timeout) == pdTRUE)
     {
       // And await a response
       if(xQueueReceive(communication->event_response_queue, 
-               response, 
-               timeout) == pdTRUE)
+                       response, 
+                       timeout) == pdTRUE)
       {
         return true;
       }

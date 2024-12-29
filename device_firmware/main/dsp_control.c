@@ -46,12 +46,12 @@ bool deinit_dsp_control()
   return false;
 }
 
-bool dsp_control_mux(mux_t *mux)
+bool dsp_control_mux(mux_t *mux, uint16_t sigma_dsp_address)
 {
   uint8_t data[ADA_PARAM_REG_SIZE] = {0, 0, 0, 0};
   data[ADA_PARAM_REG_SIZE - 1] = mux->index;
 
-  if(sigma_dsp_write_burst(mux->sigma_dsp_address,
+  if(sigma_dsp_write_burst(sigma_dsp_address,
                            sizeof(data),
                            data) == SIGMA_DSP_WRITE_SUCCESS)
   {
@@ -61,7 +61,7 @@ bool dsp_control_mux(mux_t *mux)
   return false;
 }
 
-bool dsp_control_eq_secondorder(equalizer_t *eq)
+bool dsp_control_eq_secondorder(equalizer_t *eq, uint16_t sigma_dsp_address)
 {
   float A;
   float w0;
@@ -198,9 +198,9 @@ bool dsp_control_eq_secondorder(equalizer_t *eq)
     data[i * 4 + 3] = fixedval & 0xFF;
   }
 
-  if(sigma_dsp_write_burst(eq->sigma_dsp_address,
-               sizeof(data),
-               data) == SIGMA_DSP_WRITE_SUCCESS)
+  if(sigma_dsp_write_burst(sigma_dsp_address,
+                           sizeof(data),
+                           data              ) == SIGMA_DSP_WRITE_SUCCESS)
   {
     ESP_LOGI(TAG, "EQ write success.");
     return true;

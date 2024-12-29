@@ -100,11 +100,6 @@ uint8_t device_settings_load_factory()
     {
       for(int j = 0; j < DEVICE_SETTINGS_INPUT_EQ_AMOUNT; j++)
       {
-        device_settings->inputs[i].eq[j].sigma_dsp_address = 
-          MOD_INPUT1_EQ_ALG0_STAGE0_B0_ADDR + 
-          (j * ADA_COEFFICIENT_AMOUNT) + 
-          (i * MOD_INPUT1_EQ_COUNT );
-
         device_settings->inputs[i].eq[j].freq         = 1000;
         device_settings->inputs[i].eq[j].q            = 1.41;
         device_settings->outputs[i].eq[j].filter_type = FILTER_TYPE_PEAK;
@@ -117,17 +112,8 @@ uint8_t device_settings_load_factory()
     {
       device_settings->outputs[i].mux.index = MUX_SELECT_INPUT1;
 
-      // Set the dsp address to the first mux address + output n
-      device_settings->outputs[i].mux.sigma_dsp_address = 
-                                    MOD_OUTPUT1_SELECT_MONOSWSLEW_ADDR + i;
-
       for(int j = 0; j < DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT; j++)
       {
-        device_settings->outputs[i].eq[j].sigma_dsp_address = 
-          MOD_OUTPUT1_EQ_ALG0_STAGE0_B0_ADDR + 
-          (j * ADA_COEFFICIENT_AMOUNT) + 
-          (i * MOD_OUTPUT1_EQ_COUNT);
-
         device_settings->outputs[i].eq[j].freq        = 1000;
         device_settings->outputs[i].eq[j].q           = 1.41;
         device_settings->outputs[i].eq[j].filter_type = FILTER_TYPE_PEAK;

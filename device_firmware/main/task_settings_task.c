@@ -140,16 +140,16 @@ void settings_task(void* pvParameters)
         // Copy from event the the new channel EQ ->
         // Send the new eq data in settings to dsp task ->
         uint8_t channelNum = event.chan_num;
-        uint8_t eqNum    = event.eq_num;
-        bool  output   = event.output;
+        uint8_t eqNum      = event.eq_num;
+        bool  output       = event.output;
         if(output)
         {
           if(channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT)
           {
-            uint16_t old_address = settings->outputs[channelNum].eq[eqNum].sigma_dsp_address;
-            event.eq.sigma_dsp_address = old_address;
+            //uint16_t old_address = settings->outputs[channelNum].eq[eqNum].sigma_dsp_address;
+            //event.eq.sigma_dsp_address = old_address;
             settings->outputs[channelNum].eq[eqNum] = event.eq;
-            settings->outputs[channelNum].eq[eqNum].sigma_dsp_address = old_address;
+            //settings->outputs[channelNum].eq[eqNum].sigma_dsp_address = old_address;
             settingsUpdated = true;
           }
         }
@@ -157,10 +157,10 @@ void settings_task(void* pvParameters)
         {
           if(channelNum < DEVICE_SETTINGS_INPUT_AMOUNT)
           {
-            uint16_t old_address = settings->inputs[channelNum].eq[eqNum].sigma_dsp_address;
-            event.eq.sigma_dsp_address = old_address;
+            //uint16_t old_address = settings->inputs[channelNum].eq[eqNum].sigma_dsp_address;
+            //event.eq.sigma_dsp_address = old_address;
             settings->inputs[channelNum].eq[eqNum] = event.eq;
-            settings->inputs[channelNum].eq[eqNum].sigma_dsp_address = old_address;
+            //settings->inputs[channelNum].eq[eqNum].sigma_dsp_address = old_address;
             settingsUpdated = true;
           }
         }
@@ -188,10 +188,10 @@ void settings_task(void* pvParameters)
         bool    output     = event.output;
         if(output && channelNum < DEVICE_SETTINGS_OUTPUT_AMOUNT)
         {
-          uint16_t old_address = settings->outputs[channelNum].mux.sigma_dsp_address;
-          event.mux.sigma_dsp_address = old_address;
+          //uint16_t old_address = settings->outputs[channelNum].mux.sigma_dsp_address;
+          //event.mux.sigma_dsp_address = old_address;
           settings->outputs[channelNum].mux = event.mux;
-          settings->outputs[channelNum].mux.sigma_dsp_address = old_address;
+          //settings->outputs[channelNum].mux.sigma_dsp_address = old_address;
         }
         event.event_type = DSP_SET_MUX;
         if(send_event(communicationDsp, 

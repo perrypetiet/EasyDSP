@@ -33,7 +33,7 @@
 #define NV_RW_SUCCESS                    1
 #define NV_RW_FAILED                     0
 
-#define NV_SETTINGS_VERSION              1
+#define NV_SETTINGS_VERSION              2
 
 #define INIT_DEVICE_SETTINGS_SUCCESS     1
 #define INIT_DEVICE_SETTINGS_FAILED      0
@@ -79,22 +79,11 @@ typedef struct
   uint8_t phase;
   uint8_t state;
 
-  // Every EQ has an address for 5 coefficients in parameter RAM.
-  // because the register size is 4 bytes and a coefficient is also 4,
-  // this address is the address for the first coeffiecent. The 
-  // coefficients can then be written in burst mode using this address
-  // as the first one. 
-  // TODO: Change the settings so that addresses do not have to be stored.
-  // They should be stored in a const so that we don't have to store the
-  // sigma dsp address on the EEPROM.
-  uint16_t sigma_dsp_address;
-  
 } equalizer_t;
 
 typedef struct
 {
   uint8_t  index;
-  uint16_t sigma_dsp_address;
 
 } mux_t;
 

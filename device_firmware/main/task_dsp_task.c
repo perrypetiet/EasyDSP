@@ -7,8 +7,10 @@
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "event.h"
+#include "dsp_addressing.h"
 
 static const char *TAG = "DSP task";
+extern const sigma_dsp_addresses_t dsp_addresses;
 
 /* Function: dsp_task 
  *
@@ -24,8 +26,8 @@ void dsp_task(void* pvParameters)
 {
   init_dsp_control();
 
-  communication_t    *communication = (communication_t*)pvParameters;
-  dsp_event_t      event;
+  communication_t*     communication = (communication_t*)pvParameters;
+  dsp_event_t          event;
   dsp_event_response_t event_response;
   
   for(;;)
@@ -36,7 +38,18 @@ void dsp_task(void* pvParameters)
     { 
       if(event.event_type == DSP_SET_EQ)
       {
-        if(dsp_control_eq_secondorder(&event.eq))
+        uint16_t address;
+
+        if(event.output)
+        {
+          address = dsp_addresses.output_addresses[event.chan_num].eq_addresses[event.eq_num];
+        }
+        else
+        {
+          address = dsp_addresses.input_addresses[event.chan_num].eq_addresses[event.eq_num];
+        }
+
+        if(dsp_control_eq_secondorder(&event.eq, address))
         {
           event_response.response_event_type = EVENT_RESPONSE_OK;
         }
@@ -47,7 +60,15 @@ void dsp_task(void* pvParameters)
       }
       else if(event.event_type == DSP_SET_MUX)
       {
-        if(dsp_control_mux(&event.mux))
+        uint16_t address = 0;
+
+        if(event.output)
+        {
+          address = dsp_addresses.output_addresses[event.chan_num].mux;
+        }
+      
+        // Based on channel number , get the address
+        if(dsp_control_mux(&event.mux, address))
         {
           event_response.response_event_type = EVENT_RESPONSE_OK;
         }

@@ -35,28 +35,10 @@
 
 #define ADA_SAMPLE_FREQ  48000
 
-#define ADA_PARAM_REG_SIZE   4
+#define ADA_PARAM_REG_SIZE     4
 #define ADA_COEFFICIENT_AMOUNT 5
 
 /******************************* TYPEDEFS ********************************/
-
-// typedef struct
-// {
-//   uint16_t addresses[DEVICE_SETTINGS_INPUT_EQ_AMOUNT]
-// } input_eq_addresses_t;
-
-// typedef struct
-// {  
-//   uint16_t addresses[DEVICE_SETTINGS_OUTPUT_EQ_AMOUNT]
-// } output_eq_addresses_t;
-
-
-// typedef struct
-// {
-//   input_eq_addresses_t inputs_eq_addresses[DEVICE_SETTINGS_INPUT_AMOUNT];
-
-//   output_eq _addresses_t outputs_eq_addresses[DEVICE_SETTINGS_OUTPUT_AMOUNT];
-// } module_addresses_t;
 
 /******************************* LOCAL FUNCTIONS *************************/
 
@@ -66,9 +48,9 @@ bool init_dsp_control(void);
 
 bool deinit_dsp_control(void);
 
-bool dsp_control_mux(mux_t *mux);
+bool dsp_control_mux(mux_t *mux, uint16_t sigma_dsp_address);
 
-bool dsp_control_eq_secondorder(equalizer_t *eq);
+bool dsp_control_eq_secondorder(equalizer_t *eq, uint16_t sigma_dsp_address);
 
 //TODO: add gain adjustment support
 
